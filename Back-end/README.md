@@ -7,9 +7,9 @@
 ### Accounts
 
 #### Crete account
-**End-point:** /accounts/create
+* End-point: /accounts/create
 
-**BODY**
+* BODY
 ```json
 {
 	"username":"rodrigo75",
@@ -19,7 +19,7 @@
 }
 ```
 
-**Curl command:**
+* Curl command
 ```cmd
 curl XPOST 'localhost:8080/accounts/create' \
 --header 'Content-Type: application/json' \
