@@ -24,8 +24,8 @@ public class Response {
                 return result.value() == null ? ResponseEntity.noContent().build() : ResponseEntity.ok().build();
             case NOT_IMPLEMENTED:
                 return ResponseEntity.status(NOT_IMPLEMENTED).build();
-            case ALREADY_EXISTS:
-                return ResponseEntity.status(ALREADY_REPORTED).build();
+            case CONFLICT:
+                return ResponseEntity.status(CONFLICT).build();
             default:
                 return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }

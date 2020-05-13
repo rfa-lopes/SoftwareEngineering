@@ -7,9 +7,13 @@ import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.FollowersRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.ProfileViewersRepository;
 import fct.unl.pt.instagramplus.Services.Result;
+import fct.unl.pt.instagramplus.Utils.B64Util;
+import fct.unl.pt.instagramplus.Utils.HashUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 
 import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.*;
@@ -31,7 +35,12 @@ public class AccountServiceClass implements AccountServiceInterface {
     @Override
     public Result<Long> createAccount(Account account) {
         if(accountsRepository.existsAccountByEmailOrUsername(account.getEmail(), account.getUsername()))
-            return error(ALREADY_EXISTS);
+            return error(CONFLICT);
+
+        //HASH password + salt(email(unique))
+        String b64PasswordHash = B64Util.encode(HashUtil.getHash(account.getPassword().getBytes()+account.getEmail()));
+        account.setPassword(b64PasswordHash);
+
         Account acc = accountsRepository.save(account);
         return ok(acc.getId());
     }
@@ -45,10 +54,12 @@ public class AccountServiceClass implements AccountServiceInterface {
     }
 
     @Override
-    public Result<Void> deteleAccount(Long id) {
-        Account acc = accountsRepository.deleteAccountById(id);
+    public Result<Void> deleteAccount(Long id) {
+        Account acc = accountsRepository.getAccountById(id);
         if(acc == null)
             return error(NOT_FOUND);
+
+        accountsRepository.deleteById(id);
         return ok();
     }
 
@@ -68,6 +79,9 @@ public class AccountServiceClass implements AccountServiceInterface {
         Account toAcc = accountsRepository.getAccountById(toId);
         if(fromAcc == null || toAcc == null)
             return error(NOT_FOUND);
+
+        follower.setFollowDate();
+
         followersRepository.save(follower);
         return ok();
     }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public interface Result<T> extends Serializable {
 
-    enum ErrorCode {OK, BAD_REQUEST, NOT_FOUND, INTERNAL_ERROR, NOT_IMPLEMENTED, ALREADY_EXISTS}
+    enum ErrorCode {OK, BAD_REQUEST, NOT_FOUND, NOT_IMPLEMENTED, CONFLICT}
 
     boolean isOK();
 

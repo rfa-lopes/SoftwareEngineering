@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Models.Accounts;
 
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,20 +35,11 @@ public class Account {
 
     public Account() { }
 
-    public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String email, @NotNull boolean isPublic) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.email = email;
-        this.isPublic = isPublic;
-    }
-
     public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String email) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
-        this.isPublic = true;
     }
 
     public Long getId() {

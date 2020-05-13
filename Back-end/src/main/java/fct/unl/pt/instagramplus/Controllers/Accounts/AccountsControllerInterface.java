@@ -19,8 +19,10 @@ public interface AccountsControllerInterface {
 
     String CREATE = "/create";
     String GET = "/get";
-    String DELETE = "/detete";
+    String DELETE = "/delete";
     String VIWERES = "/viweres";
+    String FOLLOW = "/follow";
+    String CHANGEVISIBILITY = "/change";
 
     /**
      * Create account
@@ -74,9 +76,19 @@ public interface AccountsControllerInterface {
      * @return void
      */
     @PostMapping(
-            value = VIWERES,
+            value = FOLLOW,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> followAccount(
             @RequestBody Follower follower);
+
+
+    /**
+     * Change account visibility
+     * @param id account id
+     * @return void
+     */
+    @GetMapping(value = CHANGEVISIBILITY + "/{id}")
+    ResponseEntity<Void> changeAccountVisibility(
+            @PathVariable Long id);
 }

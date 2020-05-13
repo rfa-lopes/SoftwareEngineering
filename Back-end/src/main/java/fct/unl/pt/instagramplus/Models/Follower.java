@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Models;
 
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import lombok.Data;
+import org.springframework.util.unit.DataUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,8 +54,8 @@ public class Follower {
         return followDate;
     }
 
-    public void setFollowDate(String followDate) {
-        this.followDate = followDate;
+    public void setFollowDate() {
+        this.followDate = DateUtil.getAtualDate();
     }
 
     public Long getAccountId() {

@@ -15,7 +15,7 @@ public interface AccountServiceInterface {
 
     Result<Account> getAccount(Long id);
 
-    Result<Void> deteleAccount(Long id);
+    Result<Void> deleteAccount(Long id);
 
     Result<List<ProfileViewer>> getAccountViweres(Long id);
 

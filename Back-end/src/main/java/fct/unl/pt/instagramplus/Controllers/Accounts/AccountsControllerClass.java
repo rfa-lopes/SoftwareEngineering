@@ -33,7 +33,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     @Override
     public ResponseEntity<Void> deleteAccount(Long id) {
         Logger.info("Request: DELETEACCOUNT");
-        return Response.resultOrErrorCode(accountService.deteleAccount(id));
+        return Response.resultOrErrorCode(accountService.deleteAccount(id));
     }
 
     @Override
@@ -46,6 +46,12 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     public ResponseEntity<Void> followAccount(Follower follower) {
         Logger.info("Request: FOLLOWACCOUNT");
         return Response.resultOrErrorCode(accountService.followAccount(follower));
+    }
+
+    @Override
+    public ResponseEntity<Void> changeAccountVisibility(Long id) {
+        Logger.info("Request: CHANGEVISIBILITY");
+        return Response.resultOrErrorCode(accountService.changeVisibility(id));
     }
 
 
