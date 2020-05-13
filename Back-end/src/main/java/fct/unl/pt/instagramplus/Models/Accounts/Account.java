@@ -1,17 +1,9 @@
 package fct.unl.pt.instagramplus.Models.Accounts;
 
-import fct.unl.pt.instagramplus.Utils.B64Util;
-import fct.unl.pt.instagramplus.Utils.DateUtil;
-import fct.unl.pt.instagramplus.Utils.HashUtil;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import java.text.DateFormat;
 
 import static javax.persistence.GenerationType.*;
 
@@ -21,35 +13,48 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String username;
 
     @NotNull
-    @Lob
-    private String hashpassword;
+    private String password;
 
     @NotNull
-    private String registerDate;
+    private String name;
 
     @NotNull
-    private boolean isLogin;
+    @Column(unique = true)
+    private String email;
+
+    @NotNull
+    private boolean isPublic;
 
     public Account() { }
 
-    public Account(@NotNull String username, @NotNull String password) {
+    public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String email, @NotNull boolean isPublic) {
         this.username = username;
-        this.hashpassword = B64Util.encode(HashUtil.getHash(password));
-        this.registerDate = DateUtil.getAtualDate();
-        this.isLogin = false;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.isPublic = isPublic;
     }
 
-    public long getId() {
+    public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.isPublic = false;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,28 +66,36 @@ public class Account {
         this.username = username;
     }
 
-    public String getHashpassword() {
-        return hashpassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setHashpassword(String hashpassword) {
-        this.hashpassword = hashpassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getRegisterDate() {
-        return registerDate;
+    public String getName() {
+        return name;
     }
 
-    public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isLogin() {
-        return isLogin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(boolean login) {
-        isLogin = login;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
     }
 
 }
