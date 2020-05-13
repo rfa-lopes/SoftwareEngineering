@@ -1,3 +1,29 @@
-# Software Engineering 2020
+# Software Engineering 2020 - Back-end
 
-## Back-end
+## API
+
+---
+
+### Accounts
+
+#### Crete account
+TODO
+
+#### Get account
+TODO
+
+#### Delete account
+TODO
+
+#### Get account viweres
+TODO
+
+---
+
+### Messages
+
+---
+
+### Publications
+
+---
