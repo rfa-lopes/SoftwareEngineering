@@ -7,7 +7,7 @@
 ### Accounts
 
 #### Crete account
-* End-point: /accounts/create
+* POST /accounts/create
 
 * BODY
 ```json
@@ -26,21 +26,41 @@ curl XPOST 'localhost:8080/accounts/create' \
 --data-raw '{"username":"rodrigo75","password":"123456","name":"Rodrigo Faria Lopes","email":"rfa.lopes@campus.fct.unl.pt"}'
 ```
 
+---
+
+RESPONSE
+* 200 - OK (ID)
+```json
+1
+```
+
+* 404 - NOT FOUND
+
+---
+---
+
 #### Get account
-TODO
+* get /accounts/create
+
+* Curl command
+```cmd
+curl XPOST 'localhost:8080/accounts/create' \
+--header 'Content-Type: application/json' \
+--data-raw '{"username":"rodrigo75","password":"123456","name":"Rodrigo Faria Lopes","email":"rfa.lopes@campus.fct.unl.pt"}'
+```
+
+---
+
+RESPONSE
+* 200 - OK (ID)
+```json
+1
+```
+
+* 404 - NOT FOUND
 
 #### Delete account
 TODO
 
 #### Get account viweres
 TODO
-
----
-
-### Messages
-
----
-
-### Publications
-
----
