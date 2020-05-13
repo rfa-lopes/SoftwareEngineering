@@ -39,7 +39,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     @Override
     public ResponseEntity<List<ProfileViewer>> gettAccountViweres(Long id) {
         Logger.info("Request: ACCOUNTVIWERES");
-        return Response.resultOrErrorCode(accountService.gettAccountViweres(id));
+        return Response.resultOrErrorCode(accountService.getAccountViweres(id));
     }
 
     @Override
