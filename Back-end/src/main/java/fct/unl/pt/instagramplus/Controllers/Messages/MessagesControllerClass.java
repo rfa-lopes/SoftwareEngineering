@@ -38,7 +38,7 @@ public class MessagesControllerClass implements MessagesControllerInterface{
     @Override
     public ResponseEntity<List<Conversation>> getAllConversationsFromAccount(Long accountId) {
         Logger.info("Request: GETALLCONVERSATIONS");
-        return Response.resultOrErrorCode(messageServiceClass.gettAllConversationsFromAccount(accountId));
+        return Response.resultOrErrorCode(messageServiceClass.getAllConversationsFromAccount(accountId));
     }
 
 
