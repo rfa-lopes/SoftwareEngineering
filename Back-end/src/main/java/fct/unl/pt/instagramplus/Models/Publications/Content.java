@@ -20,11 +20,11 @@ public class Content {
     Long publicationId;
 
     @NotNull
-    byte[] content;
+    String content; //BASE64
 
     public Content() { }
 
-    public Content(@NotNull Long publicationId, @NotNull byte[] content) {
+    public Content(@NotNull Long publicationId, @NotNull String content) {
         this.publicationId = publicationId;
         this.content = content;
     }
@@ -37,11 +37,11 @@ public class Content {
         this.publicationId = publicationId;
     }
 
-    public byte[] getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
     }
 }
