@@ -126,6 +126,77 @@ RESPONSE
 
 ---
 
+### Unfollow account
+
+REQUEST
+
+- POST /accounts/unfollow
+
+- BODY
+
+```json
+{
+  "accountId": 1,
+  "isFollowingId": 2
+}
+```
+
+RESPONSE
+
+- 200 - OK
+
+---
+
+### Get followers
+
+REQUEST
+
+- GET /accounts/followers/{id}
+
+RESPONSE
+
+- 200 - OK
+
+```json
+[
+  {
+    "id": 2,
+    "accountId": 1,
+    "isFollowingId": 2,
+    "followDate": "2020-05-13 16:22:17"
+  }
+]
+```
+
+- 404 - NOT FOUND
+
+---
+
+### Get followings
+
+REQUEST
+
+- GET /accounts/followings/{id}
+
+RESPONSE
+
+- 200 - OK
+
+```json
+[
+  {
+    "id": 2,
+    "accountId": 2,
+    "isFollowingId": 1,
+    "followDate": "2020-05-13 16:22:17"
+  }
+]
+```
+
+- 404 - NOT FOUND
+
+---
+
 ### Change account visibility
 
 REQUEST

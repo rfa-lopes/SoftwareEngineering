@@ -11,9 +11,6 @@ import fct.unl.pt.instagramplus.Utils.B64Util;
 import fct.unl.pt.instagramplus.Utils.HashUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Base64;
 import java.util.List;
 
 import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.*;
@@ -75,15 +72,43 @@ public class AccountServiceClass implements AccountServiceInterface {
     public Result<Void> followAccount(Follower follower) {
         Long fromId = follower.getAccountId();
         Long toId = follower.getIsFollowingId();
-        Account fromAcc = accountsRepository.getAccountById(fromId);
-        Account toAcc = accountsRepository.getAccountById(toId);
-        if(fromAcc == null || toAcc == null)
+        if (!accountExists(fromId) || !accountExists(toId) )
             return error(NOT_FOUND);
 
-        follower.setFollowDate();
+        Follower fol = followersRepository.getByAccountIdAndIsFollowingId(fromId, toId);
+        if(fol != null)
+            return error(CONFLICT);
 
+        follower.setFollowDate();
         followersRepository.save(follower);
         return ok();
+    }
+
+
+    @Override
+    public Result<Void> unfollowAccount(Follower follower) {
+        Long fromId = follower.getAccountId();
+        Long toId = follower.getIsFollowingId();
+        if (!accountExists(fromId) || !accountExists(toId) )
+            return error(NOT_FOUND);
+        followersRepository.deleteByAccountIdAndIsFollowingId(follower.getAccountId(), follower.getIsFollowingId());
+        return ok();
+    }
+
+    @Override
+    public Result<List<Follower>> getFollowersAccount(Long id) {
+        if (!accountExists(id) )
+            return error(NOT_FOUND);
+        List<Follower> list = followersRepository.getAllByIsFollowingId(id);
+        return ok(list);
+    }
+
+    @Override
+    public Result<List<Follower>> getAccountFollowings(Long id) {
+        if (!accountExists(id) )
+            return error(NOT_FOUND);
+        List<Follower> list = followersRepository.getAllByAccountId(id);
+        return ok(list);
     }
 
     @Override
@@ -94,5 +119,9 @@ public class AccountServiceClass implements AccountServiceInterface {
         acc.chengeVisibility();
         accountsRepository.save(acc);
         return ok();
+    }
+
+    private boolean accountExists(Long id){
+        return accountsRepository.getAccountById(id) != null;
     }
 }

@@ -1,7 +1,6 @@
 package fct.unl.pt.instagramplus.Controllers.Messages;
 
 import fct.unl.pt.instagramplus.Controllers.Response;
-import fct.unl.pt.instagramplus.Models.Messages.Conversation;
 import fct.unl.pt.instagramplus.Models.Messages.Message;
 import fct.unl.pt.instagramplus.Services.MessagesServices.MessageServiceClass;
 import fct.unl.pt.instagramplus.Utils.Logger;
@@ -30,15 +29,9 @@ public class MessagesControllerClass implements MessagesControllerInterface{
     }
 
     @Override
-    public ResponseEntity<List<Message>> getAllMessagesFromConversation(Long conversationId) {
+    public ResponseEntity<List<Message>> getAllMessagesFromConversation(Long fromAccountId, Long toAccountId) {
         Logger.info("Request: GETALLMESSAGES");
-        return Response.resultOrErrorCode(messageServiceClass.getAllMessagesFromConversation(conversationId));
-    }
-
-    @Override
-    public ResponseEntity<List<Conversation>> getAllConversationsFromAccount(Long accountId) {
-        Logger.info("Request: GETALLCONVERSATIONS");
-        return Response.resultOrErrorCode(messageServiceClass.getAllConversationsFromAccount(accountId));
+        return Response.resultOrErrorCode(messageServiceClass.getAllMessagesFromConversation(fromAccountId, toAccountId));
     }
 
 

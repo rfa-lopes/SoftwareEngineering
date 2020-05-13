@@ -49,6 +49,24 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     }
 
     @Override
+    public ResponseEntity<Void> unfollowAccount(Follower follower) {
+        Logger.info("Request: UNFOLLOWACCOUNT");
+        return Response.resultOrErrorCode(accountService.unfollowAccount(follower));
+    }
+
+    @Override
+    public ResponseEntity<List<Follower>> getFollowersAccount(Long id) {
+        Logger.info("Request: ACCOUNTFOLLOWERS");
+        return Response.resultOrErrorCode(accountService.getFollowersAccount(id));
+    }
+
+    @Override
+    public ResponseEntity<List<Follower>> getAccountFollowings(Long id) {
+        Logger.info("Request: ACCOUNTFOLLOWINGS");
+        return Response.resultOrErrorCode(accountService.getAccountFollowings(id));
+    }
+
+    @Override
     public ResponseEntity<Void> changeAccountVisibility(Long id) {
         Logger.info("Request: CHANGEVISIBILITY");
         return Response.resultOrErrorCode(accountService.changeVisibility(id));

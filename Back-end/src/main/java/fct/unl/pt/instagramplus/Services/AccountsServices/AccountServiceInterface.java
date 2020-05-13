@@ -21,7 +21,13 @@ public interface AccountServiceInterface {
 
     Result<Void> followAccount(Follower follower);
 
+    Result<List<Follower>> getAccountFollowings(Long id);
+
     Result<Void> changeVisibility(Long accountId);
+
+    Result<Void> unfollowAccount(Follower follower);
+
+    Result<List<Follower>> getFollowersAccount(Long id);
 
 
 }

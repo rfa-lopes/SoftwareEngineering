@@ -1,18 +1,17 @@
 package fct.unl.pt.instagramplus.Services.MessagesServices;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
-import fct.unl.pt.instagramplus.Models.Messages.AccountInConversation;
-import fct.unl.pt.instagramplus.Models.Messages.Conversation;
 import fct.unl.pt.instagramplus.Models.Messages.Message;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
-import fct.unl.pt.instagramplus.Repositories.Messages.AccountsInConversationRepository;
-import fct.unl.pt.instagramplus.Repositories.Messages.ConversationsRepository;
 import fct.unl.pt.instagramplus.Repositories.Messages.MessagesRepository;
 import fct.unl.pt.instagramplus.Services.Result;
+import fct.unl.pt.instagramplus.Utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.*;
@@ -26,24 +25,18 @@ public class MessageServiceClass implements MessageServiceInterface{
     MessagesRepository messagesRepository;
 
     @Autowired
-    ConversationsRepository conversationsRepository;
-
-    @Autowired
     AccountsRepository accountsRepository;
 
-    @Autowired
-    AccountsInConversationRepository accountsInConversationRepository;
 
     @Override
     public Result<Long> sendMessage(Message message) {
-        Long conversatioId = message.getConversationId();
-        Conversation con = conversationsRepository.getConversationById(conversatioId);
-        if(con == null)
-            return error(NOT_FOUND);
+
         Long fromAccountId = message.getFromUserId();
-        Account acc = accountsRepository.getAccountById(fromAccountId);
-        if(acc == null)
+        Long toAccountId = message.getToUserId();
+
+        if(!accountExists(fromAccountId) || !accountExists(toAccountId))
             return error(NOT_FOUND);
+
         message.setSendedDate();
         Message mes = messagesRepository.save(message);
         return ok(mes.getId());
@@ -59,24 +52,32 @@ public class MessageServiceClass implements MessageServiceInterface{
     }
 
     @Override
-    public Result<List<Message>> getAllMessagesFromConversation(Long conversationId) {
-        Conversation con = conversationsRepository.getConversationById(conversationId);
-        if(con == null)
+    public Result<List<Message>> getAllMessagesFromConversation(Long accountId, Long toAccountId) {
+        if(!accountExists(accountId) || !accountExists(toAccountId))
             return error(NOT_FOUND);
-        List<Message> messages = messagesRepository.getAllByConversationId(conversationId);
-        return ok(messages);
+        List<Message> list = messagesRepository.getAllByFromUserIdAndToUserId(accountId, toAccountId);
+        List<Message> list2 = messagesRepository.getAllByFromUserIdAndToUserId(toAccountId, accountId);
+
+        for (Message mes : list2) {
+            mes.setReceivedDate();
+            messagesRepository.save(mes);
+        }
+        list.addAll(list2);
+        Collections.sort(list, (m1, m2) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.DATE_PATTERN);
+            try {
+                Date date1 = sdf.parse(m1.getSendedDate());
+                Date date2 = sdf.parse(m2.getSendedDate());
+                return date1.compareTo(date2);
+            } catch (ParseException e) {
+                return 0;
+            }
+        });
+        return ok(list);
     }
 
-    @Override
-    public Result<List<Conversation>> getAllConversationsFromAccount(Long accountId) {
-        Account acc = accountsRepository.getAccountById(accountId);
-        if(acc == null)
-            return error(NOT_FOUND);
-        List<AccountInConversation> listAccountsInConversation = accountsInConversationRepository.getAllByAccountId(accountId);
-        List<Conversation> list = new LinkedList<>();
-        for(AccountInConversation accInCon : listAccountsInConversation)
-            list.add(conversationsRepository.getConversationById(accInCon.getConversationId()));
-        return ok(list);
+    private boolean accountExists(Long id){
+        return accountsRepository.getAccountById(id) != null;
     }
 }
 

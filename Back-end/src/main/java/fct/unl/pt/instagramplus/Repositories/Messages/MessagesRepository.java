@@ -11,7 +11,7 @@ public interface MessagesRepository extends JpaRepository<Message, Long> {
 
     Message getMessagenById(Long id);
 
-    List<Message> getAllByConversationId(Long conversationId);
+    List<Message> getAllByFromUserIdAndToUserId(Long fromUserId, Long toUserId);
 
 
 }

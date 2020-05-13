@@ -19,10 +19,10 @@ public class Message {
     Long id;
 
     @NotNull
-    Long conversationId;
+    Long fromUserId;
 
     @NotNull
-    Long fromUserId;
+    Long toUserId;
 
     @NotNull
     String messageText;
@@ -31,14 +31,24 @@ public class Message {
 
     String receivedDate;
 
-    String readedDate;
-
     public Message() { }
 
-    public Message(@NotNull Long conversationId, @NotNull Long fromUserId, @NotNull String messageText) {
-        this.conversationId = conversationId;
+    public Message(@NotNull Long fromUserId, @NotNull Long toUserId, @NotNull String messageText) {
         this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
         this.messageText = messageText;
+    }
+
+    public Long getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(Long toUserId) {
+        this.toUserId = toUserId;
+    }
+
+    public void setSendedDate(String sendedDate) {
+        this.sendedDate = sendedDate;
     }
 
     public Long getId() {
@@ -47,14 +57,6 @@ public class Message {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getConversationId() {
-        return conversationId;
-    }
-
-    public void setConversationId(Long conversationId) {
-        this.conversationId = conversationId;
     }
 
     public Long getFromUserId() {
@@ -85,15 +87,8 @@ public class Message {
         return receivedDate;
     }
 
-    public void setReceivedDate(String receivedDate) {
-        this.receivedDate = receivedDate;
+    public void setReceivedDate() {
+        this.receivedDate = DateUtil.getAtualDate();
     }
 
-    public String getReadedDate() {
-        return readedDate;
-    }
-
-    public void setReadedDate(String readedDate) {
-        this.readedDate = readedDate;
-    }
 }

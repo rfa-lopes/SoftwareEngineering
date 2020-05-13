@@ -1,6 +1,5 @@
 package fct.unl.pt.instagramplus.Services.MessagesServices;
 
-import fct.unl.pt.instagramplus.Models.Messages.Conversation;
 import fct.unl.pt.instagramplus.Models.Messages.Message;
 import fct.unl.pt.instagramplus.Services.Result;
 import org.springframework.stereotype.Service;
@@ -14,8 +13,6 @@ public interface MessageServiceInterface {
 
     Result<Void> deleteMessage(Long messageId);
 
-    Result<List<Message>> getAllMessagesFromConversation(Long conversationId);
-
-    Result<List<Conversation>> getAllConversationsFromAccount(Long accountId);
+    Result<List<Message>> getAllMessagesFromConversation(Long accountId, Long toAccountId);
 
 }

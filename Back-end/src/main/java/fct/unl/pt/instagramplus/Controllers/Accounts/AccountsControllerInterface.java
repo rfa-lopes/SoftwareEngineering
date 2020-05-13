@@ -18,11 +18,14 @@ public interface AccountsControllerInterface {
     String BASE_URL = "/accounts";
 
     String CREATE = "/create";
-    String GET = "/get";
-    String DELETE = "/delete";
-    String VIWERES = "/viweres";
+    String GET = "/get/{id}";
+    String DELETE = "/delete/{id}";
+    String VIWERES = "/viweres/{id}";
+    String CHANGEVISIBILITY = "/change/{id}";
     String FOLLOW = "/follow";
-    String CHANGEVISIBILITY = "/change";
+    String UNFOLLOW = "/unfollow";
+    String FOLLOWERS = "/followers/{id}";
+    String FOLLOWINGS = "/followings/{id}";
 
     /**
      * Create account
@@ -42,7 +45,7 @@ public interface AccountsControllerInterface {
      * @return account
      */
     @GetMapping(
-            value = GET + "/{id}",
+            value = GET,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Account> gettAccount(
             @PathVariable( "id" ) Long id);
@@ -53,7 +56,7 @@ public interface AccountsControllerInterface {
      * @return void
      */
     @DeleteMapping(
-            value = DELETE + "/{id}",
+            value = DELETE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deleteAccount(
             @PathVariable( "id" ) Long id);
@@ -65,10 +68,20 @@ public interface AccountsControllerInterface {
      * @return list of accounts
      */
     @GetMapping(
-            value = VIWERES + "/{id}",
+            value = VIWERES,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<List<ProfileViewer>> gettAccountViweres(
             @PathVariable( "id" ) Long id);
+
+
+    /**
+     * Change account visibility
+     * @param id account id
+     * @return void
+     */
+    @GetMapping(value = CHANGEVISIBILITY)
+    ResponseEntity<Void> changeAccountVisibility(
+            @PathVariable Long id);
 
     /**
      * Follow account
@@ -77,18 +90,41 @@ public interface AccountsControllerInterface {
      */
     @PostMapping(
             value = FOLLOW,
-            consumes = APPLICATION_JSON_VALUE,
-            produces = APPLICATION_JSON_VALUE)
+            consumes = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> followAccount(
             @RequestBody Follower follower);
 
-
     /**
-     * Change account visibility
-     * @param id account id
+     * Unfollow account
+     * @param follower
      * @return void
      */
-    @GetMapping(value = CHANGEVISIBILITY + "/{id}")
-    ResponseEntity<Void> changeAccountVisibility(
+    @PostMapping(
+            value = UNFOLLOW,
+            consumes = APPLICATION_JSON_VALUE)
+    ResponseEntity<Void> unfollowAccount(
+            @RequestBody Follower follower);
+
+    /**
+     * Get account followers
+     * @param id
+     * @return followers list
+     */
+    @GetMapping(
+            value = FOLLOWERS)
+    ResponseEntity<List<Follower>> getFollowersAccount(
             @PathVariable Long id);
+
+    /**
+     * Obter quem o id segue
+     * @param id
+     * @return followings list
+     */
+    @GetMapping(
+            value = FOLLOWINGS)
+    ResponseEntity<List<Follower>> getAccountFollowings(
+            @PathVariable Long id);
+
+
 }
+
