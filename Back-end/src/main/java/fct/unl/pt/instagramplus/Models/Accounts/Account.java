@@ -47,7 +47,7 @@ public class Account {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.isPublic = false;
+        this.isPublic = true;
     }
 
     public Long getId() {
@@ -96,6 +96,10 @@ public class Account {
 
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
+    }
+
+    public void chengeVisibility(){
+        isPublic = !isPublic;
     }
 
 }

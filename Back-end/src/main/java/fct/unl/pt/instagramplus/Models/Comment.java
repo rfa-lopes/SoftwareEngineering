@@ -15,42 +15,42 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    long id;
+    Long id;
 
     @NotNull
-    long userId;
+    Long userId;
 
     @NotNull
-    long publicationId;
+    Long publicationId;
 
     public Comment() { }
 
-    public Comment(@NotNull long userId, @NotNull long publicationId) {
+    public Comment(@NotNull Long userId, @NotNull Long publicationId) {
         this.userId = userId;
         this.publicationId = publicationId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public long getPublicationId() {
+    public Long getPublicationId() {
         return publicationId;
     }
 
-    public void setPublicationId(long publicationId) {
+    public void setPublicationId(Long publicationId) {
         this.publicationId = publicationId;
     }
 }

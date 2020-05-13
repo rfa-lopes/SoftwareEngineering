@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Controllers.Accounts;
 
 import fct.unl.pt.instagramplus.Controllers.Response;
 import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Services.AccountsServices.AccountServiceClass;
 import fct.unl.pt.instagramplus.Utils.Logger;
@@ -40,4 +41,12 @@ public class AccountsControllerClass implements AccountsControllerInterface{
         Logger.info("Request: ACCOUNTVIWERES");
         return Response.resultOrErrorCode(accountService.gettAccountViweres(id));
     }
+
+    @Override
+    public ResponseEntity<Void> followAccount(Follower follower) {
+        Logger.info("Request: FOLLOWACCOUNT");
+        return Response.resultOrErrorCode(accountService.followAccount(follower));
+    }
+
+
 }

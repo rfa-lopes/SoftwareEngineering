@@ -2,34 +2,38 @@ package fct.unl.pt.instagramplus.Models.Publications;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.net.URL;
+
+import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Data
 public class Content {
 
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    Long id;
+
     @NotNull
-    long publicationId;
+    Long publicationId;
 
     @NotNull
     byte[] content;
 
     public Content() { }
 
-    public Content(long publicationId, byte[] content) {
+    public Content(@NotNull Long publicationId, @NotNull byte[] content) {
         this.publicationId = publicationId;
         this.content = content;
     }
 
-    public long getPublicationId() {
+    public Long getPublicationId() {
         return publicationId;
     }
 
-    public void setPublicationId(long publicationId) {
+    public void setPublicationId(Long publicationId) {
         this.publicationId = publicationId;
     }
 

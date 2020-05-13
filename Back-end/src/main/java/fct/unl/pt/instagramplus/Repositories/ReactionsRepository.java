@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ReactionsRepository extends JpaRepository<Reaction, Long> {
 
-    Reaction getReactionBy(Long id);
+    Reaction getReactionById(Long id);
 
     List<Reaction> getAllByPublicationId(Long publicationId);
 

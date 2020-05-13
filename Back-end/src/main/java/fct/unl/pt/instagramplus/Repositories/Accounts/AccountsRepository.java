@@ -1,4 +1,4 @@
-package fct.unl.pt.instagramplus.Repositories;
+package fct.unl.pt.instagramplus.Repositories.Accounts;
 
 import fct.unl.pt.instagramplus.Models.Accounts.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ public interface AccountsRepository extends JpaRepository<Account, Long> {
 
     Account getAccountById(Long id);
 
-    boolean existsAccountByEmailOrName(String email, String name);
+    boolean existsAccountByEmailOrUsername(String email, String name);
 
     Account deleteAccountById(Long id);
 }

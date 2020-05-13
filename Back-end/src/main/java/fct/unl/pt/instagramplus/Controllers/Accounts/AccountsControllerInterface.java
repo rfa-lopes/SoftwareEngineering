@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Controllers.Accounts;
 
 
 import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,10 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = AccountsControllerInterface.ACCOUNTS_BASE_URL)
+@RequestMapping(value = AccountsControllerInterface.BASE_URL)
 public interface AccountsControllerInterface {
 
-    String ACCOUNTS_BASE_URL = "/accounts";
+    String BASE_URL = "/accounts";
 
     String CREATE = "/create";
     String GET = "/get";
@@ -66,4 +67,16 @@ public interface AccountsControllerInterface {
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<List<ProfileViewer>> gettAccountViweres(
             @PathVariable( "id" ) Long id);
+
+    /**
+     * Follow account
+     * @param follower
+     * @return void
+     */
+    @PostMapping(
+            value = VIWERES,
+            consumes = APPLICATION_JSON_VALUE,
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<Void> followAccount(
+            @RequestBody Follower follower);
 }

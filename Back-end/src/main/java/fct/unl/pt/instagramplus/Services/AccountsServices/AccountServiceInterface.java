@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Services.AccountsServices;
 
 import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Services.Result;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,11 @@ public interface AccountServiceInterface {
 
     Result<Void> deteleAccount(Long id);
 
-    Result<List<ProfileViewer>> gettAccountViweres(Long id);
+    Result<List<ProfileViewer>> getAccountViweres(Long id);
+
+    Result<Void> followAccount(Follower follower);
+
+    Result<Void> changeVisibility(Long accountId);
 
 
 }

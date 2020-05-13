@@ -16,46 +16,46 @@ public class ProfileViewer {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    long id;
+    Long id;
 
     @NotNull
-    long viewerId; //this guy...
+    Long viewerId; //this guy...
 
     @NotNull
-    long profileId; //see the profile of this guy
+    Long profileId; //see the profile of this guy
 
     @NotNull
     String viewDate;
 
     public ProfileViewer() { }
 
-    public ProfileViewer(@NotNull long viewerId, @NotNull long profileId) {
+    public ProfileViewer(@NotNull Long viewerId, @NotNull Long profileId) {
         this.viewerId = viewerId;
         this.profileId = profileId;
         this.viewDate = DateUtil.getAtualDate();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getViewerId() {
+    public Long getViewerId() {
         return viewerId;
     }
 
-    public void setViewerId(long viewerId) {
+    public void setViewerId(Long viewerId) {
         this.viewerId = viewerId;
     }
 
-    public long getProfileId() {
+    public Long getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(long profileId) {
+    public void setProfileId(Long profileId) {
         this.profileId = profileId;
     }
 

@@ -16,13 +16,13 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    long id;
+    Long id;
 
     @NotNull
-    long conversationId;
+    Long conversationId;
 
     @NotNull
-    long fromUserId;
+    Long fromUserId;
 
     @NotNull
     String messageText;
@@ -35,34 +35,33 @@ public class Message {
 
     public Message() { }
 
-    public Message(@NotNull long conversationId, @NotNull long fromUserId, @NotNull String messageText) {
+    public Message(@NotNull Long conversationId, @NotNull Long fromUserId, @NotNull String messageText) {
         this.conversationId = conversationId;
         this.fromUserId = fromUserId;
         this.messageText = messageText;
-        this.sendedDate = DateUtil.getAtualDate();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getConversationId() {
+    public Long getConversationId() {
         return conversationId;
     }
 
-    public void setConversationId(long conversationId) {
+    public void setConversationId(Long conversationId) {
         this.conversationId = conversationId;
     }
 
-    public long getFromUserId() {
+    public Long getFromUserId() {
         return fromUserId;
     }
 
-    public void setFromUserId(long fromUserId) {
+    public void setFromUserId(Long fromUserId) {
         this.fromUserId = fromUserId;
     }
 
@@ -78,8 +77,8 @@ public class Message {
         return sendedDate;
     }
 
-    public void setSendedDate(String sendedDate) {
-        this.sendedDate = sendedDate;
+    public void setSendedDate() {
+        this.sendedDate = DateUtil.getAtualDate();
     }
 
     public String getReceivedDate() {

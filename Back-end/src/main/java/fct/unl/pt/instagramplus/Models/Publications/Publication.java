@@ -13,10 +13,10 @@ public class Publication {
 
     @Id
     @GeneratedValue(strategy = AUTO)
-    long id;
+    Long id;
 
     @NotNull
-    long ownerId;
+    Long ownerId;
 
     @NotNull
     String publicationDate;
@@ -28,7 +28,7 @@ public class Publication {
 
     public Publication(){}
 
-    public Publication(@NotNull long ownerId, @NotNull String publicationDate, String expireDate, String description) {
+    public Publication(@NotNull Long ownerId, @NotNull String publicationDate, String expireDate, String description) {
         this.ownerId = ownerId;
         this.publicationDate = publicationDate;
         this.expireDate = expireDate;
@@ -43,19 +43,19 @@ public class Publication {
         this.description = description;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(long ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 
