@@ -7,8 +7,7 @@ import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.FollowersRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.ProfileViewersRepository;
 import fct.unl.pt.instagramplus.Services.Result;
-import fct.unl.pt.instagramplus.Utils.B64Util;
-import fct.unl.pt.instagramplus.Utils.HashUtil;
+import fct.unl.pt.instagramplus.Utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -35,8 +34,8 @@ public class AccountServiceClass implements AccountServiceInterface {
             return error(CONFLICT);
 
         //HASH password + salt(email(unique))
-        String b64PasswordHash = B64Util.encode(HashUtil.getHash(account.getPassword().getBytes()+account.getEmail()));
-        account.setPassword(b64PasswordHash);
+        String hash = PasswordUtil.create(account.getPassword());
+        account.setPassword(hash);
 
         Account acc = accountsRepository.save(account);
         return ok(acc.getId());
@@ -47,6 +46,7 @@ public class AccountServiceClass implements AccountServiceInterface {
         Account acc = accountsRepository.getAccountById(id);
         if(acc == null)
             return error(NOT_FOUND);
+        acc.setPassword(null);
         return ok(acc);
     }
 
@@ -57,6 +57,15 @@ public class AccountServiceClass implements AccountServiceInterface {
             return error(NOT_FOUND);
 
         accountsRepository.deleteById(id);
+        return ok();
+    }
+
+    @Override
+    public Result<Void> setNewViewer(Long thisAccount, Long seeThatAccount) {
+        if(thisAccount != seeThatAccount ) { //NAO CONTA VER O PROPRIO PERFIL
+            ProfileViewer pv = new ProfileViewer(thisAccount, seeThatAccount);
+            profileViewersRepository.save(pv);
+        }
         return ok();
     }
 
@@ -124,4 +133,5 @@ public class AccountServiceClass implements AccountServiceInterface {
     private boolean accountExists(Long id){
         return accountsRepository.getAccountById(id) != null;
     }
+
 }

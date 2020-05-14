@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
+
 @RestController
 public class AccountsControllerClass implements AccountsControllerInterface{
 
@@ -19,56 +21,65 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     AccountServiceClass accountService;
 
     @Override
-    public ResponseEntity<Long> createAccount(Account account) {
-        Logger.info("Request: CREATEACCOUNT");
-        return Response.resultOrErrorCode(accountService.createAccount(account));
-    }
-
-    @Override
-    public ResponseEntity<Account> gettAccount(Long id) {
-        Logger.info("Request: GETACCOUNT");
+    public ResponseEntity<Account> getAccount(Long accountRequestId, Long id) {
+        Logger.info("Request: GET ACCOUNT");
+        accountService.setNewViewer(accountRequestId, id);
         return Response.resultOrErrorCode(accountService.getAccount(id));
     }
 
     @Override
-    public ResponseEntity<Void> deleteAccount(Long id) {
-        Logger.info("Request: DELETEACCOUNT");
+    public ResponseEntity<Void> deleteAccount(Long accountRequestId,Long id) {
+        Logger.info("Request: DELETE ACCOUNT");
+        if(!accountRequestId.equals(id))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.deleteAccount(id));
     }
 
     @Override
-    public ResponseEntity<List<ProfileViewer>> gettAccountViweres(Long id) {
-        Logger.info("Request: ACCOUNTVIWERES");
+    public ResponseEntity<List<ProfileViewer>> getAccountViweres(Long accountRequestId,Long id) {
+        Logger.info("Request: ACCOUNT VIEWERS");
+        if(!accountRequestId.equals(id))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getAccountViweres(id));
     }
 
     @Override
-    public ResponseEntity<Void> followAccount(Follower follower) {
-        Logger.info("Request: FOLLOWACCOUNT");
+    public ResponseEntity<Void> followAccount(Long accountRequestId,Follower follower) {
+        Logger.info("Request: FOLLOW ACCOUNT");
+        if(!accountRequestId.equals(follower.getAccountId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.followAccount(follower));
     }
 
     @Override
-    public ResponseEntity<Void> unfollowAccount(Follower follower) {
-        Logger.info("Request: UNFOLLOWACCOUNT");
+    public ResponseEntity<Void> unfollowAccount(Long accountRequestId,Follower follower) {
+        Logger.info("Request: UNFOLLOW ACCOUNT");
+        if(!accountRequestId.equals(follower.getAccountId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.unfollowAccount(follower));
     }
 
     @Override
-    public ResponseEntity<List<Follower>> getFollowersAccount(Long id) {
-        Logger.info("Request: ACCOUNTFOLLOWERS");
+    public ResponseEntity<List<Follower>> getFollowersAccount(Long accountRequestId,Long id) {
+        Logger.info("Request: ACCOUNT FOLLOWERS");
+        if(!accountRequestId.equals(id))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getFollowersAccount(id));
     }
 
     @Override
-    public ResponseEntity<List<Follower>> getAccountFollowings(Long id) {
-        Logger.info("Request: ACCOUNTFOLLOWINGS");
+    public ResponseEntity<List<Follower>> getAccountFollowings(Long accountRequestId,Long id) {
+        Logger.info("Request: ACCOUNT FOLLOWINGS");
+        if(!accountRequestId.equals(id))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getAccountFollowings(id));
     }
 
     @Override
-    public ResponseEntity<Void> changeAccountVisibility(Long id) {
-        Logger.info("Request: CHANGEVISIBILITY");
+    public ResponseEntity<Void> changeAccountVisibility(Long accountRequestId,Long id) {
+        Logger.info("Request: CHANGE VISIBILITY");
+        if(!accountRequestId.equals(id))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.changeVisibility(id));
     }
 

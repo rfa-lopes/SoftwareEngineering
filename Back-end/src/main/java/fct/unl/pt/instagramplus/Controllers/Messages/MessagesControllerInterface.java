@@ -23,18 +23,21 @@ public interface MessagesControllerInterface {
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Long> sendMessage(
+            @RequestAttribute("id") Long accountRequestId,
             @RequestBody Message message);
 
     @DeleteMapping(
             value = DELETE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deleteMessage(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long messageId);
 
     @GetMapping(
             value = GET_ALL_MESSAGES_FROM_CONVERSATION,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<List<Message>> getAllMessagesFromConversation(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "fromIid" ) Long fromAccountId, @PathVariable( "toId" )Long toAccountId);
 
 }

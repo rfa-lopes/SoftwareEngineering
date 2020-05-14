@@ -17,6 +17,8 @@ public interface AccountServiceInterface {
 
     Result<Void> deleteAccount(Long id);
 
+    Result<Void> setNewViewer(Long thisAccount, Long seeThatAccount);
+
     Result<List<ProfileViewer>> getAccountViweres(Long id);
 
     Result<Void> followAccount(Follower follower);
@@ -28,6 +30,5 @@ public interface AccountServiceInterface {
     Result<Void> unfollowAccount(Follower follower);
 
     Result<List<Follower>> getFollowersAccount(Long id);
-
 
 }
