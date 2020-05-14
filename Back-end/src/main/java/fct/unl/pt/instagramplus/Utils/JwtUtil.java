@@ -12,7 +12,7 @@ public class JwtUtil {
 
     private static final byte[] KEY_BYTES = KEY.getBytes();
 
-    private static final int JWT_MINUTS_TIME = 10;
+    private static final int JWT_MINUTS_TIME = 1000;
 
     private static final long JWT_EXPIRATION_TIME = JWT_MINUTS_TIME * 60 * 1000; //10 minutos
 

@@ -24,7 +24,11 @@ public class AppConfigs {
         beanFactory.autowireBean(authFilter);
 
         registrationBean.setFilter(authFilter);
-        registrationBean.addUrlPatterns("/messages/*", "/accounts/*", "/publications/*");
+        registrationBean.addUrlPatterns(
+                "/messages/*",
+                "/accounts/*",
+                "/publications/*",
+                "/auth/logout");
 
         return registrationBean;
     }

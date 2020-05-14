@@ -5,7 +5,6 @@ import fct.unl.pt.instagramplus.Models.Accounts.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Services.AccountsServices.AccountServiceClass;
-import fct.unl.pt.instagramplus.Services.Result;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +22,14 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<Account> getAccount(Long accountRequestId, Long id) {
-        Logger.info("Request: GETACCOUNT");
+        Logger.info("Request: GET ACCOUNT");
         accountService.setNewViewer(accountRequestId, id);
         return Response.resultOrErrorCode(accountService.getAccount(id));
     }
 
     @Override
     public ResponseEntity<Void> deleteAccount(Long accountRequestId,Long id) {
-        Logger.info("Request: DELETEACCOUNT");
+        Logger.info("Request: DELETE ACCOUNT");
         if(!accountRequestId.equals(id))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.deleteAccount(id));
@@ -38,7 +37,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<List<ProfileViewer>> getAccountViweres(Long accountRequestId,Long id) {
-        Logger.info("Request: ACCOUNTVIWERES");
+        Logger.info("Request: ACCOUNT VIEWERS");
         if(!accountRequestId.equals(id))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getAccountViweres(id));
@@ -46,7 +45,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<Void> followAccount(Long accountRequestId,Follower follower) {
-        Logger.info("Request: FOLLOWACCOUNT");
+        Logger.info("Request: FOLLOW ACCOUNT");
         if(!accountRequestId.equals(follower.getAccountId()))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.followAccount(follower));
@@ -54,7 +53,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<Void> unfollowAccount(Long accountRequestId,Follower follower) {
-        Logger.info("Request: UNFOLLOWACCOUNT");
+        Logger.info("Request: UNFOLLOW ACCOUNT");
         if(!accountRequestId.equals(follower.getAccountId()))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.unfollowAccount(follower));
@@ -62,7 +61,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<List<Follower>> getFollowersAccount(Long accountRequestId,Long id) {
-        Logger.info("Request: ACCOUNTFOLLOWERS");
+        Logger.info("Request: ACCOUNT FOLLOWERS");
         if(!accountRequestId.equals(id))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getFollowersAccount(id));
@@ -70,7 +69,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<List<Follower>> getAccountFollowings(Long accountRequestId,Long id) {
-        Logger.info("Request: ACCOUNTFOLLOWINGS");
+        Logger.info("Request: ACCOUNT FOLLOWINGS");
         if(!accountRequestId.equals(id))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getAccountFollowings(id));
@@ -78,7 +77,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<Void> changeAccountVisibility(Long accountRequestId,Long id) {
-        Logger.info("Request: CHANGEVISIBILITY");
+        Logger.info("Request: CHANGE VISIBILITY");
         if(!accountRequestId.equals(id))
             return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.changeVisibility(id));

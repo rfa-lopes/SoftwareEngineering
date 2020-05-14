@@ -46,6 +46,7 @@ public class AccountServiceClass implements AccountServiceInterface {
         Account acc = accountsRepository.getAccountById(id);
         if(acc == null)
             return error(NOT_FOUND);
+        acc.setPassword(null);
         return ok(acc);
     }
 

@@ -6,35 +6,6 @@
 
 ---
 
-### Crete account
-
-REQUEST
-
-- POST /accounts/create
-
-- BODY
-
-```json
-{
-  "username": "rodrigo75",
-  "password": "123456",
-  "name": "Rodrigo Faria Lopes",
-  "email": "rfa.lopes@campus.fct.unl.pt"
-}
-```
-
-RESPONSE
-
-- 200 - OK (ID)
-
-```json
-1
-```
-
-- 404 - NOT FOUND
-
----
-
 ### Get account
 
 REQUEST
@@ -49,7 +20,7 @@ RESPONSE
 {
   "id": 1,
   "username": "rodrigo75",
-  "password": "5rpovgEtexhufY36Zb1PHvVBrqeeB6PEyq9XrFlhIEY=",
+  "password": "null",
   "name": "Rodrigo Faria Lopes",
   "email": "rfa.lopes@campus.fct.unl.pt",
   "public": false
