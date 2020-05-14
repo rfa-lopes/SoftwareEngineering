@@ -17,7 +17,6 @@ public interface AccountsControllerInterface {
 
     String BASE_URL = "/accounts";
 
-    String CREATE = "/create";
     String GET = "/get/{id}";
     String DELETE = "/delete/{id}";
     String VIWERES = "/viweres/{id}";
@@ -28,18 +27,6 @@ public interface AccountsControllerInterface {
     String FOLLOWINGS = "/followings/{id}";
 
     /**
-     * Create account
-     * @param account accont to create
-     * @return account id
-     */
-    @PostMapping(
-            value = CREATE,
-            consumes = APPLICATION_JSON_VALUE,
-            produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Long> createAccount(
-            @RequestBody Account account);
-
-    /**
      * Get account by id
      * @param id
      * @return account
@@ -47,7 +34,8 @@ public interface AccountsControllerInterface {
     @GetMapping(
             value = GET,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Account> gettAccount(
+    ResponseEntity<Account> getAccount(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
     /**
@@ -59,6 +47,7 @@ public interface AccountsControllerInterface {
             value = DELETE,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deleteAccount(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
 
@@ -70,7 +59,8 @@ public interface AccountsControllerInterface {
     @GetMapping(
             value = VIWERES,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<ProfileViewer>> gettAccountViweres(
+    ResponseEntity<List<ProfileViewer>> getAccountViweres(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
 
@@ -81,6 +71,7 @@ public interface AccountsControllerInterface {
      */
     @GetMapping(value = CHANGEVISIBILITY)
     ResponseEntity<Void> changeAccountVisibility(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable Long id);
 
     /**
@@ -92,6 +83,7 @@ public interface AccountsControllerInterface {
             value = FOLLOW,
             consumes = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> followAccount(
+            @RequestAttribute("id") Long accountRequestId,
             @RequestBody Follower follower);
 
     /**
@@ -103,6 +95,7 @@ public interface AccountsControllerInterface {
             value = UNFOLLOW,
             consumes = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> unfollowAccount(
+            @RequestAttribute("id") Long accountRequestId,
             @RequestBody Follower follower);
 
     /**
@@ -113,6 +106,7 @@ public interface AccountsControllerInterface {
     @GetMapping(
             value = FOLLOWERS)
     ResponseEntity<List<Follower>> getFollowersAccount(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable Long id);
 
     /**
@@ -123,6 +117,7 @@ public interface AccountsControllerInterface {
     @GetMapping(
             value = FOLLOWINGS)
     ResponseEntity<List<Follower>> getAccountFollowings(
+            @RequestAttribute("id") Long accountRequestId,
             @PathVariable Long id);
 
 

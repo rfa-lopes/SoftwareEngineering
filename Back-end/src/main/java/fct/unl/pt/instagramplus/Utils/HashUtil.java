@@ -19,10 +19,6 @@ public class HashUtil {
         return hashF.digest(input);
     }
 
-    public static byte[] getHash(String input){
-        return hashF.digest(input.getBytes());
-    }
-
     public static int getHashSize(){
         return hashF.getDigestLength();
     }
