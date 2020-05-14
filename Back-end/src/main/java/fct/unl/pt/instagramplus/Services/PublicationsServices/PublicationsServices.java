@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Services.PublicationsServices;
 
 import fct.unl.pt.instagramplus.Controllers.Publications.PublicationControllerinterface;
 import fct.unl.pt.instagramplus.Models.Comment;
+import fct.unl.pt.instagramplus.Models.Messages.Message;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
 import fct.unl.pt.instagramplus.Models.Reactions.Reaction;
 import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
@@ -64,11 +65,15 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteComment(Long idUser,Long idPub) {
-        Comment com=commentRepository.getCommentById(idUser);
-        if(com==null)
+        List<Comment> comm=commentRepository.getAllByPublicationId(idPub);
+        if(comm.isEmpty())
             return error(NOT_FOUND);
-
-        commentRepository.delete(com);
+        for (Comment com : comm) {
+            if(com.getUserId()==idUser) {
+                commentRepository.delete(com);
+                break;
+            }
+        }
         return ok();
     }
 
@@ -83,10 +88,16 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteLike(Long idUser,Long idPub) {
-        Reaction react=reactionsRepository.getReactionById(idUser);
-        if(react==null)
+       List <Reaction> reacts=reactionsRepository.getAllByPublicationId(idPub);
+        if(reacts.isEmpty())
             return error(NOT_FOUND);
-        reactionsRepository.delete(react);
+        for (Reaction react : reacts) {
+            if(react.getUserId()==idUser) {
+                reactionsRepository.delete(react);
+                break;
+            }
+        }
+
         return ok();
     }
 

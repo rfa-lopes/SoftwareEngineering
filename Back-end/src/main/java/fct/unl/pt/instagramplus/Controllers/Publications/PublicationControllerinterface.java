@@ -33,8 +33,7 @@ public interface PublicationControllerinterface {
     ResponseEntity<Long> createPublication(
                     @RequestBody Publication publication);
     @PostMapping(
-            value = DELETE,
-            produces = APPLICATION_JSON_VALUE)
+            value = DELETE)
     ResponseEntity<Void> deletePublication(
                     @PathVariable( "id" ) Long id);
 
@@ -62,13 +61,11 @@ public interface PublicationControllerinterface {
     ResponseEntity<Long> AddLike(
             @RequestBody Reaction like);
     @PostMapping(
-            value = DELETECOMMENT,
-            produces = APPLICATION_JSON_VALUE)
+            value = DELETECOMMENT)
     ResponseEntity<Void> deleteComment(
             @PathVariable( "iduser" ) Long idUser, @PathVariable( "idpub" ) Long idPub);
     @PostMapping(
-            value = DELETELIKE,
-            produces = APPLICATION_JSON_VALUE)
+            value = DELETELIKE)
     ResponseEntity<Void> deleteLike(
             @PathVariable( "iduser" ) Long idUser, @PathVariable( "idpub" ) Long idPub);
     @GetMapping(
