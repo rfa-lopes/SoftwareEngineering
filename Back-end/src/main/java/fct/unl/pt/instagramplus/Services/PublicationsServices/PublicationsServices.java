@@ -51,7 +51,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<List<Publication>> getAllPublications(Long id) {
-      List<Publication> pub=publicationRepository.getAllByFromUserId(id);
+      List<Publication> pub=publicationRepository.getAllPublicationsById(id);
         if(pub.isEmpty())
             return error(NOT_FOUND);
         return ok(pub);

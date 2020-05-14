@@ -10,5 +10,5 @@ import java.util.List;
 public interface PublicationsRepository extends JpaRepository<Publication, Long> {
 
     Publication getPublicationById(Long id);
-    List<Publication>  getAllByFromUserId(Long id);
+    List<Publication>  getAllPublicationsById(Long id);
 }
