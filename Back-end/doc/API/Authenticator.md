@@ -1,4 +1,4 @@
-\*# Software Engineering 2020 - Back-end - Authenticator
+# Software Engineering 2020 - Back-end - Authenticator
 
 ## API - Authenticator
 
