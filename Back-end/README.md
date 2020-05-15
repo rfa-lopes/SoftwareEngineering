@@ -4,6 +4,14 @@
 
 ---
 
+### Registation
+
+- [Accounts Documentacion](doc/API/Registation.md)
+
+### Authentication
+
+- [Accounts Documentacion](doc/API/Authenticator.md)
+
 ### Accounts
 
 - [Accounts Documentacion](doc/API/Accounts.md)
