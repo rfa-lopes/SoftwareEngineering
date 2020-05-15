@@ -38,7 +38,7 @@ public class AuthenticatorClass implements AuthenticatorInterface{
             return ResponseEntity.status(401).build(); // Unauthorized
 
         String token = JwtUtil.createJWT(acc.getId());
-        resp.addCookie(new Cookie("AuthToken", token));
+        resp.addCookie(new Cookie(AuthenticatorInterface.TOKEN_NAME, token));
         acc.setPassword(null);
         return ResponseEntity.ok(acc);
     }

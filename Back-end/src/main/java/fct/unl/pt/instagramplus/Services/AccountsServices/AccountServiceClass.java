@@ -56,6 +56,16 @@ public class AccountServiceClass implements AccountServiceInterface {
         if(acc == null)
             return error(NOT_FOUND);
 
+        //Deixa de ter visto e de ter sido visto
+        profileViewersRepository.deleteAllByViewerId(id);
+        profileViewersRepository.deleteAllByProfileId(id);
+
+        //Deixa de seguir e de ser seguido
+        followersRepository.deleteAllByAccountId(id);
+        followersRepository.deleteAllByIsFollowingId(id);
+
+        //TODO: FABIO APAGAR PUBLICACOES
+
         accountsRepository.deleteById(id);
         return ok();
     }

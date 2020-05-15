@@ -19,6 +19,8 @@ public interface AuthenticatorInterface {
     String LOGIN = "/login";
     String LOGOUT = "/logout";
 
+    String TOKEN_NAME = "AuthToken";
+
     @PostMapping(
             value = LOGIN,
             consumes = APPLICATION_JSON_VALUE,
