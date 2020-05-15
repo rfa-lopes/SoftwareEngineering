@@ -1,4 +1,4 @@
-package fct.unl.pt.instagramplus.Models.Accounts;
+package fct.unl.pt.instagramplus.Models;
 
 import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;

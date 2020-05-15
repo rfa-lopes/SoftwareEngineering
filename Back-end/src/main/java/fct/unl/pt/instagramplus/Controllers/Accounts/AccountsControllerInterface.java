@@ -1,7 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.Accounts;
 
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +28,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Get account by id
+     * @param accountRequestId Authenticated user
      * @param id
      * @return account
      */
@@ -40,12 +41,12 @@ public interface AccountsControllerInterface {
 
     /**
      * Delete account by id
+     * @param accountRequestId Authenticated user
      * @param id account id
      * @return void
      */
     @DeleteMapping(
-            value = DELETE,
-            produces = APPLICATION_JSON_VALUE)
+            value = DELETE)
     ResponseEntity<Void> deleteAccount(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
@@ -53,6 +54,7 @@ public interface AccountsControllerInterface {
 
     /**
      * List account how viewer account id
+     * @param accountRequestId Authenticated user
      * @param id account id
      * @return list of accounts
      */
@@ -66,6 +68,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Change account visibility
+     * @param accountRequestId Authenticated user
      * @param id account id
      * @return void
      */
@@ -76,6 +79,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Follow account
+     * @param accountRequestId Authenticated user
      * @param follower
      * @return void
      */
@@ -88,6 +92,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Unfollow account
+     * @param accountRequestId Authenticated user
      * @param follower
      * @return void
      */
@@ -100,6 +105,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Get account followers
+     * @param accountRequestId Authenticated user
      * @param id
      * @return followers list
      */
@@ -111,6 +117,7 @@ public interface AccountsControllerInterface {
 
     /**
      * Obter quem o id segue
+     * @param accountRequestId Authenticated user
      * @param id
      * @return followings list
      */

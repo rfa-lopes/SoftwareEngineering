@@ -1,8 +1,8 @@
 package fct.unl.pt.instagramplus.Services.MessagesServices;
 
-import fct.unl.pt.instagramplus.Models.Messages.Message;
+import fct.unl.pt.instagramplus.Models.Message;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
-import fct.unl.pt.instagramplus.Repositories.Messages.MessagesRepository;
+import fct.unl.pt.instagramplus.Repositories.MessagesRepository;
 import fct.unl.pt.instagramplus.Services.Result;
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;

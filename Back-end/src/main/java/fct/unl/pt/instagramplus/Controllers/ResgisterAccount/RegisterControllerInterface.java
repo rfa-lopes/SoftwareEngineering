@@ -1,6 +1,6 @@
 package fct.unl.pt.instagramplus.Controllers.ResgisterAccount;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

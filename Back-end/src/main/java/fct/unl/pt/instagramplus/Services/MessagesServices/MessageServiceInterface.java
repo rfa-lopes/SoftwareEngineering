@@ -1,6 +1,6 @@
 package fct.unl.pt.instagramplus.Services.MessagesServices;
 
-import fct.unl.pt.instagramplus.Models.Messages.Message;
+import fct.unl.pt.instagramplus.Models.Message;
 import fct.unl.pt.instagramplus.Services.Result;
 import org.springframework.stereotype.Service;
 

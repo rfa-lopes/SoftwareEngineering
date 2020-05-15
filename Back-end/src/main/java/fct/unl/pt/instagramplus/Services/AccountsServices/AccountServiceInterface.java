@@ -1,6 +1,6 @@
 package fct.unl.pt.instagramplus.Services.AccountsServices;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Services.Result;

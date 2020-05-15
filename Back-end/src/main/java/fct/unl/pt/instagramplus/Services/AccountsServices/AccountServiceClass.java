@@ -1,6 +1,6 @@
 package fct.unl.pt.instagramplus.Services.AccountsServices;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
@@ -33,7 +33,7 @@ public class AccountServiceClass implements AccountServiceInterface {
         if(accountsRepository.existsAccountByEmailOrUsername(account.getEmail(), account.getUsername()))
             return error(CONFLICT);
 
-        //HASH password + salt(email(unique))
+        //HASH password + salt(email(unique)) arranjar soluao melhorada
         String hash = PasswordUtil.create(account.getPassword());
         account.setPassword(hash);
 
@@ -102,7 +102,6 @@ public class AccountServiceClass implements AccountServiceInterface {
         followersRepository.save(follower);
         return ok();
     }
-
 
     @Override
     public Result<Void> unfollowAccount(Follower follower) {

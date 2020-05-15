@@ -1,7 +1,6 @@
 package fct.unl.pt.instagramplus.AppConfigs;
 
 import fct.unl.pt.instagramplus.Filters.AuthFilter;
-import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

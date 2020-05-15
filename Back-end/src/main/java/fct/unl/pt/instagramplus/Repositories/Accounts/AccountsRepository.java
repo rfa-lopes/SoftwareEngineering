@@ -1,6 +1,6 @@
 package fct.unl.pt.instagramplus.Repositories.Accounts;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
