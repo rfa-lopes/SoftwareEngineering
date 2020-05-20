@@ -20,7 +20,8 @@ public class Content {
     Long publicationId;
 
     @NotNull
-    String content; //BASE64
+    @Lob
+    String content; //BASE64(bytes) OR file path
 
     public Content() { }
 

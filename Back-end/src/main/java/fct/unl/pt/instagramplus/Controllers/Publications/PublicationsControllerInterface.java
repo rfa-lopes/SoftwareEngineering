@@ -13,7 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(value = PublicationsControllerInterface.BASE_URL)
 public interface PublicationsControllerInterface {
-    
+
     String BASE_URL = "/publications";
 
     String ADD = "/postpublication";

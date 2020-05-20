@@ -17,6 +17,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
 
     @Autowired
     PublicationsServices publi;
+
     @Override
     public ResponseEntity<Long> createPublication(Long accountRequestId,Publication publication) {
         Logger.info("Request: CREATE PUBLICATION");

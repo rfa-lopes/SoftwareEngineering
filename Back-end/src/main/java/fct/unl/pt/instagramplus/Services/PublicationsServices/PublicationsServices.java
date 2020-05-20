@@ -7,6 +7,7 @@ import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
 import fct.unl.pt.instagramplus.Services.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,13 @@ import static fct.unl.pt.instagramplus.Services.Result.ok;
 @Service
 public class PublicationsServices implements PublicationsServiceInterface {
 
+    @Autowired
     PublicationsRepository publicationRepository;
 
+    @Autowired
     CommentsRepository commentRepository;
 
+    @Autowired
     ReactionsRepository reactionsRepository;
 
     @Override
