@@ -9,6 +9,7 @@ import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
 import fct.unl.pt.instagramplus.Services.Result;
+import fct.unl.pt.instagramplus.Utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Long> createpublication(Publication publication) {
+        publication.setPublicationDate(DateUtil.getAtualDate());
         Publication pub =publicationRepository.save(publication);
         return ok(pub.getId());
     }
@@ -42,10 +44,13 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<Void> deletePublication(Long id) {
         Publication pub=publicationRepository.getPublicationById(id);
-        //TODO
         if(pub == null)
             return error(NOT_FOUND);
-        publicationRepository.delete(pub);
+        //Apagar todos os comentarios da publicacao
+        commentRepository.deleteAllByPublicationId(id);
+        //Apagar todas as reacoes da publicacao
+        reactionsRepository.deleteAllByPublicationId(id);
+        publicationRepository.deleteById(id);
         return ok();
     }
 
@@ -64,7 +69,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
         Account account=accountsRepository.getAccountById(id);
         if(account==null)
             return error(NOT_FOUND);
-      List<Publication> pub=publicationRepository.getAllPublicationsByOwnerId(id);
+        List<Publication> pub=publicationRepository.getAllPublicationsByOwnerId(id);
         if(pub==null)
             return error(NOT_FOUND);
         return ok(pub);
@@ -84,7 +89,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Long> addLike(Reaction reaction) {
-       Publication pub= publicationRepository.getPublicationById(reaction.getPublicationId());
+        Publication pub= publicationRepository.getPublicationById(reaction.getPublicationId());
         if (pub==null)
             return error(NOT_FOUND);
         Reaction react=reactionsRepository.save(reaction);
@@ -93,7 +98,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteLike(Long idLike) {
-    	reactionsRepository.deleteById(idLike);
+        reactionsRepository.deleteById(idLike);
         return ok();
     }
 

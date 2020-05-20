@@ -31,12 +31,15 @@ public interface PublicationsControllerInterface {
             value = ADD,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Long> createPublication(@RequestAttribute("id") Long accountRequestId,
-                    @RequestBody Publication publication);
-    @PostMapping(
+    ResponseEntity<Long> createPublication(
+            @RequestAttribute("id") Long accountRequestId,
+            @RequestBody Publication publication);
+
+    @DeleteMapping(
             value = DELETE)
-    ResponseEntity<Void> deletePublication(   @RequestAttribute("id") Long accountRequestId,
-                    @PathVariable( "id" ) Long id);
+    ResponseEntity<Void> deletePublication(
+            @RequestAttribute("id") Long accountRequestId,
+            @PathVariable( "id" ) Long id);
 
     @PostMapping(
             value = EDIT,
@@ -72,7 +75,7 @@ public interface PublicationsControllerInterface {
 
     @PostMapping(
             value = DELETELIKE)
-    ResponseEntity<Void> deleteLike( @RequestAttribute("id") Long accountRequestId,  
+    ResponseEntity<Void> deleteLike( @RequestAttribute("id") Long accountRequestId,
     		@PathVariable( "idLike" ) Long idLike);
 
     @GetMapping(

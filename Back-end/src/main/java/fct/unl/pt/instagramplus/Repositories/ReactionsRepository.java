@@ -13,5 +13,7 @@ public interface ReactionsRepository extends JpaRepository<Reaction, Long> {
 
     List<Reaction> getAllByPublicationId(Long publicationId);
 
+    void deleteAllByPublicationId(Long publicationId);
+
 
 }

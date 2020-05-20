@@ -15,11 +15,13 @@ import fct.unl.pt.instagramplus.Services.PublicationsServices.PublicationsServic
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 import java.util.List;
 
+@RestController
 public class PublicationsControllerClass implements PublicationsControllerInterface {
 
     @Autowired
@@ -27,6 +29,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
 
     @Autowired
     private AccountsRepository accountsRepository;
+
     @Autowired
     PublicationsRepository publicationRepository;
 
@@ -42,7 +45,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     public ResponseEntity<Long> createPublication(Long accountRequestId,Publication publication) {
         Logger.info("Request: CREATE PUBLICATION");
         if(accountRequestId!=publication.getOwnerId()) {
-        	 return ResponseEntity.status(UNAUTHORIZED).build();
+            return ResponseEntity.status(UNAUTHORIZED).build();
         }
         return Response.resultOrErrorCode(publi.createpublication(publication));
     }
@@ -50,9 +53,9 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     @Override
     public ResponseEntity<Void> deletePublication(Long accountRequestId,Long id) {
         Logger.info("Request: DELETE PUBLICATION");
-       Publication pub=publicationRepository.getPublicationById(id);
-       if(accountRequestId!=pub.getOwnerId())
-           return ResponseEntity.status(UNAUTHORIZED).build();
+        Publication pub=publicationRepository.getPublicationById(id);
+        if(accountRequestId.equals(pub.getOwnerId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publi.deletePublication(id));
     }
 
@@ -80,7 +83,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     public ResponseEntity<Long> AddComment(Long accountRequestId,Comment comment) {
         Logger.info("Request: ADD COMMENTS");
         if(accountRequestId!=comment.getUserId())
-       	 return ResponseEntity.status(UNAUTHORIZED).build();
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publi.addCommnet(comment));
     }
 
