@@ -33,7 +33,6 @@ RESPONSE
 
 - 200 - OK
 
-BODY - (ACCOUNT)
 ```json
 {
     "id": 1,
@@ -62,5 +61,5 @@ REQUEST
 RESPONSE
 
 - 200 - OK
-
+- 401 - UNAUTHORIZED
 ---
