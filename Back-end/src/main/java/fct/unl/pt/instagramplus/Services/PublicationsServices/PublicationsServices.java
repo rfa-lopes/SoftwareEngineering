@@ -37,6 +37,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<Void> deletePublication(Long id) {
         Publication pub=publicationRepository.getPublicationById(id);
+        //TODO
         if(pub == null)
             return error(NOT_FOUND);
         publicationRepository.delete(pub);
@@ -56,7 +57,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Publication>> getAllPublications(Long id) {
       List<Publication> pub=publicationRepository.getAllPublicationsById(id);
-        if(pub.isEmpty())
+        if(pub==null)
             return error(NOT_FOUND);
         return ok(pub);
     }
@@ -68,16 +69,11 @@ public class PublicationsServices implements PublicationsServiceInterface {
     }
 
     @Override
-    public Result<Void> deleteComment(Long idUser,Long idPub) {
-        List<Comment> comm=commentRepository.getAllByPublicationId(idPub);
-        if(comm.isEmpty())
-            return error(NOT_FOUND);
-        for (Comment com : comm) {
-            if(com.getUserId()==idUser) {
-                commentRepository.delete(com);
-                break;
-            }
-        }
+    public Result<Void> deleteComment(Long idLike) {
+    	Comment com=commentRepository.getCommentById(idLike);
+        Comment comm=commentRepository.delete(com);;
+
+
         return ok();
     }
 
@@ -88,16 +84,10 @@ public class PublicationsServices implements PublicationsServiceInterface {
     }
 
     @Override
-    public Result<Void> deleteLike(Long idUser,Long idPub) {
-       List <Reaction> reacts=reactionsRepository.getAllByPublicationId(idPub);
-        if(reacts.isEmpty())
-            return error(NOT_FOUND);
-        for (Reaction react : reacts) {
-            if(react.getUserId()==idUser) {
-                reactionsRepository.delete(react);
-                break;
-            }
-        }
+    public Result<Void> deleteLike(Long idLike) {
+    	Reaction react=reactionsRepository.getReactionById(idLike);
+        Reaction reacts=reactionsRepository.delete(react);
+
 
         return ok();
     }
@@ -105,7 +95,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Comment>> getAllComments(Long id) {
         List<Comment> com=commentRepository.getAllByPublicationId(id);
-        if(com.isEmpty())
+        if(com==null)
             return error(NOT_FOUND);
         return ok(com);
     }
@@ -113,7 +103,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Reaction>> getAllLikes(Long id) {
         List<Reaction> react=reactionsRepository.getAllByPublicationId(id);
-        if(react.isEmpty())
+        if(react==null)
             return error(NOT_FOUND);
         return ok(react);
     }

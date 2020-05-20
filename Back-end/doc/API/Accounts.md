@@ -26,7 +26,7 @@ RESPONSE
   "public": false
 }
 ```
-
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -40,6 +40,7 @@ REQUEST
 RESPONSE
 
 - 200 - OK
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -70,7 +71,7 @@ RESPONSE
   }
 ]
 ```
-
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -93,6 +94,7 @@ REQUEST
 RESPONSE
 
 - 200 - OK
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -115,6 +117,8 @@ REQUEST
 RESPONSE
 
 - 200 - OK
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
 
 ---
 
@@ -138,7 +142,7 @@ RESPONSE
   }
 ]
 ```
-
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -163,7 +167,7 @@ RESPONSE
   }
 ]
 ```
-
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---
@@ -177,6 +181,7 @@ REQUEST
 RESPONSE
 
 - 200 - OK
+- 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 
 ---

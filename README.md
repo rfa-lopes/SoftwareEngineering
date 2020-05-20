@@ -12,17 +12,9 @@ Instagram Plus Project
 - [Maven](https://maven.apache.org/)
 - [Java 8](https://www.java.com/)
 - [H2 Data Base Engine](https://www.h2database.com/html/main.html)
+- [JSON Web Tokens(JWT)](https://jwt.io/)
 
 ### Front-end - [Readme.md](Front-end/README.md)
-
----
-
-## Base de dados
-
-**URL:** http://localhost:8080/h2
-
-![Data base init](Back-end/doc/images/DataBaseInit.png)
-
 
 ---
 
@@ -39,6 +31,14 @@ TODO
 ### Correr front-end
 
 TODO
+
+---
+
+## Base de dados
+
+**URL:** http://localhost:8080/h2
+
+![Data base init](Back-end/doc/images/DataBaseInit.png)
 
 ---
 
@@ -60,9 +60,9 @@ git rm -r --cached Path/to/directories
 ### Autores
 
 - Rodrigo Lopes - rfa.lopes@campus.fct.unl.pt - 50435
-- Miguel Fernandes - TODO - 50487
-- Bárbara Lopes - TODO - 51104
-- Fábio Cunha - TODO - 50613
+- Miguel Fernandes - mia.fernandes@campus.fct.unl.pt - 50487
+- Bárbara Lopes - bi.lopes@campus.fct.unl.pt - 51104
+- Fábio Cunha - ff.cunha@campus.fct.unl.pt - 50613
 
 ### Professor
 

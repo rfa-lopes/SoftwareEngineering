@@ -14,10 +14,10 @@ public interface PublicationsServiceInterface {
     Result<Publication> editPublication(String description,Long id);
     Result<List<Publication>> getAllPublications(Long id);
     Result <Long> addCommnet(Comment comment);
-    Result<Void> deleteComment(Long idUser,Long idPub);
+    Result<Void> deleteComment(Long idLike);
     //Result <Comment>editComment(Long id,String description);
     Result<Long>addLike(Reaction reaction);
-    Result<Void>deleteLike(Long idUser,Long idPub);
+    Result<Void>deleteLike(Long idLike);
     Result<List<Comment>> getAllComments(Long id);
     Result<List<Reaction>> getAllLikes(Long id);
 
