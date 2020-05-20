@@ -25,12 +25,3 @@
 - [Publications Documentacion](doc/API/Publications.md)
 
 ---
-
-## Base de dados
-
-**URL:** http://localhost:8080/h2
-
-![Data base init](doc/images/DataBaseInit.png)
-
-
----
