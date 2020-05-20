@@ -47,7 +47,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     @Override
     public ResponseEntity<Long> AddComment(Long accountRequestId,Comment comment) {
         Logger.info("Request: ADD COMMENTS");
-        if(accountRequestId!=comment.getUserId()) {
+        if(accountRequestId!=comment.getUserId())
        	 return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publi.addCommnet(comment));
     }
@@ -55,8 +55,9 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     @Override
     public ResponseEntity<Long> AddLike(Long accountRequestId,Reaction like) {
         Logger.info("Request: ADD LIKE");
-        if(accountRequestId!=like.getUserId()) {
-       	 return ResponseEntity.status(UNAUTHORIZED).build();
+        if(accountRequestId!=like.getUserId())
+            return ResponseEntity.status(UNAUTHORIZED).build();
+
         return Response.resultOrErrorCode(publi.addLike(like));
     }
 
