@@ -32,6 +32,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<Void> deletePublication(Long id) {
         Publication pub=publicationRepository.getPublicationById(id);
+        //TODO
         if(pub == null)
             return error(NOT_FOUND);
         publicationRepository.delete(pub);
@@ -52,7 +53,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Publication>> getAllPublications(Long id) {
       List<Publication> pub=publicationRepository.getAllPublicationsById(id);
-        if(pub.isEmpty())
+        if(pub==null)
             return error(NOT_FOUND);
         return ok(pub);
     }
@@ -66,7 +67,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<Void> deleteComment(Long idUser,Long idPub) {
         List<Comment> comm=commentRepository.getAllByPublicationId(idPub);
-        if(comm.isEmpty())
+        if(comm==null)
             return error(NOT_FOUND);
         for (Comment com : comm) {
             if(com.getUserId()==idUser) {
@@ -104,7 +105,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Comment>> getAllComments(Long id) {
         List<Comment> com=commentRepository.getAllByPublicationId(id);
-        if(com.isEmpty())
+        if(com==null)
             return error(NOT_FOUND);
         return ok(com);
     }
@@ -112,7 +113,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
     @Override
     public Result<List<Reaction>> getAllLikes(Long id) {
         List<Reaction> react=reactionsRepository.getAllByPublicationId(id);
-        if(react.isEmpty())
+        if(react==null)
             return error(NOT_FOUND);
         return ok(react);
     }

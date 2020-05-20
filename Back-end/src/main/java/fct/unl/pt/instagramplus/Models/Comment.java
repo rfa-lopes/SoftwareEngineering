@@ -22,12 +22,15 @@ public class Comment {
 
     @NotNull
     Long publicationId;
+    @NotNull
+    String comment;
 
     public Comment() { }
 
-    public Comment(@NotNull Long userId, @NotNull Long publicationId) {
+    public Comment(@NotNull Long userId, @NotNull Long publicationId,@NotNull String comment) {
         this.userId = userId;
         this.publicationId = publicationId;
+        this.comment=comment;
     }
 
     public Long getId() {
@@ -53,4 +56,5 @@ public class Comment {
     public void setPublicationId(Long publicationId) {
         this.publicationId = publicationId;
     }
+    //TODO colocar metodos do comentario
 }
