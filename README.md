@@ -61,9 +61,9 @@ git rm -r --cached Path/to/directories
 ### Autores
 
 - Rodrigo Lopes - rfa.lopes@campus.fct.unl.pt - 50435
-- Miguel Fernandes - TODO - 50487
-- Bárbara Lopes - TODO - 51104
-- Fábio Cunha - TODO - 50613
+- Miguel Fernandes - mia.fernandes@campus.fct.unl.pt - 50487
+- Bárbara Lopes - bi.lopes@campus.fct.unl.pt - 51104
+- Fábio Cunha - ff.cunha@campus.fct.unl.pt - 50613
 
 ### Professor
 
