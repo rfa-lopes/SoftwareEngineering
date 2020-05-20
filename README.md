@@ -34,6 +34,14 @@ TODO
 
 ---
 
+## Base de dados
+
+**URL:** http://localhost:8080/h2
+
+![Data base init](Back-end/doc/images/DataBaseInit.png)
+
+---
+
 ## Utils
 
 ### Comandos Git
