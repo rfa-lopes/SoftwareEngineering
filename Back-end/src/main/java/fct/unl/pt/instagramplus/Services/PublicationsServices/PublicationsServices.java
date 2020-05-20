@@ -66,7 +66,8 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteComment(Long idLike) {
-        Comment comm=commentRepository.delete(idLike);
+    	Comment com=commentRepository.getCommentById(idLike);
+        Comment comm=commentRepository.delete(com);;
 
 
         return ok();
@@ -80,7 +81,8 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteLike(Long idLike) {
-        Reaction reacts=reactionsRepository.delete(idLike);
+    	Reaction react=reactionsRepository.getReactionById(idLike);
+        Reaction reacts=reactionsRepository.delete(react);
 
 
         return ok();

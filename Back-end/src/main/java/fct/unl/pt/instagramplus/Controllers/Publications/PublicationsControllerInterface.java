@@ -31,59 +31,60 @@ public interface PublicationsControllerInterface {
             value = ADD,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Long> createPublication(
+    ResponseEntity<Long> createPublication(@RequestAttribute("id") Long accountRequestId,
                     @RequestBody Publication publication);
     @PostMapping(
             value = DELETE)
-    ResponseEntity<Void> deletePublication(
+    ResponseEntity<Void> deletePublication(   @RequestAttribute("id") Long accountRequestId,
                     @PathVariable( "id" ) Long id);
 
     @PostMapping(
             value = EDIT,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Publication> editPublication(
+    ResponseEntity<Publication> editPublication(@RequestAttribute("id") Long accountRequestId,
             @RequestBody String description, @PathVariable( "id" ) Long id);
 
     @GetMapping(
             value = GET_ALL_PUBLICATIONS_FROM_PROFILE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<Publication>> getAllPublications(
+    ResponseEntity<List<Publication>> getAllPublications(@RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
     @PostMapping(
             value = ADDCOMENT,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Long> AddComment(
+    ResponseEntity<Long> AddComment(@RequestAttribute("id") Long accountRequestId,
             @RequestBody Comment comment);
 
     @PostMapping(
             value = ADDLIKE,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Long> AddLike(
+    ResponseEntity<Long> AddLike(@RequestAttribute("id") Long accountRequestId,
             @RequestBody Reaction like);
 
     @PostMapping(
             value = DELETECOMMENT)
-    ResponseEntity<Void> deleteComment(
+    ResponseEntity<Void> deleteComment(@RequestAttribute("id") Long accountRequestId,
             @PathVariable( "idLike" )Long idLike);
 
     @PostMapping(
             value = DELETELIKE)
-    ResponseEntity<Void> deleteLike(   @PathVariable( "idLike" ) Long idLike);
+    ResponseEntity<Void> deleteLike( @RequestAttribute("id") Long accountRequestId,  
+    		@PathVariable( "idLike" ) Long idLike);
 
     @GetMapping(
             value = GET_ALL_COMMENTS_FROM_PUBLICATION,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<Comment>> getAllComments(
+    ResponseEntity<List<Comment>> getAllComments(@RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
     @GetMapping(
             value = GET_ALL_Likes_FROM_PUBLICATION,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<Reaction>> getAllLikes(
+    ResponseEntity<List<Reaction>> getAllLikes(@RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
 }
