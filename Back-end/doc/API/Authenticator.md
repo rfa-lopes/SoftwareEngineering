@@ -32,6 +32,7 @@ OR
 RESPONSE
 
 - 200 - OK
+
 BODY - (ACCOUNT)
 ```json
 {
