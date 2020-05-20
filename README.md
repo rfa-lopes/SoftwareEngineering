@@ -12,6 +12,7 @@ Instagram Plus Project
 - [Maven](https://maven.apache.org/)
 - [Java 8](https://www.java.com/)
 - [H2 Data Base Engine](https://www.h2database.com/html/main.html)
+- [JSON Web Tokens(JWT)](https://jwt.io/)
 
 ### Front-end - [Readme.md](Front-end/README.md)
 
