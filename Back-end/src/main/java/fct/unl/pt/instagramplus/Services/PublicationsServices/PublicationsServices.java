@@ -1,8 +1,10 @@
 package fct.unl.pt.instagramplus.Services.PublicationsServices;
 
+import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Comment;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
 import fct.unl.pt.instagramplus.Models.Reactions.Reaction;
+import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
@@ -27,6 +29,9 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Autowired
     ReactionsRepository reactionsRepository;
+
+    @Autowired
+    private AccountsRepository accountsRepository;
 
     @Override
     public Result<Long> createpublication(Publication publication) {
@@ -56,7 +61,10 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<List<Publication>> getAllPublications(Long id) {
-      List<Publication> pub=publicationRepository.getAllPublicationsById(id);
+        Account account=accountsRepository.getAccountById(id);
+        if(account==null)
+            return error(NOT_FOUND);
+      List<Publication> pub=publicationRepository.getAllPublicationsByOwnerId(id);
         if(pub==null)
             return error(NOT_FOUND);
         return ok(pub);
@@ -70,25 +78,22 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Void> deleteComment(Long idLike) {
-    	Comment com=commentRepository.getCommentById(idLike);
-        Comment comm=commentRepository.delete(com);;
-
-
+        commentRepository.deleteById(idLike);
         return ok();
     }
 
     @Override
     public Result<Long> addLike(Reaction reaction) {
+       Publication pub= publicationRepository.getPublicationById(reaction.getPublicationId());
+        if (pub==null)
+            return error(NOT_FOUND);
         Reaction react=reactionsRepository.save(reaction);
         return ok(react.getId());
     }
 
     @Override
     public Result<Void> deleteLike(Long idLike) {
-    	Reaction react=reactionsRepository.getReactionById(idLike);
-        Reaction reacts=reactionsRepository.delete(react);
-
-
+    	reactionsRepository.deleteById(idLike);
         return ok();
     }
 

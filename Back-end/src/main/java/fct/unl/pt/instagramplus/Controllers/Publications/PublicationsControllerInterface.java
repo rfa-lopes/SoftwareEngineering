@@ -16,7 +16,7 @@ public interface PublicationsControllerInterface {
 
     String BASE_URL = "/publications";
 
-    String ADD = "/postpublication";
+    String ADD = "/post";
     String DELETE = "/detetepublication/{id}";
     String GET_ALL_PUBLICATIONS_FROM_PROFILE = "/allpublications/{id}";
     String EDIT = "/editpublication/{id}";
@@ -25,7 +25,7 @@ public interface PublicationsControllerInterface {
     String DELETECOMMENT = "/deletecomment/{id}";
     String DELETELIKE = "/deletelike/{idLike}";
     String GET_ALL_COMMENTS_FROM_PUBLICATION = "/allComments/{id}";
-    String GET_ALL_Likes_FROM_PUBLICATION = "/allComments/{id}";
+    String GET_ALL_Likes_FROM_PUBLICATION = "/allLikes/{id}";
 
     @PostMapping(
             value = ADD,
@@ -68,7 +68,7 @@ public interface PublicationsControllerInterface {
     @PostMapping(
             value = DELETECOMMENT)
     ResponseEntity<Void> deleteComment(@RequestAttribute("id") Long accountRequestId,
-            @PathVariable( "idLike" )Long idLike);
+            @PathVariable( "id" )Long idComment);
 
     @PostMapping(
             value = DELETELIKE)
