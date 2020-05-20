@@ -1,15 +1,12 @@
 package fct.unl.pt.instagramplus.Services.PublicationsServices;
 
-import fct.unl.pt.instagramplus.Controllers.Publications.PublicationControllerinterface;
 import fct.unl.pt.instagramplus.Models.Comment;
-import fct.unl.pt.instagramplus.Models.Messages.Message;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
 import fct.unl.pt.instagramplus.Models.Reactions.Reaction;
 import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
 import fct.unl.pt.instagramplus.Services.Result;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +17,13 @@ import static fct.unl.pt.instagramplus.Services.Result.ok;
 
 @Service
 public class PublicationsServices implements PublicationsServiceInterface {
+
     PublicationsRepository publicationRepository;
+
     CommentsRepository commentRepository;
+
     ReactionsRepository reactionsRepository;
+
     @Override
     public Result<Long> createpublication(Publication publication) {
         Publication pub =publicationRepository.save(publication);
@@ -38,7 +39,6 @@ public class PublicationsServices implements PublicationsServiceInterface {
         publicationRepository.delete(pub);
         return ok();
     }
-
 
     @Override
     public Result<Publication> editPublication(String description, Long id) {
@@ -77,9 +77,6 @@ public class PublicationsServices implements PublicationsServiceInterface {
         }
         return ok();
     }
-
-
-
 
     @Override
     public Result<Long> addLike(Reaction reaction) {

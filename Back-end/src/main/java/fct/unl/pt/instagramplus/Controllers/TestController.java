@@ -12,9 +12,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = TestController.BASE_URL)
 public class TestController {
 
-    static final String BASE_URL = "tests";
+    static final String BASE_URL = "/tests";
 
-    @GetMapping(value = "test1", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/test1", produces = APPLICATION_JSON_VALUE)
     ResponseEntity<String> test1(){
         Logger.info("REQUEST: TESTS");
         return ResponseEntity.ok("TESTE CONTROLLERS");

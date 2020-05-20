@@ -1,4 +1,4 @@
-package fct.unl.pt.instagramplus.Models.Authenticator;
+package fct.unl.pt.instagramplus.Models;
 
 import lombok.Data;
 

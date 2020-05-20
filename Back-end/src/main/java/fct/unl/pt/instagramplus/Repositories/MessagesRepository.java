@@ -1,6 +1,6 @@
-package fct.unl.pt.instagramplus.Repositories.Messages;
+package fct.unl.pt.instagramplus.Repositories;
 
-import fct.unl.pt.instagramplus.Models.Messages.Message;
+import fct.unl.pt.instagramplus.Models.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

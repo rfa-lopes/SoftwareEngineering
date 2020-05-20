@@ -7,8 +7,8 @@ public class PasswordUtil {
     }
 
     public static boolean verify(String hash, String password){
-        String genHas =  B64Util.encode(HashUtil.getHash(password.getBytes()));
-        return hash.equals(genHas);
+        String genHash =  B64Util.encode(HashUtil.getHash(password.getBytes()));
+        return hash.equals(genHash);
     }
 
 }

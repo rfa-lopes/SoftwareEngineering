@@ -25,4 +25,8 @@ public interface FollowersRepository extends JpaRepository<Follower, Long> {
     @Transactional
     void deleteByAccountIdAndIsFollowingId(Long accountId, Long isFollowingId);
 
+    void deleteAllByAccountId(Long id1);
+
+    void deleteAllByIsFollowingId(Long id1);
+
 }

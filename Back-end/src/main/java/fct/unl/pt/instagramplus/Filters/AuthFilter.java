@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Filters;
 
 
+import fct.unl.pt.instagramplus.Controllers.Authenticator.AuthenticatorInterface;
 import fct.unl.pt.instagramplus.Utils.CookiesUtil;
 import fct.unl.pt.instagramplus.Utils.JwtUtil;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
 
         try {
-            Cookie token = CookiesUtil.getCookie("AuthToken", req.getCookies());
+            Cookie token = CookiesUtil.getCookie(AuthenticatorInterface.TOKEN_NAME, req.getCookies());
             Long id = Long.parseLong(JwtUtil.parseJWT(token.getValue()));
             req.setAttribute("id", id);
             chain.doFilter(request, response);

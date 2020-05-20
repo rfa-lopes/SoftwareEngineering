@@ -1,7 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.Authenticator;
 
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
-import fct.unl.pt.instagramplus.Models.Authenticator.LoginModel;
+import fct.unl.pt.instagramplus.Models.Account;
+import fct.unl.pt.instagramplus.Models.LoginModel;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Utils.CookiesUtil;
 import fct.unl.pt.instagramplus.Utils.JwtUtil;
@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestController
 public class AuthenticatorClass implements AuthenticatorInterface{
@@ -29,17 +32,14 @@ public class AuthenticatorClass implements AuthenticatorInterface{
             acc = accountsRepository.getAccountByEmail(login.getEmail());
         else if(login.getUsername() != null)
             acc = accountsRepository.getAccountByUsername(login.getUsername());
-        else return ResponseEntity.status(400).build(); // Bab request
+        else return ResponseEntity.status(BAD_REQUEST).build(); // Bab request
 
-        if(acc == null)
-            return ResponseEntity.status(401).build(); // Unauthorized
-
-        if(!PasswordUtil.verify(acc.getPassword(), login.getPassword()))
-            return ResponseEntity.status(401).build(); // Unauthorized
+        if(acc == null || !PasswordUtil.verify(acc.getPassword(), login.getPassword()))
+            return ResponseEntity.status(UNAUTHORIZED).build(); // Unauthorized
 
         String token = JwtUtil.createJWT(acc.getId());
-        resp.addCookie(new Cookie("AuthToken", token));
-        acc.setPassword(null);
+        resp.addCookie(new Cookie(AuthenticatorInterface.TOKEN_NAME, token));
+        acc.setPassword(null); //Melhor solucao: criar um model sem password
         return ResponseEntity.ok(acc);
     }
 
@@ -49,7 +49,7 @@ public class AuthenticatorClass implements AuthenticatorInterface{
         Cookie token = CookiesUtil.getCookie("AuthToken", req.getCookies());
 
         if(token == null)
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(UNAUTHORIZED).build();
 
         token.setMaxAge(0);
         resp.addCookie(token);

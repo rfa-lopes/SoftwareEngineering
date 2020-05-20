@@ -1,4 +1,4 @@
-package fct.unl.pt.instagramplus.Models.Messages;
+package fct.unl.pt.instagramplus.Models;
 
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import lombok.Data;

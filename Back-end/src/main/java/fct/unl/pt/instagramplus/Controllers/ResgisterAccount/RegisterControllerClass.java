@@ -1,7 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.ResgisterAccount;
 
 import fct.unl.pt.instagramplus.Controllers.Response;
-import fct.unl.pt.instagramplus.Models.Accounts.Account;
+import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Services.AccountsServices.AccountServiceClass;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
