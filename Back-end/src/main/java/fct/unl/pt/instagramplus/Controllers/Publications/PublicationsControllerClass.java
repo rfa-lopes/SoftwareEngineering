@@ -52,15 +52,15 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     }
 
     @Override
-    public ResponseEntity<Void> deleteComment(Long idUser, Long idPub) {
+    public ResponseEntity<Void> deleteComment(Long idLike) {
         Logger.info("Request: DETELE COMMENT");
-        return Response.resultOrErrorCode(publi.deleteComment(idUser,idPub));
+        return Response.resultOrErrorCode(publi.deleteComment(idLike));
     }
 
     @Override
-    public ResponseEntity<Void> deleteLike(Long idUser, Long idPub) {
+    public ResponseEntity<Void> deleteLike(Long idLike) {
         Logger.info("Request: DELETE LIKE");
-        return Response.resultOrErrorCode(publi.deleteLike(idUser,idPub));
+        return Response.resultOrErrorCode(publi.deleteLike(idLike));
     }
 
     @Override

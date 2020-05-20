@@ -20,10 +20,10 @@ public interface PublicationsControllerInterface {
     String DELETE = "/detetepublication/{id}";
     String GET_ALL_PUBLICATIONS_FROM_PROFILE = "/allpublications/{id}";
     String EDIT = "/editpublication/{id}";
-    String ADDCOMENT = "/postcomment/{iduser}/{idpub}";
+    String ADDCOMENT = "/postcomment/{idLike}";
     String ADDLIKE = "/postlike";
     String DELETECOMMENT = "/deletecomment/{id}";
-    String DELETELIKE = "/deletelike/{iduser}/{idpub}";
+    String DELETELIKE = "/deletelike/{idLike}";
     String GET_ALL_COMMENTS_FROM_PUBLICATION = "/allComments/{id}";
     String GET_ALL_Likes_FROM_PUBLICATION = "/allComments/{id}";
 
@@ -68,12 +68,11 @@ public interface PublicationsControllerInterface {
     @PostMapping(
             value = DELETECOMMENT)
     ResponseEntity<Void> deleteComment(
-            @PathVariable( "iduser" ) Long idUser, @PathVariable( "idpub" ) Long idPub);
+            @PathVariable( "idLike" )Long idLike);
 
     @PostMapping(
             value = DELETELIKE)
-    ResponseEntity<Void> deleteLike(
-            @PathVariable( "iduser" ) Long idUser, @PathVariable( "idpub" ) Long idPub);
+    ResponseEntity<Void> deleteLike(   @PathVariable( "idLike" ) Long idLike);
 
     @GetMapping(
             value = GET_ALL_COMMENTS_FROM_PUBLICATION,

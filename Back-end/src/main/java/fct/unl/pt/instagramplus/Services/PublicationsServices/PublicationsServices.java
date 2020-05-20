@@ -65,16 +65,10 @@ public class PublicationsServices implements PublicationsServiceInterface {
     }
 
     @Override
-    public Result<Void> deleteComment(Long idUser,Long idPub) {
-        List<Comment> comm=commentRepository.getAllByPublicationId(idPub);
-        if(comm==null)
-            return error(NOT_FOUND);
-        for (Comment com : comm) {
-            if(com.getUserId()==idUser) {
-                commentRepository.delete(com);
-                break;
-            }
-        }
+    public Result<Void> deleteComment(Long idLike) {
+        Comment comm=commentRepository.delete(idLike);
+
+
         return ok();
     }
 
@@ -85,16 +79,9 @@ public class PublicationsServices implements PublicationsServiceInterface {
     }
 
     @Override
-    public Result<Void> deleteLike(Long idUser,Long idPub) {
-       List <Reaction> reacts=reactionsRepository.getAllByPublicationId(idPub);
-        if(reacts.isEmpty())
-            return error(NOT_FOUND);
-        for (Reaction react : reacts) {
-            if(react.getUserId()==idUser) {
-                reactionsRepository.delete(react);
-                break;
-            }
-        }
+    public Result<Void> deleteLike(Long idLike) {
+        Reaction reacts=reactionsRepository.delete(idLike);
+
 
         return ok();
     }
