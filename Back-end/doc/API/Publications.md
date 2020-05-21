@@ -78,12 +78,9 @@ REQUEST
 - BODY
 ```json
 {
- {
 	"userId":1,
 	"publicationId":2,
 	"comment":"comment"
-	
-}
 }
 ```
 
@@ -109,8 +106,6 @@ REQUEST
 	"publicationId":2,
   	"reactionDate":"hoje",
 	"type":1
-	
-	
 }
 ```
 
@@ -133,12 +128,12 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
  ```json
-   {
+ {
         "id": 5,
         "userId": 1,
         "publicationId": 2,
-        "comment": "comment"
-    }
+	"comment": "comment"
+}
  ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
