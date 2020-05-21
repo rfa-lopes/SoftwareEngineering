@@ -182,7 +182,7 @@ RESPONSE
 
 REQUEST
 
-- Post /publications/deletepublication/{id}
+- DELETE /publications/detetepublication/{id}
 
 
 RESPONSE
