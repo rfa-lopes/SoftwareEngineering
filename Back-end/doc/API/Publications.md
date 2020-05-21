@@ -133,10 +133,10 @@ RESPONSE
 - 200 - OK (ID)
  ```json
  {
-        "id": 5,
-        "userId": 1,
-        "publicationId": 2,
-	"comment": "comment"
+"id": 5,
+"userId": 1,
+"publicationId": 2,
+"comment": "Mais um comentário"
 }
  ```
 - 401 - UNAUTHORIZED
