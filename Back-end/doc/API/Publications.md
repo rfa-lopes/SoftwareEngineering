@@ -33,13 +33,22 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
 ```json
-{
-  	"id": 2,
-        "ownerId": 1,
-        "publicationDate": "2020-05-21 12:43:59",
-        "expireDate": null,
-        "description": "comer arroz"
-}
+[
+	{
+		"id": 2,
+		"ownerId": 1,
+		"publicationDate": "2020-05-21 12:43:59",
+		"expireDate": null,
+		"description": "comer arroz"
+	},
+	{
+		"id": 3,
+		"ownerId": 1,
+		"publicationDate": "2020-05-21 15:46:15",
+		"expireDate": null,
+		"description": "comer arroz outra vez"
+	}
+]
 ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
@@ -132,12 +141,20 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
  ```json
- {
-"id": 5,
-"userId": 1,
-"publicationId": 2,
-"comment": "Mais um comentário"
-}
+[
+	{
+		"id": 5,
+		"userId": 1,
+		"publicationId": 2,
+		"comment": "Um comentário"
+	},
+	{
+		"id": 7,
+		"userId": 4,
+		"publicationId": 2,
+		"comment": "Mais um comentário"
+	}
+]
  ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
@@ -152,12 +169,20 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
  ```json
-{
-        "id": 5,
-        "userId": 1,
-        "publicationId": 2,
-	"comment": "comment"
-}
+]
+	{
+		"id": 5,
+		"userId": 1,
+		"publicationId": 2,
+		"comment": "comment"
+	},
+	{
+		"id": 9,
+		"userId": 2,
+		"publicationId": 2,
+		"comment": "comment"
+	}
+]
  ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
