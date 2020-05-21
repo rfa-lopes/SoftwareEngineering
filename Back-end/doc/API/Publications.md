@@ -33,11 +33,13 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
 ```json
-  "id": 2,
+{
+  	"id": 2,
         "ownerId": 1,
         "publicationDate": "2020-05-21 12:43:59",
         "expireDate": null,
         "description": "comer arroz"
+}
 ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
