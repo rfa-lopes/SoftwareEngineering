@@ -169,7 +169,7 @@ REQUEST
 RESPONSE
 - 200 - OK (ID)
  ```json
-]
+[
 	{
 		"id": 5,
 		"userId": 1,
