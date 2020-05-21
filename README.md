@@ -22,7 +22,7 @@ Instagram Plus Project
 
 ### Instalação de dependências
 
-TODO
+* Instalar Maven [aqui](https://www.baeldung.com/install-maven-on-windows-linux-mac)
 
 ### Correr back-end
 
