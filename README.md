@@ -24,9 +24,12 @@ Instagram Plus Project
 
 * Instalar Maven [aqui](https://www.baeldung.com/install-maven-on-windows-linux-mac)
 
-### Correr back-end
+### Correr back-end localmente
 
-TODO
+```cmd
+cd Back-end
+mvn spring-boot:run
+```
 
 ### Correr front-end
 
