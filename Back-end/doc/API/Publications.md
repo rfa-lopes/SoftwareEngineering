@@ -192,3 +192,16 @@ RESPONSE
 - 404 - NOT FOUND
 ---
 
+### Delete Like
+
+REQUEST
+
+- DELETE /publications/deletelike/{idLike}
+
+
+RESPONSE
+- 200 - OK (ID)
+
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
+---
