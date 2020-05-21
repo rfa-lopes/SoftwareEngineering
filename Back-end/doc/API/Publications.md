@@ -168,7 +168,7 @@ RESPONSE
 
 REQUEST
 
-- Post /publications/deletecomments/{id}
+- DELETE /publications/deletecomments/{id}
 
 
 RESPONSE
