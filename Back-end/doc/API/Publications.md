@@ -164,3 +164,31 @@ RESPONSE
 - 404 - NOT FOUND
 ---
 
+### Delete Comment
+
+REQUEST
+
+- Post /publications/deletecomments/{id}
+
+
+RESPONSE
+- 200 - OK (ID)
+
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
+---
+
+### Delete Publication
+
+REQUEST
+
+- Post /publications/deletepublication/{id}
+
+
+RESPONSE
+- 200 - OK (ID)
+
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
+---
+
