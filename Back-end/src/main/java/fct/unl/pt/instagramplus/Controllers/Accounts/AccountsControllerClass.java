@@ -76,6 +76,12 @@ public class AccountsControllerClass implements AccountsControllerInterface{
     }
 
     @Override
+    public ResponseEntity<Account> getAccountViewer(Long accountRequestId, Long id) {
+        Logger.info("Request: GET ACCOUNT VIEWER BY: " + accountRequestId);
+        return Response.resultOrErrorCode(accountService.getAccount(id));
+    }
+
+    @Override
     public ResponseEntity<Void> changeAccountVisibility(Long accountRequestId,Long id) {
         Logger.info("Request: CHANGE VISIBILITY BY: " + accountRequestId);
         if(!accountRequestId.equals(id))

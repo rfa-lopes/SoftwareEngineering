@@ -25,6 +25,7 @@ public interface AccountsControllerInterface {
     String UNFOLLOW = "/unfollow";
     String FOLLOWERS = "/followers/{id}";
     String FOLLOWINGS = "/followings/{id}";
+    String ACCOUNTVIEWER = "/getviewer/{id}";
 
     /**
      * Get account by id
@@ -126,6 +127,14 @@ public interface AccountsControllerInterface {
     ResponseEntity<List<Follower>> getAccountFollowings(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable Long id);
+
+
+    @GetMapping(
+            value = ACCOUNTVIEWER,
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<Account> getAccountViewer(
+            @RequestAttribute("id") Long accountRequestId,
+            @PathVariable( "id" ) Long id);
 
 
 }
