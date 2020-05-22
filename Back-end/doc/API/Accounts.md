@@ -10,7 +10,7 @@
 
 REQUEST
 
-- GET /accounts/get
+- GET /accounts/get/{id}
 
 RESPONSE
 
