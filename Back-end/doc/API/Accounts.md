@@ -10,7 +10,7 @@
 
 REQUEST
 
-- GET /accounts/create
+- GET /accounts/get
 
 RESPONSE
 
