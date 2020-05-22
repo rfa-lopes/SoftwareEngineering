@@ -16,7 +16,7 @@ captureData = function(event) {
                 // Store token id for later use in localStorage
                 localStorage.setItem('username',response.username);
                 console.log(response);
-                window.location.href = "/ogani/shop-grid.html"
+                window.location.href = "/regist.html"
             }
             else {
                 alert("No response");
