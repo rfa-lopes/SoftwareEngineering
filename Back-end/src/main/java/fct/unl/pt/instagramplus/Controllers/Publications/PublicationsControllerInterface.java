@@ -36,7 +36,8 @@ public interface PublicationsControllerInterface {
             @RequestBody Publication publication);
 
     @DeleteMapping(
-            value = DELETE)
+            value = DELETE,
+            produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deletePublication(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
@@ -68,13 +69,15 @@ public interface PublicationsControllerInterface {
     ResponseEntity<Long> AddLike(@RequestAttribute("id") Long accountRequestId,
             @RequestBody Reaction like);
 
-    @PostMapping(
-            value = DELETECOMMENT)
+    @DeleteMapping(
+            value = DELETECOMMENT,
+            produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deleteComment(@RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" )Long idComment);
 
-    @PostMapping(
-            value = DELETELIKE)
+    @DeleteMapping(
+            value = DELETELIKE,
+            produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Void> deleteLike( @RequestAttribute("id") Long accountRequestId,
     		@PathVariable( "idLike" ) Long idLike);
 

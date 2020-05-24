@@ -26,7 +26,12 @@ public class Publication {
     @NotNull
     String description;
 
-    public Publication(){}
+    @NotNull
+    @Lob
+    String image; //Base64
+
+    public Publication() {
+    }
 
     public Publication(@NotNull Long ownerId, @NotNull String publicationDate, String expireDate, String description) {
         this.ownerId = ownerId;
@@ -37,6 +42,14 @@ public class Publication {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setDescription(String description) {
