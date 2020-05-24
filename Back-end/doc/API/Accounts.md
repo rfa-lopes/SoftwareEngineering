@@ -23,7 +23,8 @@ RESPONSE
   "password": "null",
   "name": "Rodrigo Faria Lopes",
   "email": "rfa.lopes@campus.fct.unl.pt",
-  "public": false
+  "public": false,
+  "profileImage":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAcHBwcHBwgI...Wh3yH0jH/9k="
 }
 ```
 - 401 - UNAUTHORIZED
@@ -48,7 +49,8 @@ RESPONSE
   "password": "null",
   "name": "Rodrigo Faria Lopes",
   "email": "rfa.lopes@campus.fct.unl.pt",
-  "public": false
+  "public": false,
+  "profileImage":"/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAcHBwcHBwgI...Wh3yH0jH/9k="
 }
 ```
 - 401 - UNAUTHORIZED
