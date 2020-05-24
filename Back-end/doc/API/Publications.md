@@ -138,7 +138,7 @@ RESPONSE
 
 REQUEST
 
-- GET /publications/allComments/{id}
+- GET /publications/allComments/{idpub}
 
 
 RESPONSE
@@ -166,7 +166,7 @@ RESPONSE
 
 REQUEST
 
-- GET /publications/allLikes/{id}
+- GET /publications/allLikes/{idpub}
 
 
 RESPONSE
