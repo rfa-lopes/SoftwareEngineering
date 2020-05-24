@@ -12,6 +12,7 @@ REQUEST
 {
   "ownerId": 1,
   "description": "o meu arroz",
+  "image":"fjgjfjejjmdmdjd"
 }
 ```
 
@@ -39,14 +40,16 @@ RESPONSE
 		"ownerId": 1,
 		"publicationDate": "2020-05-21 12:43:59",
 		"expireDate": null,
-		"description": "comer arroz"
+		"description": "comer arroz",
+		"image":"fjgjfjejjmdmdjd"
 	},
 	{
 		"id": 3,
 		"ownerId": 1,
 		"publicationDate": "2020-05-21 15:46:15",
 		"expireDate": null,
-		"description": "comer arroz outra vez"
+		"description": "comer arroz outra vez",
+		"image": "fjgjfjejjmdmdjd"
 	}
 ]
 ```
@@ -135,7 +138,7 @@ RESPONSE
 
 REQUEST
 
-- GET /publications/allComments/{id}
+- GET /publications/allComments/{idpub}
 
 
 RESPONSE
@@ -163,7 +166,7 @@ RESPONSE
 
 REQUEST
 
-- GET /publications/allLikes/{id}
+- GET /publications/allLikes/{idpub}
 
 
 RESPONSE
@@ -171,16 +174,18 @@ RESPONSE
  ```json
 [
 	{
-		"id": 5,
-		"userId": 1,
-		"publicationId": 2,
-		"comment": "comment"
+	"id": 3,
+        "userId": 1,
+        "publicationId": 2,
+        "reactionDate": "2020-05-24 16:42:47",
+        "type": "AHAH"
 	},
 	{
-		"id": 9,
-		"userId": 2,
-		"publicationId": 2,
-		"comment": "comment"
+	"id": 6,
+        "userId": 1,
+        "publicationId": 2,
+        "reactionDate": "2020-05-24 16:42:47",
+        "type": "AHAH
 	}
 ]
  ```
@@ -229,3 +234,12 @@ RESPONSE
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 ---
+
+### ENUM ReactionType
+
+- Like : 0 
+- Love : 1
+- AHAH : 2 
+- WOW : 3 
+- ANFRY : 4
+- SAD : 5 
