@@ -234,3 +234,12 @@ RESPONSE
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
 ---
+
+### ENUM ReactionType
+
+- Like : 0 
+- Love : 1
+- AHAH : 2 
+- WOW : 3 
+- ANFRY : 4
+- SAD : 5 
