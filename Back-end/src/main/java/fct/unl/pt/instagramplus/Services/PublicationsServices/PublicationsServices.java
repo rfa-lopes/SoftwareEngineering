@@ -92,6 +92,7 @@ public class PublicationsServices implements PublicationsServiceInterface {
         Publication pub= publicationRepository.getPublicationById(reaction.getPublicationId());
         if (pub==null)
             return error(NOT_FOUND);
+        reaction.setReactionDate(DateUtil.getAtualDate());
         Reaction react=reactionsRepository.save(reaction);
         return ok(react.getId());
     }

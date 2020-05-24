@@ -23,16 +23,16 @@ public class Reaction {
     @NotNull
     long publicationId;
 
-    @NotNull
+
     String reactionDate;
 
     @NotNull
     ReactionType type;
 
-    public Reaction(@NotNull long userId, @NotNull long publicationId, @NotNull String reactionDate, @NotNull ReactionType type) {
+    public Reaction(){}
+    public Reaction(@NotNull long userId, @NotNull long publicationId,  @NotNull ReactionType type) {
         this.userId = userId;
         this.publicationId = publicationId;
-        this.reactionDate = reactionDate;
         this.type = type;
     }
 

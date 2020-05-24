@@ -24,6 +24,10 @@ public class Account {
     private String password;
 
     @NotNull
+    @Lob
+    private String profileImage; //Base64
+
+    @NotNull
     private String name;
 
     @NotNull
@@ -44,6 +48,12 @@ public class Account {
 
     public Long getId() {
         return id;
+    }
+    public String getProfileImage(){
+        return profileImage;
+    }
+    public void setProfileImage(String profileImage){
+        this.profileImage=profileImage;
     }
 
     public void setId(Long id) {

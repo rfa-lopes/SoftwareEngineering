@@ -31,6 +31,31 @@ RESPONSE
 
 ---
 
+### Get account (Não conta como viewer)
+
+REQUEST
+
+- GET /accounts/getviewer/{id}
+
+RESPONSE
+
+- 200 - OK
+
+```json
+{
+  "id": 1,
+  "username": "rodrigo75",
+  "password": "null",
+  "name": "Rodrigo Faria Lopes",
+  "email": "rfa.lopes@campus.fct.unl.pt",
+  "public": false
+}
+```
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
+
+---
+
 ### Delete account
 
 REQUEST

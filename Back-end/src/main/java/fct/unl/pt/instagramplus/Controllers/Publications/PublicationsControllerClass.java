@@ -90,7 +90,7 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     @Override
     public ResponseEntity<Long> AddLike(Long accountRequestId,Reaction like) {
         Logger.info("Request: ADD LIKE");
-        if(accountRequestId.equals(like.getUserId()))
+        if(!accountRequestId.equals(like.getUserId()))
             return ResponseEntity.status(UNAUTHORIZED).build();
 
         return Response.resultOrErrorCode(publi.addLike(like));
