@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Models.Reactions;
 
 public enum ReactionType {
 
+    LIKE(0),
     LOVE(1),
     AHAH(2),
     WOW(3),
