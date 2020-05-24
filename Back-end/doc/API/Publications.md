@@ -17,7 +17,7 @@ REQUEST
 ```
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 ```json
 3
 ```
@@ -32,7 +32,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 ```json
 [
 	{
@@ -71,7 +71,7 @@ REQUEST
 ```
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 ```json
 {
 	"id": 2,
@@ -101,7 +101,7 @@ REQUEST
 ```
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 ```json
 4
 ```
@@ -126,7 +126,7 @@ REQUEST
 ```
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 ```json
 3
 ```
@@ -142,7 +142,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
  ```json
 [
 	{
@@ -170,7 +170,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
  ```json
 [
 	{
@@ -201,7 +201,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
@@ -215,7 +215,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
@@ -229,7 +229,7 @@ REQUEST
 
 
 RESPONSE
-- 200 - OK (ID)
+- 200 - OK 
 
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
