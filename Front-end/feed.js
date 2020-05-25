@@ -112,8 +112,39 @@ function likePub(i) {
         success: function(response) {
             if(response) {
                 console.log(liked);
+                    switch(i){
+                        case 0: 
+                            var c1= parseInt(document.getElementById("likec").value,10);
+                            c1+=1;
+                            document.getElementById("likec").value = c1;
+                            break;
+                        case 1: 
+                            var c2= parseInt(document.getElementById("lovec").value,10);
+                            c2+=1;
+                            document.getElementById("lovec").value = c2;
+                            break;
+                        case 2: 
+                            var c3= parseInt(document.getElementById("laughc").value,10);
+                            c3+=1;
+                            document.getElementById("laughc").value = c3;
+                            break;
+                        case 3: 
+                            var c4= parseInt(document.getElementById("wowc").value,10);
+                            c4+=1;
+                            document.getElementById("wowc").value = c4;
+                            break;
+                        case 4: 
+                            var c5= parseInt(document.getElementById("angryc").value,10);
+                            c5+=1;
+                            document.getElementById("angryc").value = c5;
+                            break;
+                        case 5:
+                            var c6= parseInt(document.getElementById("sadc").value,10);
+                            c6+=1;
+                            document.getElementById("sadc").value = c6;
+                            break;
+                    }
                 
-                //FAZER CENAAS
             
             
             }
@@ -141,8 +172,40 @@ function getLikesPub(i) {
       
         success: function(response) {
             if(response) {
-                
-                //FAZER CENAS
+                for(var j=0;j<response.length;j++){
+                    switch(response[j].type){
+                        case 0: 
+                            var c1= parseInt(document.getElementById("likec").value,10);
+                            c1+=1;
+                            document.getElementById("likec").value = c1;
+                            break;
+                        case 1: 
+                            var c2= parseInt(document.getElementById("lovec").value,10);
+                            c2+=1;
+                            document.getElementById("lovec").value = c2;
+                            break;
+                        case 2: 
+                            var c3= parseInt(document.getElementById("laughc").value,10);
+                            c3+=1;
+                            document.getElementById("laughc").value = c3;
+                            break;
+                        case 3: 
+                            var c4= parseInt(document.getElementById("wowc").value,10);
+                            c4+=1;
+                            document.getElementById("wowc").value = c4;
+                            break;
+                        case 4: 
+                            var c5= parseInt(document.getElementById("angryc").value,10);
+                            c5+=1;
+                            document.getElementById("angryc").value = c5;
+                            break;
+                        case 5:
+                            var c6= parseInt(document.getElementById("sadc").value,10);
+                            c6+=1;
+                            document.getElementById("sadc").value = c6;
+                            break;
+                    }
+                }
                 
             }
             else {
