@@ -14,9 +14,11 @@ captureData = function(event) {
         success: function(response) {
             if(response) {
                 // Store token id for later use in localStorage
+                localStorage.setItem('userid',response.id);
                 localStorage.setItem('username',response.username);
+                localStorage.setItem('name',response.name);
                 console.log(response);
-                window.location.href = "/regist.html"
+                window.location.href = "/feed.html"
             }
             else {
                 alert("No response");

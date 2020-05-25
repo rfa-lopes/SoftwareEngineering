@@ -5,6 +5,7 @@ captureData = function(event) {
     console.log(data);
     $.ajax({
         type: "POST",
+        //https://cors-anywhere.herokuapp.com/
         url: "http://localhost:8080/register/account",
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
