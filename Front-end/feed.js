@@ -24,7 +24,7 @@ function loadPeople() {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        
     });
     event.preventDefault();
 };
@@ -58,7 +58,6 @@ function loadPeopleinfo(idp) {
 
 function loadPub(id, username){
 
-    var jsondata = JSON.stringify(data);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/publications/allpublications/"+id,
@@ -88,7 +87,7 @@ function loadPub(id, username){
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+       
     });
     event.preventDefault();
 };
@@ -156,7 +155,7 @@ function likePub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };
@@ -216,7 +215,6 @@ function getLikesPub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };
@@ -252,7 +250,7 @@ commentPub = function(event) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };
@@ -281,7 +279,6 @@ function getCommentsPub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };

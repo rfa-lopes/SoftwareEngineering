@@ -14,8 +14,6 @@ captureData = function(event) {
         success: function(response) {
             if(response) {
                 // Store token id for later use in localStorage
-                console.log(response.username)
-                console.log(response.propertyMap.username);
                 localStorage.setItem('userid',response.id);
                 localStorage.setItem('username',response.username);
                 localStorage.setItem('name',response.name);
@@ -30,7 +28,7 @@ captureData = function(event) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };

@@ -22,7 +22,6 @@ function loadPeopleinfo() {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };
@@ -56,7 +55,6 @@ function loadPub() {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };
@@ -122,7 +120,7 @@ function likePub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };
@@ -182,7 +180,6 @@ function getLikesPub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };
@@ -218,7 +215,7 @@ commentPub = function(event) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };
@@ -247,7 +244,6 @@ function getCommentsPub(i) {
             console.log(response);
             alert("Error: "+ response.status);
         },
-        data: JSON.stringify(data)
     });
     event.preventDefault();
 };
@@ -265,6 +261,6 @@ window.onload = function() {
         getCommentsPub(id);
         
     })
-    loadPeople();
+    loadPeopleinfo();
     loadPub();
 };
