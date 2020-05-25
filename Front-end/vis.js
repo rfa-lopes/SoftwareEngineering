@@ -10,7 +10,7 @@ function loadPeopleinfo(id){
       
         success: function(response) {
             if(response) {
-                var n = '<br><h2>' + response.propertyMap.username + '</h2>';
+                var n = '<br><h2>' + response.username + '</h2>';
                 document.getElementById("visdiv").innerHTML += n;
             }
             else {
@@ -42,7 +42,7 @@ window.onload = function() {
             if(response) {
                 console.log(response);
                 for(var j = 0 ;j < response.length; j++) {
-                    var id = response[i].propertyMap.id;
+                    var id = response[i].id;
                     loadPeopleinfo(id);
                 }
             }

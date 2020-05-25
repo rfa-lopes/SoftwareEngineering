@@ -11,7 +11,7 @@ function loadPeople() {
         success: function(response) {
             if(response) {
                 for(var j=0; j<response.length;j++){
-                    var id = response[j].propertyMap.isFollowingId;
+                    var id = response[j].isFollowingId;
                     loadPeopleinfo(id);
                 }
                 
@@ -40,7 +40,7 @@ function loadPeopleinfo(idp) {
       
         success: function(response) {
             if(response) {
-                var usern = response.propertyMap.username;
+                var usern = response.username;
                 loadPub(id, usern); 
             }
             else {
@@ -73,7 +73,7 @@ function loadPub(id, username){
                 var n ="";
                 
                 for(var i=0; i<response.length;i++){
-                    n += '<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item"><div id="'+response[i].propertyMap.id+'" class="product__item__pic set-bg" data-setbg="' + response[i].propertyMap.image + 'data-toggle="modal" data-target="#postModal" onclick="save('+response[i].propertyMap.id+')"><ul class="product__item__pic__hover"><li><a href="#postModal" data-toggle="modal" onclick="save('+response[i].propertyMap.id+')><i class="fa fa-heart"></i></a></li><li><a href="postModal" data-toggle="modal" onclick="save('+response[i].propertyMap.id+')><i class="fa fa-comment"></i></a></li><li><a href="#"><i class="fa fa-retweet"></i></a></li><li><a href="#"><i class="fa fa-plus"></i></a></li></ul></div><div class="product__item__text"><h6><a href="#">' + response[i].propertyMap.description + '</a></h6><h5>' + username + '</h5></div></div></div>';
+                    n += '<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item"><div id="'+response[i].id+'" class="product__item__pic set-bg" data-setbg="' + response[i].image + 'data-toggle="modal" data-target="#postModal" onclick="save('+response[i].id+')"><ul class="product__item__pic__hover"><li><a href="#postModal" data-toggle="modal" onclick="save('+response[i].id+')><i class="fa fa-heart"></i></a></li><li><a href="postModal" data-toggle="modal" onclick="save('+response[i].id+')><i class="fa fa-comment"></i></a></li><li><a href="#"><i class="fa fa-retweet"></i></a></li><li><a href="#"><i class="fa fa-plus"></i></a></li></ul></div><div class="product__item__text"><h6><a href="#">' + response[i].description + '</a></h6><h5>' + username + '</h5></div></div></div>';
                 }
                 document.getElementById().innerHTML = n;
 
@@ -207,7 +207,7 @@ function getCommentsPub(i) {
             if(response) {
                 var n ="";
                 for(var j=0;j<response.length;i++){
-                    n += '<div class="outgoing_msg"><div class="sent_comm"><p>'+'Tamojai tranquilo'+'</p></div></div>';
+                    n += '<div class="outgoing_msg"><div class="sent_comm"><p>'+response[j].comment+'</p></div></div>';
                 } document.getElementById("comments").innerHTML += n;
             }
             else {

@@ -13,11 +13,11 @@ function loadMessages(toId) {
             if(response) {
             var n = "";
                 for(var i=0; i<response.length; i++){
-                    if(response[i].propertyMap.toUserID == idUser){
-                        n += '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>' + response[i].propertyMap.messageText + '</p></div></div></div>';
+                    if(response[i].toUserID == idUser){
+                        n += '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>' + response[i].messageText + '</p></div></div></div>';
                     }
-                    if(response[i].propertyMap.fromUserID == idUser){
-                        n += '<div class="outgoing_msg"><div class="sent_msg"><p>' + response[i].propertyMap.messageText + '</p></div></div>';
+                    if(response[i].fromUserID == idUser){
+                        n += '<div class="outgoing_msg"><div class="sent_msg"><p>' + response[i].messageText + '</p></div></div>';
                     }
                 }
                 document.getElementById("chat").innerHTML = n;
@@ -83,10 +83,10 @@ function loadPeopleinfo(idp, i) {
         success: function(response) {
             if(response) {
                 if(i==0){
-                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages(idp)"><div class="chat_ib"><h5>' + response.propertyMap.name  +  '</h5></div></div></div>';
+                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages(idp)"><div class="chat_ib"><h5>' + response.name  +  '</h5></div></div></div>';
                 }
                 else{
-                    document.getElementById("peoplechat").innerHTML += '<div class="chat_people" onclick = "loadMessages(idp)"> <div class="chat_ib"><h5>' + response.propertyMap.name + '</h5></div></div>';
+                    document.getElementById("peoplechat").innerHTML += '<div class="chat_people" onclick = "loadMessages(idp)"> <div class="chat_ib"><h5>' + response.name + '</h5></div></div>';
                 }
                 
             }
@@ -118,7 +118,7 @@ window.onload = function() {
                 
                 Document.getElementById("peoplechat").innerHTML = '<div class="chat_list">';
                 for(var i=0; i<response.length; i++){
-                    var idp = response[i].propertyMap.isFollowingId;
+                    var idp = response[i].isFollowingId;
 	                loadPeopleinfo(idp, i);
                     if(i==0){
                         loadMessages(idp);
