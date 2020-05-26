@@ -1,5 +1,2 @@
 keytool -genkeypair -alias server_keys -keyalg RSA -keysize 4096 -storetype PKCS12 -keystore keystore.p12 -validity 3650
 password:password
-
-
-chrome --ignore-certificate-errors --ignore-urlfetcher-cert-requests &> /dev/null
