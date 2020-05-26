@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.Authenticator;
 
 import fct.unl.pt.instagramplus.Models.Account;
+import fct.unl.pt.instagramplus.Models.Wrapper;
 import fct.unl.pt.instagramplus.Models.LoginModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public interface AuthenticatorInterface {
             value = LOGIN,
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Account> login(@RequestBody LoginModel login, HttpServletResponse resp);
+    ResponseEntity<Wrapper<Account>> login(@RequestBody LoginModel login, HttpServletResponse resp);
 
     /**
      * Logout

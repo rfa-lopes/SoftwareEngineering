@@ -1,50 +1,43 @@
-captureData = function(event) {
-    var data = getFormData($('form[name="login"]'));
-    var jsondata = JSON.stringify(data);
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/auth/login",
-        contentType: "application/json; charset=utf-8",
-        crossDomain: true,
-        //headers: "Access-Control-Allow-Origin: *",
-        dataType: "json",
-        data: jsondata,
-      
-      
-        success: function(response) {
-            if(response) {
-                // Store token id for later use in localStorage
-                localStorage.setItem('userid',response.id);
-                localStorage.setItem('username',response.username);
-                localStorage.setItem('name',response.name);
-                console.log(response);
-                window.location.href = "/feed.html"
-            }
-            else {
-                alert("No response");
-            }
-        },
-        error: function(response) {
-            console.log(response);
-            alert("Error: "+ response.status);
-        },
-        data: JSON.stringify(jsondata)
-    });
-    event.preventDefault();
+captureData = function (event) {
+  var jsondata = JSON.stringify(getFormData($('form[name="login"]')));
+  $.ajax({
+    type: "POST",
+    url: "https://localhost:8080/auth/login",
+    contentType: "application/json",
+    data: jsondata,
+    success: function (response) {
+      if (response) {
+        alert("LOGIN OK");
+        // Store token id for later use in localStorage
+        localStorage.setItem("userid", response.response.id);
+        localStorage.setItem("username", response.response.username);
+        localStorage.setItem("name", response.response.name);
+        localStorage.setItem("token", response.cookie);
+        //FALTA AINDA ALGUNS PARAMETROS? EMAIL IMAGEM
+        window.location.href = "/feed.html";
+      }
+    },
+    error: function (response) {
+      //FALTA VERIFICAR UNAUTHORIZED - AVISO NA PÁGINA(?)
+      if (response.status == 401) alert("UNAUTHORIZED");
+      else alert("Error:" + response.status);
+    },
+  });
+  event.preventDefault();
 };
 
-window.onload = function() {
-    var frms = $('form[name="login"]');     
-    frms[0].onsubmit = captureData;
+window.onload = function () {
+  var frms = $('form[name="login"]');
+  frms[0].onsubmit = captureData;
 };
 
-function getFormData($form){
-    var unindexed_array = $form.serializeArray();
-    var indexed_array = {};
+function getFormData($form) {
+  var unindexed_array = $form.serializeArray();
+  var indexed_array = {};
 
-    $.map(unindexed_array, function(n, i){
-        indexed_array[n['name']] = n['value'];
-    });
+  $.map(unindexed_array, function (n, i) {
+    indexed_array[n["name"]] = n["value"];
+  });
 
-    return indexed_array;
+  return indexed_array;
 }

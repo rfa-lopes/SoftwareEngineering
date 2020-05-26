@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.Authenticator;
 
 import fct.unl.pt.instagramplus.Models.Account;
+import fct.unl.pt.instagramplus.Models.Wrapper;
 import fct.unl.pt.instagramplus.Models.LoginModel;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Utils.CookiesUtil;
@@ -25,12 +26,10 @@ public class AuthenticatorClass implements AuthenticatorInterface{
     private AccountsRepository accountsRepository;
 
     @Override
-    public ResponseEntity<Account> login(LoginModel login, HttpServletResponse resp) {
+    public ResponseEntity<Wrapper<Account>> login(LoginModel login, HttpServletResponse resp) {
         Logger.info("Request: LOGIN");
         Account acc;
-        if(login.getEmail() != null)
-            acc = accountsRepository.getAccountByEmail(login.getEmail());
-        else if(login.getUsername() != null)
+        if(login.getUsername() != null)
             acc = accountsRepository.getAccountByUsername(login.getUsername());
         else return ResponseEntity.status(BAD_REQUEST).build(); // Bab request
 
@@ -38,9 +37,12 @@ public class AuthenticatorClass implements AuthenticatorInterface{
             return ResponseEntity.status(UNAUTHORIZED).build(); // Unauthorized
 
         String token = JwtUtil.createJWT(acc.getId());
-        resp.addCookie(new Cookie(AuthenticatorInterface.TOKEN_NAME, token));
         acc.setPassword(null); //Melhor solucao: criar um model sem password
-        return ResponseEntity.ok(acc);
+
+        @SuppressWarnings("unchecked")
+        Wrapper<Account> cw = new Wrapper.WrapperBuilder(acc).setCoookie(token).build();
+
+        return ResponseEntity.ok(cw);
     }
 
     @Override

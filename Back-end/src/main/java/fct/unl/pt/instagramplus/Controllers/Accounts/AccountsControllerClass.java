@@ -22,7 +22,7 @@ public class AccountsControllerClass implements AccountsControllerInterface{
 
     @Override
     public ResponseEntity<Account> getAccount(Long accountRequestId, Long id) {
-        Logger.info("Request: GET ACCOUNT BY: " + accountRequestId);
+        Logger.info("Request: GET ACCOUNT BY: " + id);
         accountService.setNewViewer(accountRequestId, id);
         return Response.resultOrErrorCode(accountService.getAccount(id));
     }
