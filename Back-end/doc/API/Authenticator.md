@@ -20,15 +20,6 @@ REQUEST
 }
 ```
 
-OR
-
-```json
-{
-  "email": "rfa.lopes@campus.fct.unl.pt",
-  "password": "123456"
-}
-```
-
 RESPONSE
 
 - 200 - OK
