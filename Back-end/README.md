@@ -6,11 +6,11 @@
 
 ### Registation
 
-- [Accounts Documentacion](doc/API/Registation.md)
+- [Registation Documentacion](doc/API/Registation.md)
 
 ### Authentication
 
-- [Accounts Documentacion](doc/API/Authenticator.md)
+- [Authentication Documentacion](doc/API/Authenticator.md)
 
 ### Accounts
 
