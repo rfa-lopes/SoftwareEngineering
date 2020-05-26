@@ -1,6 +1,9 @@
 package fct.unl.pt.instagramplus.Models.Publications;
 
+import fct.unl.pt.instagramplus.Utils.DateUtil;
+import fct.unl.pt.instagramplus.Utils.DefaultImage;
 import lombok.Data;
+import org.springframework.util.unit.DataUnit;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,6 +41,13 @@ public class Publication {
         this.publicationDate = publicationDate;
         this.expireDate = expireDate;
         this.description = description;
+    }
+
+    public Publication(Long ownerId, String description) {
+        this.ownerId = ownerId;
+        this.description = description;
+        this.publicationDate = DateUtil.getAtualDate();
+        this.image = DefaultImage.getInstance().get();
     }
 
     public String getDescription() {

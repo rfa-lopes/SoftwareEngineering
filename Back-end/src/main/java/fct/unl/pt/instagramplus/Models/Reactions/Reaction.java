@@ -1,5 +1,6 @@
 package fct.unl.pt.instagramplus.Models.Reactions;
 
+import fct.unl.pt.instagramplus.Utils.DateUtil;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -23,17 +24,19 @@ public class Reaction {
     @NotNull
     long publicationId;
 
-
+    @NotNull
     String reactionDate;
 
     @NotNull
     ReactionType type;
 
     public Reaction(){}
+
     public Reaction(@NotNull long userId, @NotNull long publicationId,  @NotNull ReactionType type) {
         this.userId = userId;
         this.publicationId = publicationId;
         this.type = type;
+        this.reactionDate = DateUtil.getAtualDate();
     }
 
     public long getPublicationId() {

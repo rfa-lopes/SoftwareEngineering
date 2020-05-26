@@ -37,7 +37,9 @@ public class Message {
         this.fromUserId = fromUserId;
         this.toUserId = toUserId;
         this.messageText = messageText;
+        this.sendedDate = DateUtil.getAtualDate();
     }
+
 
     public Long getToUserId() {
         return toUserId;

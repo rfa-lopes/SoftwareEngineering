@@ -1,5 +1,6 @@
 package fct.unl.pt.instagramplus.Models;
 
+import fct.unl.pt.instagramplus.Utils.DefaultImage;
 import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +45,8 @@ public class Account {
         this.password = password;
         this.name = name;
         this.email = email;
+        this.isPublic = false;
+        this.profileImage = DefaultImage.getInstance().get();
     }
 
     public Long getId() {
