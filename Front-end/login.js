@@ -9,10 +9,10 @@ captureData = function (event) {
       if (response) {
         alert("LOGIN OK");
         // Store token id for later use in localStorage
-        localStorage.setItem("userid", response.response.id);
-        localStorage.setItem("username", response.response.username);
-        localStorage.setItem("name", response.response.name);
-        localStorage.setItem("token", response.cookie);
+        localStorage.setItem("userid", response.data.id);
+        localStorage.setItem("username", response.data.username);
+        localStorage.setItem("name", response.data.name);
+        localStorage.setItem("token", response.data.cookie);
         //FALTA AINDA ALGUNS PARAMETROS? EMAIL IMAGEM
         window.location.href = "/feed.html";
       }

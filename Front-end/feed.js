@@ -1,11 +1,12 @@
 function loadPeople() {
   var idUser = localStorage.getItem("userid");
   var token = localStorage.getItem("token");
+  console.log(token);
   alert("accounts/followings");
   $.ajax({
     type: "GET",
     url: "https://localhost:8080/accounts/followings/" + idUser,
-    headers: { Authorization: token },
+    headers: { AuthToken: token },
     crossDomain: true,
     success: function (response) {
       console.log(response);

@@ -25,25 +25,25 @@ public class MessagesControllerClass implements MessagesControllerInterface{
     @Override
     public ResponseEntity<Long> sendMessage(Long accountRequestId, Message message) {
         Logger.info("Request: SEND MESSAGE BY: " + accountRequestId);
-        if(!accountRequestId.equals(message.getFromUserId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
+        //if(!accountRequestId.equals(message.getFromUserId()))
+        //    return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(messageServiceClass.sendMessage(message));
     }
 
     @Override
     public ResponseEntity<Void> deleteMessage(Long accountRequestId, Long messageId) {
         Logger.info("Request: DELETE MESSAGE BY: " + accountRequestId);
-        Long fromUser = messagesRepository.getMessagenById(messageId).getFromUserId();
-        if(!accountRequestId.equals(fromUser)) //Só pode apagar as mensagens que escreveu
-            return ResponseEntity.status(UNAUTHORIZED).build();
+        //Long fromUser = messagesRepository.getMessagenById(messageId).getFromUserId();
+        //if(!accountRequestId.equals(fromUser)) //Só pode apagar as mensagens que escreveu
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(messageServiceClass.deleteMessage(messageId));
     }
 
     @Override
     public ResponseEntity<List<Message>> getAllMessagesFromConversation(Long accountRequestId, Long fromAccountId, Long toAccountId) {
         Logger.info("Request: GET ALL MESSAGES BY: " + accountRequestId);
-        if(!accountRequestId.equals(fromAccountId))
-            return ResponseEntity.status(UNAUTHORIZED).build();
+        //if(!accountRequestId.equals(fromAccountId))
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(messageServiceClass.getAllMessagesFromConversation(fromAccountId, toAccountId));
     }
 
