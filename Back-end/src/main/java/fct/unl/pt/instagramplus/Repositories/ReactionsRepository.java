@@ -15,5 +15,7 @@ public interface ReactionsRepository extends JpaRepository<Reaction, Long> {
 
     void deleteAllByPublicationId(Long publicationId);
 
+    void deleteAllByUserId(Long AccountId);
+
 
 }

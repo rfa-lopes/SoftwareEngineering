@@ -5,12 +5,11 @@ function loadPeople() {
   alert("accounts/followings");
   $.ajax({
     type: "GET",
-    url: "https://localhost:8080/accounts/followings/" + idUser,
+    url: "http://localhost:8080/accounts/followings/" + idUser,
     headers: { AuthToken: token },
     crossDomain: true,
     success: function (response) {
       console.log(response);
-      alert("accounts/followings OK");
       if (response) {
         for (var j = 0; j < response.length; j++) {
           var id = response[j].isFollowingId;
@@ -32,7 +31,7 @@ function loadPeopleinfo(idp) {
   var token = localStorage.getItem("AuthToken");
   $.ajax({
     type: "GET",
-    url: "https://localhost:8080/accounts/getviewer/" + idp,
+    url: "http://localhost:8080/accounts/getviewer/" + idp,
     headers: {
       AuthToken: token,
     },
@@ -43,10 +42,9 @@ function loadPeopleinfo(idp) {
 
     success: function (response) {
       console.log(response);
-      alert("accounts/getviewer OK");
       if (response) {
         var usern = response.username;
-        loadPub(id, usern);
+        loadPub(idp, usern);
       } else {
         alert("No response");
       }
@@ -62,8 +60,8 @@ function loadPeopleinfo(idp) {
 function loadPub(id, username) {
   var token = localStorage.getItem("AuthToken");
   $.ajax({
-    type: "POST",
-    url: "https://localhost:8080/publications/allpublications/" + id,
+    type: "GET",
+    url: "http://localhost:8080/publications/allpublications/" + id,
     headers: {
       AuthToken: token,
     },
@@ -74,7 +72,6 @@ function loadPub(id, username) {
 
     success: function (response) {
       console.log(response);
-      alert("publications/allpublications OK");
       if (response) {
         var n = "";
 
@@ -122,7 +119,7 @@ function likePub(i) {
 
   $.ajax({
     type: "POST",
-    url: "https://localhost:8080/publications/postLike",
+    url: "http://localhost:8080/publications/postLike",
     headers: {
       AuthToken: token,
     },
@@ -134,7 +131,6 @@ function likePub(i) {
 
     success: function (response) {
       console.log(response);
-      alert("publications/postLike OK");
       if (response) {
         console.log(liked);
         switch (i) {
@@ -186,7 +182,7 @@ function getLikesPub(i) {
   var token = localStorage.getItem("AuthToken");
   $.ajax({
     type: "GET",
-    url: "https://localhost:8080/publications/allLikes/" + i,
+    url: "http://localhost:8080/publications/allLikes/" + i,
     headers: {
       AuthToken: token,
     },
@@ -197,7 +193,6 @@ function getLikesPub(i) {
 
     success: function (response) {
       console.log(response);
-      alert("publications/allLikes OK");
       if (response) {
         for (var j = 0; j < response.length; j++) {
           switch (response[j].type) {
@@ -254,7 +249,7 @@ commentPub = function (event) {
   var jsondata = { userId: idu, publicationId: idp, comment: comm };
   $.ajax({
     type: "POST",
-    url: "https://localhost:8080/publications/postcomment/" + idp,
+    url: "http://localhost:8080/publications/postcomment/" + idp,
     headers: {
       AuthToken: token,
     },
@@ -266,7 +261,6 @@ commentPub = function (event) {
 
     success: function (response) {
       console.log(response);
-      alert("publications/postcomment OK");
       if (response) {
         var n =
           '<div class="outgoing_msg"><div class="sent_comm"><p>' +
@@ -290,7 +284,7 @@ function getCommentsPub(i) {
   var token = localStorage.getItem("AuthToken");
   $.ajax({
     type: "GET",
-    url: "https://localhost:8080/publications/allComments/" + i,
+    url: "http://localhost:8080/publications/allComments/" + i,
     headers: {
       AuthToken: token,
     },
@@ -301,7 +295,6 @@ function getCommentsPub(i) {
 
     success: function (response) {
       console.log(response);
-      alert("publications/allComments OK");
       if (response) {
         var n = "";
         for (var j = 0; j < response.length; i++) {

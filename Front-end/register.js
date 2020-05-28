@@ -3,7 +3,7 @@ captureData = function (event) {
   var jsondata = JSON.stringify(getFormData($('form[name="register"]')));
   $.ajax({
     type: "POST",
-    url: "https://localhost:8080/register/account/",
+    url: "http://localhost:8080/register/account/",
     contentType: "application/json",
     data: jsondata,
     success: function (response) {

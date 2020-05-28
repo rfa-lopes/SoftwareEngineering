@@ -13,9 +13,11 @@ import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import fct.unl.pt.instagramplus.Utils.Logger;
+import fct.unl.pt.instagramplus.Utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +31,7 @@ public class TestController {
 
     static final String BASE_URL = "/tests";
 
+    static boolean initialized = false;
 
     @Autowired
     AccountsRepository accountsRepository;
@@ -51,16 +54,22 @@ public class TestController {
     @Autowired
     ReactionsRepository reactionsRepository;
 
-    @GetMapping(value = "/test1", produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<String> test1() {
+    @GetMapping(value = "/test1/{nrAcc}/{maxPubs}", produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<String> test1(@PathVariable("nrAcc") int nrAcc, @PathVariable("maxPubs") int maxPubs) {
         Logger.info("REQUEST: DATABASE INITIALIZE");
 
-        int nAccounts = 10;
-        int minPubsPerAccount = 1;
-        int maxPubsPerAccount = 5;
+        if (initialized) return ResponseEntity.ok("Already initialized!");
+
+        if(nrAcc > 20) nrAcc = 20;
+        if(maxPubs > 20) maxPubs = 20;
+
+        int nAccounts = nrAcc;
+        int minPubsPerAccount = 0;
+        int maxPubsPerAccount = maxPubs;
 
         //ADICIONAR X CONTAS
         addUsers(nAccounts);
+        Logger.info("Accounts: " + nAccounts);
 
         //CRIAR Y(RANDOM) PUBLICACOES A CADA CONTA ADICIONA
         Random r = new Random();
@@ -71,6 +80,7 @@ public class TestController {
             addPublications(i, nPublicationsInAccount);
             nPublicationsAll += nPublicationsInAccount;
         }
+        Logger.info("Publications: " + nPublicationsAll);
 
         //METER AS CONTAS A SEGUIREM SE UMAS AS OUTRAS DE FORMA RANDOM
         int followers = 0;
@@ -83,6 +93,7 @@ public class TestController {
                 }
             }
         }
+        Logger.info("Followers: " + followers);
 
         //METER AS CONTAS A VEREM SE UMAS AS OUTRAS DE FORMA RANDOM
         int views = 0;
@@ -95,6 +106,7 @@ public class TestController {
                 }
             }
         }
+        Logger.info("Views: " + views);
 
         //METER AS CONTAS A COMENTAR TODAS AS PUBLICACOES DE FORMA RANDOM
         int comments = 0;
@@ -104,6 +116,7 @@ public class TestController {
                     addCommentToPublication(i, j);
                     comments++;
                 }
+        Logger.info("Comments: " + comments);
 
 
         //METER AS CONTAS A REAGIR TODAS AS PUBLICACOES DE FORMA RANDOM
@@ -115,6 +128,7 @@ public class TestController {
                     addReactionToPublication(i, j, like);
                     reactions++;
                 }
+        Logger.info("Reactions: " + reactions);
 
         //METER AS CONTAS A MANDAREM MENSAGENS UMAS AS OUTRAS DE FORMA RANDOM
         int messages = 0;
@@ -127,7 +141,10 @@ public class TestController {
                 }
             }
         }
+        Logger.info("Messages: " + messages);
+        Logger.info("Init data base concluded.");
 
+        initialized = true;
         return ResponseEntity.ok("DATABASE INITIALIZE WITH: " +
                 "\nAccounts: " + nAccounts +
                 "\nPublications: " + nPublicationsAll + "" +
@@ -136,13 +153,16 @@ public class TestController {
                 "\nComments: " + comments + "" +
                 "\nReactions: " + reactions + "" +
                 "\nMessages: " + messages + "" +
+                "\n\nCreds - username1:password1" +
                 "");
     }
 
     private void addUsers(int nAccounts) {
-        for (int i = 1; i <= nAccounts; i++)
-            accountsRepository.save(new Account("username" + i, "password" + i, "name" + i, "email" + i));
-    }
+        for (int i = 1; i <= nAccounts; i++) {
+            String passwordHash = PasswordUtil.create("password"+i);
+            accountsRepository.save(new Account("username" + i, passwordHash, "name" + i, "email" + i));
+        }
+        }
 
     private void addPublications(int ownerId, int nPublications) {
         for (int i = 1; i <= nPublications; i++)
@@ -188,10 +208,10 @@ public class TestController {
         }
         reactionsRepository.save(reaction);
     }
-    private void addMessages(int from, int to) {
-        messagesRepository.save(new Message(Long.valueOf(from), Long.valueOf(to), "Message from: "+from+" to: "+ to));
-    }
 
+    private void addMessages(int from, int to) {
+        messagesRepository.save(new Message(Long.valueOf(from), Long.valueOf(to), "Message from: " + from + " to: " + to));
+    }
 
 
 }

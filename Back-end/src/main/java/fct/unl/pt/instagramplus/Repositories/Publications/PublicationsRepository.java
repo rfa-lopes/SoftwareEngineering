@@ -11,4 +11,6 @@ public interface PublicationsRepository extends JpaRepository<Publication, Long>
 
     Publication getPublicationById(Long id);
     List<Publication>  getAllPublicationsByOwnerId(Long ownerId);
+
+    void deleteAllByOwnerId(Long ownerId);
 }

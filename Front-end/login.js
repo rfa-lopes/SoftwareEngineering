@@ -2,7 +2,7 @@ captureData = function (event) {
   var jsondata = JSON.stringify(getFormData($('form[name="login"]')));
   $.ajax({
     type: "POST",
-    url: "https://localhost:8080/auth/login",
+    url: "http://localhost:8080/auth/login",
     contentType: "application/json",
     data: jsondata,
     success: function (response) {

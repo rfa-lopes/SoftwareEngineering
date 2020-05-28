@@ -25,10 +25,10 @@ import java.util.List;
 public class PublicationsControllerClass implements PublicationsControllerInterface {
 
     @Autowired
-    PublicationsServices publi;
+    PublicationsServices publicationsServices;
 
     @Autowired
-    private AccountsRepository accountsRepository;
+    AccountsRepository accountsRepository;
 
     @Autowired
     PublicationsRepository publicationRepository;
@@ -38,91 +38,90 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
 
     @Autowired
     ReactionsRepository reactionsRepository;
+
     @Autowired
-    private FollowersRepository followersRepository;
+    FollowersRepository followersRepository;
 
     @Override
-    public ResponseEntity<Long> createPublication(Long accountRequestId,Publication publication) {
+    public ResponseEntity<Long> createPublication(Long accountRequestId, Publication publication) {
         Logger.info("Request: CREATE PUBLICATION");
-        if(accountRequestId!=publication.getOwnerId()) {
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        }
-        return Response.resultOrErrorCode(publi.createpublication(publication));
+        //if(!accountRequestId.equals(publication.getOwnerId()))
+        //   return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.createpublication(publication));
     }
 
     @Override
-    public ResponseEntity<Void> deletePublication(Long accountRequestId,Long id) {
+    public ResponseEntity<Void> deletePublication(Long accountRequestId, Long id) {
         Logger.info("Request: DELETE PUBLICATION");
-        Publication pub=publicationRepository.getPublicationById(id);
-        if(!accountRequestId.equals(pub.getOwnerId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        return Response.resultOrErrorCode(publi.deletePublication(id));
+        Publication pub = publicationRepository.getPublicationById(id);
+        //if (!accountRequestId.equals(pub.getOwnerId()))
+        //   return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.deletePublication(id));
     }
 
     @Override
-    public ResponseEntity<Publication> editPublication(Long accountRequestId,String description, Long id) {
+    public ResponseEntity<Publication> editPublication(Long accountRequestId, String description, Long id) {
         Logger.info("Request: EDIT PUBLICATION");
-        Publication pub=publicationRepository.getPublicationById(id);
-        if(!accountRequestId.equals(pub.getOwnerId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        return Response.resultOrErrorCode(publi.editPublication(description,id));
+        Publication pub = publicationRepository.getPublicationById(id);
+        //if (!accountRequestId.equals(pub.getOwnerId()))
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.editPublication(description, id));
     }
 
     @Override
-    public ResponseEntity<List<Publication>> getAllPublications(Long accountRequestId,Long id) {
-        if (!accountRequestId.equals(id)){
-            Follower fll=followersRepository.getByAccountIdAndIsFollowingId(accountRequestId,id);
-            if(fll==null)
-                return ResponseEntity.status(UNAUTHORIZED).build();
-        }
+    public ResponseEntity<List<Publication>> getAllPublications(Long accountRequestId, Long id) {
         Logger.info("Request: ALL PUBLICATIONS");
-        return Response.resultOrErrorCode(publi.getAllPublications(id));
+        /*if (!accountRequestId.equals(id)) {
+            Follower fll = followersRepository.getByAccountIdAndIsFollowingId(accountRequestId, id);
+            if (fll == null)
+                return ResponseEntity.status(UNAUTHORIZED).build();
+        }*/
+        return Response.resultOrErrorCode(publicationsServices.getAllPublications(id));
     }
 
     @Override
-    public ResponseEntity<Long> AddComment(Long accountRequestId,Comment comment) {
+    public ResponseEntity<Long> AddComment(Long accountRequestId, Comment comment) {
         Logger.info("Request: ADD COMMENTS");
-        if(!accountRequestId.equals(comment.getUserId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        return Response.resultOrErrorCode(publi.addCommnet(comment));
+        //if (!accountRequestId.equals(comment.getUserId()))
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.addCommnet(comment));
     }
 
     @Override
-    public ResponseEntity<Long> AddLike(Long accountRequestId,Reaction like) {
+    public ResponseEntity<Long> AddLike(Long accountRequestId, Reaction like) {
         Logger.info("Request: ADD LIKE");
-        if(!accountRequestId.equals(like.getUserId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-
-        return Response.resultOrErrorCode(publi.addLike(like));
+        //if (!accountRequestId.equals(like.getUserId()))
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.addLike(like));
     }
 
     @Override
-    public ResponseEntity<Void> deleteComment(Long accountRequestId,Long idComment) {
+    public ResponseEntity<Void> deleteComment(Long accountRequestId, Long idComment) {
         Logger.info("Request: DETELE COMMENT");
-        Comment com=commentRepository.getCommentById(idComment);
-        if(!accountRequestId.equals(com.getUserId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        return Response.resultOrErrorCode(publi.deleteComment(idComment));
+        //Comment com = commentRepository.getCommentById(idComment);
+        //if (!accountRequestId.equals(com.getUserId()))
+        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.deleteComment(idComment));
     }
 
     @Override
-    public ResponseEntity<Void> deleteLike(Long accountRequestId,Long idLike) {
+    public ResponseEntity<Void> deleteLike(Long accountRequestId, Long idLike) {
         Logger.info("Request: DELETE LIKE");
-        Reaction react=reactionsRepository.getReactionById(idLike);
-        if(!accountRequestId.equals(react.getUserId()))
-            return ResponseEntity.status(UNAUTHORIZED).build();
-        return Response.resultOrErrorCode(publi.deleteLike(idLike));
+        //Reaction react = reactionsRepository.getReactionById(idLike);
+        //if (!accountRequestId.equals(react.getUserId()))
+         //   return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(publicationsServices.deleteLike(idLike));
     }
 
     @Override
-    public ResponseEntity<List<Comment>> getAllComments(Long accountRequestId,Long id) {
+    public ResponseEntity<List<Comment>> getAllComments(Long accountRequestId, Long id) {
         Logger.info("Request: ALL COMMENTS");
-        return Response.resultOrErrorCode(publi.getAllComments(id));
+        return Response.resultOrErrorCode(publicationsServices.getAllComments(id));
     }
 
     @Override
-    public ResponseEntity<List<Reaction>> getAllLikes(Long accountRequestId,Long id) {
+    public ResponseEntity<List<Reaction>> getAllLikes(Long accountRequestId, Long id) {
         Logger.info("Request: ALL LIKES");
-        return Response.resultOrErrorCode(publi.getAllLikes(id));
+        return Response.resultOrErrorCode(publicationsServices.getAllLikes(id));
     }
 }

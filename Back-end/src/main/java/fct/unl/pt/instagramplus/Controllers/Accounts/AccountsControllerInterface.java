@@ -4,6 +4,7 @@ package fct.unl.pt.instagramplus.Controllers.Accounts;
 import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
+import fct.unl.pt.instagramplus.Models.Publications.Publication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public interface AccountsControllerInterface {
     String FOLLOWERS = "/followers/{id}";
     String FOLLOWINGS = "/followings/{id}";
     String ACCOUNTVIEWER = "/getviewer/{id}";
+    String FEED = "/getfeed/{id}";
 
     /**
      * Get account by id
@@ -128,11 +130,29 @@ public interface AccountsControllerInterface {
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable Long id);
 
-
+    /**
+     * Auxiliar method to front-end
+     * @param accountRequestId
+     * @param id
+     * @return
+     */
     @GetMapping(
             value = ACCOUNTVIEWER,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Account> getAccountViewer(
+            @RequestAttribute("id") Long accountRequestId,
+            @PathVariable( "id" ) Long id);
+
+    /**
+     * Account feed
+     * @param accountRequestId
+     * @param id
+     * @return
+     */
+    @GetMapping(
+            value = FEED,
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<List<Publication>> getAccountFeed(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
