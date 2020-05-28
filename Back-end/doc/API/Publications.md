@@ -28,7 +28,7 @@ RESPONSE
 
 REQUEST
 
-- POST /publications/allpublications/{id}
+- GET /publications/allpublications/{id}
 
 
 RESPONSE
