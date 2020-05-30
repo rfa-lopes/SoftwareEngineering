@@ -1,7 +1,7 @@
-# Software Engineering 2020 - Back-end - Publications
+# Software Engineering 2020 - Back-end - Stories
 
-## API - Publications
-### Post Publication
+## API - Stories
+### Post Stories
 
 REQUEST
 
