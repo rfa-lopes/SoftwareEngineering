@@ -162,6 +162,8 @@ public class AccountServiceClass implements AccountServiceInterface {
             result.addAll(followingPublications);
         }
 
+        result.addAll(publicationRepository.getAllPublicationsByOwnerId(id));
+
         result.sort(new Comparator<Publication>() {
             DateFormat f = new SimpleDateFormat(DateUtil.DATE_PATTERN);
             @Override
