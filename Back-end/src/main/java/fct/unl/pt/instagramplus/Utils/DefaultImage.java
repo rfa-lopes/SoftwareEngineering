@@ -32,8 +32,13 @@ public class DefaultImage {
     public String getRandom() {
         try {
             Random r = new Random();
+
             int low = 1;
-            int high = 31;
+
+            //nr  de ficheiros na diretoria de imagens
+            int high = new File(this.getClass().getClassLoader().getResource("Images/").getFile()).list().length;
+
+            //nome de imagem random
             int result = r.nextInt(high - low) + low; //[1, 31[
             URL url = this.getClass().getClassLoader().getResource("Images/" + result + ".jpg");
             File imgPath = new File(url.getFile());
