@@ -24,4 +24,8 @@
 
 - [Publications Documentacion](doc/API/Publications.md)
 
+### Stories
+
+- [Stories Documentacion](doc/API/Stories.md)
+
 ---
