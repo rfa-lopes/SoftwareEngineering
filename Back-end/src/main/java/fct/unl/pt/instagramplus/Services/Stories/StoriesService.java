@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Services.Stories;
 
 import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Repositories.StoriesRepository;
 import fct.unl.pt.instagramplus.Services.Result;
@@ -23,16 +24,16 @@ public class StoriesService implements StoriesServiceInterface{
     private AccountsRepository accountsRepository;
 
     @Override
-    public Result<Long> createStory(Publication publication) {
+    public Result<Long> createStory(Stories publication) {
         publication.setPublicationDate(DateUtil.getAtualDate());
         publication.setExpireDate(DateUtil.addHoursToDate(DateUtil.getAtualDate()));
-        Publication pub =storiesRepository.save(publication);
+        Stories pub =storiesRepository.save(publication);
         return ok(pub.getId());
     }
 
     @Override
     public Result<Void> deleteStory(Long id) {
-        Publication pub=storiesRepository.getStoryById(id);
+        Stories pub=storiesRepository.getStoriesById(id);
         if(pub == null)
             return error(NOT_FOUND);
         storiesRepository.deleteById(id);
@@ -40,9 +41,9 @@ public class StoriesService implements StoriesServiceInterface{
     }
 
     @Override
-    public Result<Publication> getStory(Long id) {
+    public Result<Stories> getStory(Long id) {
 
-        Publication pub=storiesRepository.getStoryById(id);
+        Stories pub=storiesRepository.getStoriesById(id);
         if(pub==null)
             return error(NOT_FOUND);
         return ok(pub);
@@ -50,11 +51,11 @@ public class StoriesService implements StoriesServiceInterface{
     }
 
     @Override
-    public Result<List<Publication>> getAllStories(Long id) {
+    public Result<List<Stories>> getAllStories(Long id) {
         Account account=accountsRepository.getAccountById(id);
         if(account==null)
             return error(NOT_FOUND);
-        List<Publication> pub=storiesRepository.getAllByOwnerId(id);
+        List<Stories> pub=storiesRepository.getAllByOwnerId(id);
         return ok(pub);
 
     }

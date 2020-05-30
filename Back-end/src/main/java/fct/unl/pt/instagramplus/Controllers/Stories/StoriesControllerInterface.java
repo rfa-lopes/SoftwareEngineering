@@ -1,6 +1,7 @@
 package fct.unl.pt.instagramplus.Controllers.Stories;
 
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public interface StoriesControllerInterface {
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<Long> createStory(
             @RequestAttribute("id") Long accountRequestId,
-            @RequestBody Publication publication);
+            @RequestBody Stories publication);
     @DeleteMapping(
             value = DELETE,
             produces = APPLICATION_JSON_VALUE)
@@ -33,13 +34,13 @@ public interface StoriesControllerInterface {
     @GetMapping(
             value = GET_ALL_Stories_FROM_PROFILE,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<Publication>> getAllStories(@RequestAttribute("id") Long accountRequestId,
-                                                         @PathVariable( "id" ) Long id);
+    ResponseEntity<List<Stories>> getAllStories(@RequestAttribute("id") Long accountRequestId,
+                                                @PathVariable( "id" ) Long id);
 
     @GetMapping(
             value = GET,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Publication> getStory(@RequestAttribute("id") Long accountRequestId,
+    ResponseEntity<Stories> getStory(@RequestAttribute("id") Long accountRequestId,
                                                     @PathVariable( "id" ) Long id);
 }
 

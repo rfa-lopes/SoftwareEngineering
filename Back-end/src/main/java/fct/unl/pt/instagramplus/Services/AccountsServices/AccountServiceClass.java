@@ -4,6 +4,7 @@ import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import fct.unl.pt.instagramplus.Repositories.Accounts.AccountsRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.FollowersRepository;
 import fct.unl.pt.instagramplus.Repositories.Accounts.ProfileViewersRepository;
@@ -177,15 +178,15 @@ public class AccountServiceClass implements AccountServiceInterface {
     }
 
     @Override
-    public Result<Map<Long, List<Publication>>> getStoryFeed(Long id) {
+    public Result<Map<Long, List<Stories>>> getStoryFeed(Long id) {
         if (!accountExists(id))
             return error(NOT_FOUND);
-        Map<Long,List<Publication>> result = new HashMap<>();
+        Map<Long,List<Stories>> result = new HashMap<>();
         List<Follower> list = followersRepository.getAllByAccountId(id);
 
         for (Follower following : list) {
             Long followingId = following.getIsFollowingId();
-            List<Publication> followingPublications = storiesRepository.getAllByOwnerId(followingId);
+            List<Stories> followingPublications = storiesRepository.getAllByOwnerId(followingId);
             result.put(followingId,followingPublications);
         }
         return ok(result);

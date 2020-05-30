@@ -2,6 +2,7 @@ package fct.unl.pt.instagramplus.Controllers.Stories;
 
 import fct.unl.pt.instagramplus.Controllers.Response;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import fct.unl.pt.instagramplus.Repositories.StoriesRepository;
 import fct.unl.pt.instagramplus.Services.Stories.StoriesService;
 import fct.unl.pt.instagramplus.Utils.Logger;
@@ -19,7 +20,7 @@ public class StoriesControllerClass implements StoriesControllerInterface {
     @Autowired
     StoriesRepository storiesRepository;
     @Override
-    public ResponseEntity<Long> createStory(Long accountRequestId, Publication publication) {
+    public ResponseEntity<Long> createStory(Long accountRequestId, Stories publication) {
         Logger.info("Request: CREATE STORY");
         return Response.resultOrErrorCode(storiesService.createStory(publication));
     }
@@ -31,13 +32,13 @@ public class StoriesControllerClass implements StoriesControllerInterface {
     }
 
     @Override
-    public ResponseEntity<List<Publication>> getAllStories(Long accountRequestId, Long id) {
+    public ResponseEntity<List<Stories>> getAllStories(Long accountRequestId, Long id) {
         Logger.info("Request: DELETE PUBLICATION");
         return Response.resultOrErrorCode(storiesService.getAllStories(id));
     }
 
     @Override
-    public ResponseEntity<Publication> getStory(Long accountRequestId, Long id) {
+    public ResponseEntity<Stories> getStory(Long accountRequestId, Long id) {
         return Response.resultOrErrorCode(storiesService.getStory(id));
     }
 }

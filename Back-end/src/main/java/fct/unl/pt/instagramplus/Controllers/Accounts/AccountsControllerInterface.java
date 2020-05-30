@@ -5,6 +5,7 @@ import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -160,7 +161,7 @@ public interface AccountsControllerInterface {
     @GetMapping(
             value = STORYFEED,
             produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Map<Long,List<Publication>>> getStoryFeed(
+    ResponseEntity<Map<Long,List<Stories>>> getStoryFeed(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 

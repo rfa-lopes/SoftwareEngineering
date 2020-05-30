@@ -5,6 +5,7 @@ import fct.unl.pt.instagramplus.Models.Account;
 import fct.unl.pt.instagramplus.Models.Follower;
 import fct.unl.pt.instagramplus.Models.ProfileViewer;
 import fct.unl.pt.instagramplus.Models.Publications.Publication;
+import fct.unl.pt.instagramplus.Models.Stories;
 import fct.unl.pt.instagramplus.Services.AccountsServices.AccountServiceClass;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +93,7 @@ public class AccountsControllerClass implements AccountsControllerInterface {
     }
 
     @Override
-    public ResponseEntity<Map<Long, List<Publication>>> getStoryFeed(Long accountRequestId, Long id) {
+    public ResponseEntity<Map<Long, List<Stories>>> getStoryFeed(Long accountRequestId, Long id) {
         Logger.info("Request: GET STORY FEED BY: " + accountRequestId);
         //if(!accountRequestId.equals(id))
         //    return ResponseEntity.status(UNAUTHORIZED).build();
