@@ -5,30 +5,35 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 public class DefaultImage {
 
-    private static DefaultImage instance=new DefaultImage();
+    private static DefaultImage instance = new DefaultImage();
 
-   private DefaultImage() {
+    private static BufferedReader reader;
 
+    private DefaultImage() {
     }
 
-   public static DefaultImage getInstance(){
-       return instance;
-   }
+    public static DefaultImage getInstance() {
+        return instance;
+    }
 
     public String get() {
-        BufferedReader reader;
-        try{
-            URL url=this.getClass().getClassLoader().getResource("default.txt");
-            reader=new BufferedReader(new FileReader(url.getFile()));
+        try {
+            if(reader != null)
+                return reader.readLine();
+            Random r = new Random();
+            int low = 1;
+            int high = 3;
+            int result = r.nextInt(high-low) + low; //1 ou 2
+
+            URL url = this.getClass().getClassLoader().getResource("Images/default"+result+".txt");
+            reader = new BufferedReader(new FileReader(url.getFile()));
             return reader.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 }
