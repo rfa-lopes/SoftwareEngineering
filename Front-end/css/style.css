@@ -1526,6 +1526,7 @@ sidebar__item h2 {
 
 .product__discount__item__pic {
 	height: 270px;
+    width: 270px;
 	position: relative;
 	overflow: hidden;
 }
@@ -1639,6 +1640,7 @@ sidebar__item h2 {
 }
 
 .product__discount__slider .col-lg-4 {
+    width:300px;
 	max-width: 100%;
 }
 
