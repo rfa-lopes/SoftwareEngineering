@@ -35,7 +35,7 @@ mvn spring-boot:run
 
 ### Correr front-end localmente
 
-Correr com [Python](https://docs.python.org/3/library/http.server.html)
+Correr com [Python](https://docs.python.org/3/library/http.server.html) (opcional)
 
 ```cmd
 python -m http.server 8000
