@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AccountsControllerClass implements AccountsControllerInterface {
@@ -88,6 +89,14 @@ public class AccountsControllerClass implements AccountsControllerInterface {
         //if(!accountRequestId.equals(id))
         //    return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.getFeed(id));
+    }
+
+    @Override
+    public ResponseEntity<Map<Long, List<Publication>>> getStoryFeed(Long accountRequestId, Long id) {
+        Logger.info("Request: GET STORY FEED BY: " + accountRequestId);
+        //if(!accountRequestId.equals(id))
+        //    return ResponseEntity.status(UNAUTHORIZED).build();
+        return Response.resultOrErrorCode(accountService.getStoryFeed(id));
     }
 
     @Override

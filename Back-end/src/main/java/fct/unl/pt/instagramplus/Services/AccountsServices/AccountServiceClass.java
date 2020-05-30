@@ -10,6 +10,7 @@ import fct.unl.pt.instagramplus.Repositories.Accounts.ProfileViewersRepository;
 import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
+import fct.unl.pt.instagramplus.Repositories.StoriesRepository;
 import fct.unl.pt.instagramplus.Services.Result;
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import fct.unl.pt.instagramplus.Utils.PasswordUtil;
@@ -19,10 +20,7 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.*;
 import static fct.unl.pt.instagramplus.Services.Result.error;
@@ -48,6 +46,9 @@ public class AccountServiceClass implements AccountServiceInterface {
 
     @Autowired
     ReactionsRepository reactionsRepository;
+
+    @Autowired
+    StoriesRepository storiesRepository;
 
     @Override
     public Result<Long> createAccount(Account account) {
@@ -172,6 +173,21 @@ public class AccountServiceClass implements AccountServiceInterface {
             }
         });
 
+        return ok(result);
+    }
+
+    @Override
+    public Result<Map<Long, List<Publication>>> getStoryFeed(Long id) {
+        if (!accountExists(id))
+            return error(NOT_FOUND);
+        Map<Long,List<Publication>> result = new HashMap<>();
+        List<Follower> list = followersRepository.getAllByAccountId(id);
+
+        for (Follower following : list) {
+            Long followingId = following.getIsFollowingId();
+            List<Publication> followingPublications = storiesRepository.getAllByOwnerId(followingId);
+            result.put(followingId,followingPublications);
+        }
         return ok(result);
     }
 

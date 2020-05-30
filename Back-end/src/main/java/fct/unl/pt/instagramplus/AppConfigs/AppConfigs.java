@@ -27,6 +27,7 @@ public class AppConfigs {
                 "/messages/*",
                 "/accounts/*",
                 "/publications/*",
+                "/stories/*",
                 "/auth/logout");
 
         return registrationBean;

@@ -8,6 +8,7 @@ import fct.unl.pt.instagramplus.Services.Result;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface AccountServiceInterface {
@@ -33,4 +34,5 @@ public interface AccountServiceInterface {
     Result<List<Follower>> getFollowersAccount(Long id);
 
     Result<List<Publication>> getFeed(Long id);
+    Result<Map<Long, List<Publication>>> getStoryFeed(Long id);
 }

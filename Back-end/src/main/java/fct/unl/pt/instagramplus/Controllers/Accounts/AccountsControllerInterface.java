@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -28,6 +29,7 @@ public interface AccountsControllerInterface {
     String FOLLOWINGS = "/followings/{id}";
     String ACCOUNTVIEWER = "/getviewer/{id}";
     String FEED = "/getfeed/{id}";
+    String STORYFEED="/getstoryfeed/{id}";
 
     /**
      * Get account by id
@@ -153,6 +155,12 @@ public interface AccountsControllerInterface {
             value = FEED,
             produces = APPLICATION_JSON_VALUE)
     ResponseEntity<List<Publication>> getAccountFeed(
+            @RequestAttribute("id") Long accountRequestId,
+            @PathVariable( "id" ) Long id);
+    @GetMapping(
+            value = STORYFEED,
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<Map<Long,List<Publication>>> getStoryFeed(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
 
