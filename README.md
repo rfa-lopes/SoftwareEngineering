@@ -12,7 +12,7 @@ Instagram Plus Project
 - [Maven](https://maven.apache.org/)
 - [Java 8](https://www.java.com/)
 - [H2 Data Base Engine](https://www.h2database.com/html/main.html)
-- [JSON Web Tokens(JWT)](https://jwt.io/)
+- [JSON Web Tokens(JWT)](https://jwt.io/) (API c/ autenticação)
 
 ### Front-end - [Readme.md](Front-end/README.md)
 
@@ -26,14 +26,20 @@ Instagram Plus Project
 
 ### Correr back-end localmente
 
+Correr com [Maven](https://maven.apache.org/)
+
 ```cmd
 cd Back-end
 mvn spring-boot:run
 ```
 
-### Correr front-end
+### Correr front-end localmente
 
-TODO
+Correr com [Python](https://docs.python.org/3/library/http.server.html)
+
+```cmd
+python -m http.server 8000
+```
 
 ---
 
