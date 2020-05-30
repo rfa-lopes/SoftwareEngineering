@@ -47,7 +47,7 @@ public class Publication {
         this.ownerId = ownerId;
         this.description = description;
         this.publicationDate = DateUtil.getAtualDate();
-        this.image = DefaultImage.getInstance().get();
+        this.image = DefaultImage.getInstance().getRandom();
     }
 
     public String getDescription() {

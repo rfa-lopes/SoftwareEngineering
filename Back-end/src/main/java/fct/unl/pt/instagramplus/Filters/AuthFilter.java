@@ -37,7 +37,7 @@ public class AuthFilter implements Filter {
             req.setAttribute("id", -1);
             chain.doFilter(request, response);
         }catch (Exception e){
-            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 }

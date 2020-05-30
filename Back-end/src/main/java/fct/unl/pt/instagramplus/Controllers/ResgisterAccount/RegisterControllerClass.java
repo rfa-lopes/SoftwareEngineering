@@ -18,7 +18,7 @@ public class RegisterControllerClass implements RegisterControllerInterface{
     @Override
     public ResponseEntity<Long> createAccount(Account account) {
         Logger.info("Request: REGISTER ACCOUNT");
-        account.setProfileImage(DefaultImage.getInstance().get());
+        account.setProfileImage(DefaultImage.getInstance().getRandom());
         return Response.resultOrErrorCode(accountService.createAccount(account));
     }
 }

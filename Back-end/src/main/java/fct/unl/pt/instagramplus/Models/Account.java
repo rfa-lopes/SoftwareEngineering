@@ -38,7 +38,8 @@ public class Account {
     @NotNull
     private boolean isPublic;
 
-    public Account() { }
+    public Account() {
+    }
 
     public Account(@NotNull String username, @NotNull String password, @NotNull String name, @NotNull String email) {
         this.username = username;
@@ -46,17 +47,19 @@ public class Account {
         this.name = name;
         this.email = email;
         this.isPublic = false;
-        this.profileImage = DefaultImage.getInstance().get();
+        this.profileImage = DefaultImage.getInstance().getRandom();
     }
 
     public Long getId() {
         return id;
     }
-    public String getProfileImage(){
+
+    public String getProfileImage() {
         return profileImage;
     }
-    public void setProfileImage(String profileImage){
-        this.profileImage=profileImage;
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public void setId(Long id) {
@@ -103,7 +106,7 @@ public class Account {
         isPublic = aPublic;
     }
 
-    public void chengeVisibility(){
+    public void chengeVisibility() {
         isPublic = !isPublic;
     }
 

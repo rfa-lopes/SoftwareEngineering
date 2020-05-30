@@ -1,17 +1,13 @@
 package fct.unl.pt.instagramplus.Utils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Random;
 
 public class DefaultImage {
 
     private static DefaultImage instance = new DefaultImage();
-
-    private static BufferedReader reader;
 
     private DefaultImage() {
     }
@@ -20,20 +16,31 @@ public class DefaultImage {
         return instance;
     }
 
+    //Default Image
     public String get() {
         try {
-            if(reader != null)
-                return reader.readLine();
+            URL url = this.getClass().getClassLoader().getResource("Images/0.jpg");
+            File imgPath = new File(url.getFile());
+            byte[] fileContent = Files.readAllBytes(imgPath.toPath());
+            return B64Util.encode(fileContent);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    //Random image from local repository for prototipe
+    public String getRandom() {
+        try {
             Random r = new Random();
             int low = 1;
-            int high = 3;
-            int result = r.nextInt(high-low) + low; //1 ou 2
-
-            URL url = this.getClass().getClassLoader().getResource("Images/default"+result+".txt");
-            reader = new BufferedReader(new FileReader(url.getFile()));
-            return reader.readLine();
+            int high = 31;
+            int result = r.nextInt(high - low) + low; //[1, 31[
+            URL url = this.getClass().getClassLoader().getResource("Images/" + result + ".jpg");
+            File imgPath = new File(url.getFile());
+            byte[] fileContent = Files.readAllBytes(imgPath.toPath());
+            return B64Util.encode(fileContent);
         } catch (Exception e) {
-            return null;
+            return this.get();
         }
     }
 }

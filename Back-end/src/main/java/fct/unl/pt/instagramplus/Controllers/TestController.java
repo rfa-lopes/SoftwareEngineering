@@ -11,6 +11,7 @@ import fct.unl.pt.instagramplus.Repositories.CommentsRepository;
 import fct.unl.pt.instagramplus.Repositories.MessagesRepository;
 import fct.unl.pt.instagramplus.Repositories.Publications.PublicationsRepository;
 import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
+import fct.unl.pt.instagramplus.Repositories.StoriesRepository;
 import fct.unl.pt.instagramplus.Utils.DateUtil;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import fct.unl.pt.instagramplus.Utils.PasswordUtil;
@@ -54,119 +55,152 @@ public class TestController {
     @Autowired
     ReactionsRepository reactionsRepository;
 
-    @GetMapping(value = "/test1/{nrAcc}/{maxPubs}", produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<String> test1(@PathVariable("nrAcc") int nrAcc, @PathVariable("maxPubs") int maxPubs) {
+    @Autowired
+    StoriesRepository storiesRepository;
+
+    @GetMapping(
+            value = "/test1/{nrAcc}/{maxPubs}",
+            produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<String> test1(
+            @PathVariable("nrAcc") int nrAcc,
+            @PathVariable("maxPubs") int maxPubs) {
+
         Logger.info("REQUEST: DATABASE INITIALIZE");
 
         if (initialized) return ResponseEntity.ok("Already initialized!");
 
-        if(nrAcc > 20) nrAcc = 20;
-        if(maxPubs > 20) maxPubs = 20;
+        try {
 
-        int nAccounts = nrAcc;
-        int minPubsPerAccount = 0;
-        int maxPubsPerAccount = maxPubs;
+            if (nrAcc > 20) nrAcc = 20;
+            if (maxPubs > 20) maxPubs = 20;
 
-        //ADICIONAR X CONTAS
-        addUsers(nAccounts);
-        Logger.info("Accounts: " + nAccounts);
+            int nAccounts = nrAcc;
+            int minPubsPerAccount = 0;
+            int maxPubsPerAccount = maxPubs;
 
-        //CRIAR Y(RANDOM) PUBLICACOES A CADA CONTA ADICIONA
-        Random r = new Random();
-        int nPublicationsInAccount;
-        int nPublicationsAll = 0;
-        for (int i = 1; i <= nAccounts; i++) {
-            nPublicationsInAccount = r.nextInt(maxPubsPerAccount - minPubsPerAccount) + minPubsPerAccount;
-            addPublications(i, nPublicationsInAccount);
-            nPublicationsAll += nPublicationsInAccount;
-        }
-        Logger.info("Publications: " + nPublicationsAll);
+            //ADICIONAR X CONTAS
+            addUsers(nAccounts);
+            Logger.info("Accounts: " + nAccounts);
 
-        //METER AS CONTAS A SEGUIREM SE UMAS AS OUTRAS DE FORMA RANDOM
-        int followers = 0;
-        for (int i = 1; i <= nAccounts; i++) {
-            for (int j = 1; j <= nAccounts; j++) {
-                if (i == j) continue;
-                if (r.nextBoolean()) {
-                    addFollower(i, j);
-                    followers++;
+            Random r = new Random();
+
+            //CRIAR Y(RANDOM) PUBLICACOES A CADA CONTA
+            int nPublicationsInAccount;
+            int nPublicationsAll = 0;
+            for (int i = 1; i <= nAccounts; i++) {
+                nPublicationsInAccount = r.nextInt(maxPubsPerAccount - minPubsPerAccount) + minPubsPerAccount;
+                addPublications(i, nPublicationsInAccount);
+                nPublicationsAll += nPublicationsInAccount;
+            }
+            Logger.info("Publications: " + nPublicationsAll);
+
+            //CRIAR Y(RANDOM) STORIES A CADA CONTA
+            int nStoriesInAccount;
+            int nStoriesAll = 0;
+            for (int i = 1; i <= nAccounts; i++) {
+                nStoriesInAccount = r.nextInt(maxPubsPerAccount - minPubsPerAccount) + minPubsPerAccount;
+                addStories(i, nStoriesInAccount);
+                nStoriesAll += nStoriesInAccount;
+            }
+            Logger.info("Stories: " + nStoriesAll);
+
+            //METER AS CONTAS A SEGUIREM SE UMAS AS OUTRAS DE FORMA RANDOM
+            int followers = 0;
+            for (int i = 1; i <= nAccounts; i++) {
+                for (int j = 1; j <= nAccounts; j++) {
+                    if (i == j) continue;
+                    if (r.nextBoolean()) {
+                        addFollower(i, j);
+                        followers++;
+                    }
                 }
             }
-        }
-        Logger.info("Followers: " + followers);
+            Logger.info("Followers: " + followers);
 
-        //METER AS CONTAS A VEREM SE UMAS AS OUTRAS DE FORMA RANDOM
-        int views = 0;
-        for (int i = 1; i <= nAccounts; i++) {
-            for (int j = 1; j <= nAccounts; j++) {
-                if (i == j) continue;
-                if (r.nextBoolean()) {
-                    addProfileViewr(i, j);
-                    views++;
+            //METER AS CONTAS A VEREM SE UMAS AS OUTRAS DE FORMA RANDOM
+            int views = 0;
+            for (int i = 1; i <= nAccounts; i++) {
+                for (int j = 1; j <= nAccounts; j++) {
+                    if (i == j) continue;
+                    if (r.nextBoolean()) {
+                        addProfileViewr(i, j);
+                        views++;
+                    }
                 }
             }
-        }
-        Logger.info("Views: " + views);
+            Logger.info("Views: " + views);
 
-        //METER AS CONTAS A COMENTAR TODAS AS PUBLICACOES DE FORMA RANDOM
-        int comments = 0;
-        for (int i = 1; i <= nAccounts; i++)
-            for (int j = nAccounts + 1; j <= nAccounts + nPublicationsAll; j++)
-                if (r.nextBoolean()) {
-                    addCommentToPublication(i, j);
-                    comments++;
-                }
-        Logger.info("Comments: " + comments);
+            //METER AS CONTAS A COMENTAR TODAS AS PUBLICACOES DE FORMA RANDOM
+            int comments = 0;
+            for (int i = 1; i <= nAccounts; i++)
+                for (int j = nAccounts + 1; j <= nAccounts + nPublicationsAll; j++)
+                    if (r.nextBoolean()) {
+                        addCommentToPublication(i, j);
+                        comments++;
+                    }
+            Logger.info("Comments: " + comments);
 
 
-        //METER AS CONTAS A REAGIR TODAS AS PUBLICACOES DE FORMA RANDOM
-        int reactions = 0;
-        for (int i = 1; i <= nAccounts; i++)
-            for (int j = nAccounts + 1; j <= nAccounts + nPublicationsAll; j++)
-                if (r.nextBoolean()) {
-                    int like = r.nextInt(5 - 0) + 0;
-                    addReactionToPublication(i, j, like);
-                    reactions++;
-                }
-        Logger.info("Reactions: " + reactions);
+            //METER AS CONTAS A REAGIR TODAS AS PUBLICACOES DE FORMA RANDOM
+            int reactions = 0;
+            for (int i = 1; i <= nAccounts; i++)
+                for (int j = nAccounts + 1; j <= nAccounts + nPublicationsAll; j++)
+                    if (r.nextBoolean()) {
+                        int like = r.nextInt(5 - 0) + 0;
+                        addReactionToPublication(i, j, like);
+                        reactions++;
+                    }
+            Logger.info("Reactions: " + reactions);
 
-        //METER AS CONTAS A MANDAREM MENSAGENS UMAS AS OUTRAS DE FORMA RANDOM
-        int messages = 0;
-        for (int i = 1; i <= nAccounts; i++) {
-            for (int j = 1; j <= nAccounts; j++) {
-                if (i == j) continue;
-                if (r.nextBoolean()) {
-                    addMessages(i, j);
-                    messages++;
+            //METER AS CONTAS A MANDAREM MENSAGENS UMAS AS OUTRAS DE FORMA RANDOM
+            int messages = 0;
+            for (int i = 1; i <= nAccounts; i++) {
+                for (int j = 1; j <= nAccounts; j++) {
+                    if (i == j) continue;
+                    if (r.nextBoolean()) {
+                        addMessages(i, j);
+                        messages++;
+                    }
                 }
             }
-        }
-        Logger.info("Messages: " + messages);
-        Logger.info("Init data base concluded.");
+            Logger.info("Messages: " + messages);
+            Logger.info("Init data base concluded.");
 
-        initialized = true;
-        return ResponseEntity.ok("DATABASE INITIALIZE WITH: " +
-                "\nAccounts: " + nAccounts +
-                "\nPublications: " + nPublicationsAll + "" +
-                "\nFollowers: " + followers + "" +
-                "\nViews: " + views + "" +
-                "\nComments: " + comments + "" +
-                "\nReactions: " + reactions + "" +
-                "\nMessages: " + messages + "" +
-                "\n\nCreds - username1:password1" +
-                "");
+            initialized = true;
+            return ResponseEntity.ok("DATABASE INITIALIZE WITH: " +
+                    "\nAccounts: " + nAccounts +
+                    "\nPublications: " + nPublicationsAll + "" +
+                    "\nStories: " + nStoriesAll + "" +
+                    "\nFollowers: " + followers + "" +
+                    "\nViews: " + views + "" +
+                    "\nComments: " + comments + "" +
+                    "\nReactions: " + reactions + "" +
+                    "\nMessages: " + messages + "" +
+                    "\n\nCreds - username1:password1" +
+                    "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.ok("Error");
+        }
     }
 
-    private void addUsers(int nAccounts) {
+    private void addUsers(int nAccounts) throws InterruptedException {
         for (int i = 1; i <= nAccounts; i++) {
-            String passwordHash = PasswordUtil.create("password"+i);
+            String passwordHash = PasswordUtil.create("password" + i);
             accountsRepository.save(new Account("username" + i, passwordHash, "name" + i, "email" + i));
         }
-        }
+    }
 
-    private void addPublications(int ownerId, int nPublications) {
-        for (int i = 1; i <= nPublications; i++)
+    private void addPublications(int ownerId, int nPublications) throws InterruptedException {
+        for (int i = 1; i <= nPublications; i++) {
             publicationRepository.save(new Publication(Long.valueOf(ownerId), "Publication: " + i + "; ownerId: " + ownerId));
+        }
+    }
+
+    private void addStories(int ownerId, int nStories) throws InterruptedException {
+        for (int i = 1; i <= nStories; i++){
+            storiesRepository.save(new Stories(Long.valueOf(ownerId)));
+        }
     }
 
     private void addFollower(int thisAccount, int followThisAccount) {

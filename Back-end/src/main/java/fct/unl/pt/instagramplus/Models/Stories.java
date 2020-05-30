@@ -1,5 +1,7 @@
 package fct.unl.pt.instagramplus.Models;
 
+import fct.unl.pt.instagramplus.Utils.DateUtil;
+import fct.unl.pt.instagramplus.Utils.DefaultImage;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -28,6 +30,14 @@ public class Stories {
     @Lob
     String image; //Base64
     public Stories(){}
+
+    public Stories(@NotNull Long ownerId){
+        this.ownerId = ownerId;
+        this.publicationDate = DateUtil.getAtualDate();
+        this.expireDate = DateUtil.addHoursToDate(publicationDate);
+        this.image = DefaultImage.getInstance().getRandom();
+    }
+
     public Stories(@NotNull Long ownerId, @NotNull String publicationDate, String expireDate){
         this.ownerId = ownerId;
         this.publicationDate = publicationDate;

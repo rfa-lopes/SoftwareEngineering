@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.BAD_REQUEST;
 import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.NOT_FOUND;
 import static fct.unl.pt.instagramplus.Services.Result.error;
 import static fct.unl.pt.instagramplus.Services.Result.ok;
@@ -36,6 +37,8 @@ public class PublicationsServices implements PublicationsServiceInterface {
 
     @Override
     public Result<Long> createpublication(Publication publication) {
+        if(publication.getImage() == null)
+            error(BAD_REQUEST);
         publication.setPublicationDate(DateUtil.getAtualDate());
         Publication pub =publicationRepository.save(publication);
         return ok(pub.getId());
