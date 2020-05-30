@@ -1,18 +1,26 @@
-function loadPeopleinfo(id){
-    
+function sharepost() {
+    var idUser = localStorage.getItem('userid'); 
+    var idp = localStorage.getItem('idpub');
+    var post = document.getElementById(idp);
+    var desc = document.getElementById(idp).getAttribute("data-desc");
+    var img = document.getElementById(idp).getAttribute("data-img");
+    console.log(idUser);
+    console.log(idp);
+    console.log(desc);
+    console.log(img);
+    var jsondata = { "ownerId":  idUser , "description": desc, "image": img};
     $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/accounts/getviewer/"+id,
+        type: "POST",
+        url: "http://localhost:8080/publications/post",
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",
         dataType: "json",
+        data: jsondata,
       
         success: function(response) {
             if(response) {
                 console.log(response);
-                var n = '<br><h2>' + response.username + '</h2>';
-                document.getElementById("visdiv").innerHTML += n;
             }
             else {
                 alert("No response");
@@ -22,30 +30,28 @@ function loadPeopleinfo(id){
             console.log(response);
             alert("Error: "+ response.status);
         },
-        
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };
 
-
-window.onload = function() {
-    var idUser = localStorage.getItem('userid');
+function sharestories() {
+    var idUser = localStorage.getItem('userid'); 
+    var idp = localStorage.getItem('idpub');
+    var img = document.getElementById(idp).getAttribute("data-img");
+   var jsondata = { "ownerId":  idUser , "image": img };
     $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/accounts/viweres/"+idUser,
+        type: "POST",
+        url: "http://localhost:8080/stories/poststory",
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",
         dataType: "json",
-      
+        data: jsondata,
       
         success: function(response) {
             if(response) {
                 console.log(response);
-                for(var j = 0 ;j < response.length; j++) {
-                    var id = response[j].viewerId;
-                    loadPeopleinfo(id);
-                }
             }
             else {
                 alert("No response");
@@ -55,6 +61,7 @@ window.onload = function() {
             console.log(response);
             alert("Error: "+ response.status);
         },
+        data: JSON.stringify(jsondata)
     });
     event.preventDefault();
 };

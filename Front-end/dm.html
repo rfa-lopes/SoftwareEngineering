@@ -42,8 +42,8 @@
             <ul>
                 <li><a href="./feed.html">Home</a></li>
                 <li ><a href="./profile.html">Profile</a></li>
-                <li><a data-toggle="modal" data-target="#myModal">Add Photo</a></li>
-                <li><a href="./.html">Add Story</a></li>
+                <li><a href="./addfoto.html">Add Photo</a></li>
+                <li><a href="./addstory.html">Add Story</a></li>
                 <li class="active"><a href="./dm.html">DM's</a></li>
             </ul>
         </nav>
@@ -67,7 +67,7 @@
                         <ul>
                             <li><a href="./feed.html">Home</a></li>
                             <li><a href="./profile.html">Profile</a></li>
-                            <li><a data-toggle="modal" data-target="#myModal">Add Photo</a></li>
+                            <li><a href="./addfoto.html">Add Photo</a></li>
                             <li><a href="./.html">Add Story</a></li>
                             <li class="active"><a href="./dm.html">DM's</a></li>
                         </ul>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" href="./login.html">YES</button>
                 </div>
             </div>
         </div>
@@ -154,8 +154,8 @@
                         </div>
                         <div class="type_msg">
                             <div class="input_msg_write">
-                                <input type="text" class="write_msg" placeholder="Type a message" />
-		                        <button class="msg_send_btn" type="button" onclick="sendMessage"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>        
+                                <input id="writemsg" type="text" class="write_msg" placeholder="Type a message" />
+		                        <button class="msg_send_btn" type="button" onclick="sendMessage()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>        
                             </div>
                         </div>
                     </div>
@@ -177,6 +177,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/maino.js"></script>
     <script src="dm.js"></script>
+    <script type="text/javascript" src="logout.js"></script>
 
 
 

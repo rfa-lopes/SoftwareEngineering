@@ -3,7 +3,7 @@ function loadMessages(toId) {
     localStorage.setItem('messageToId',toId);
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/messages/allmessages/"+ idUser +"/"+toID,
+        url: "http://localhost:8080/messages/allmessages/"+ idUser +"/"+toId,
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",
@@ -11,12 +11,15 @@ function loadMessages(toId) {
       
         success: function(response) {
             if(response) {
-            var n = "";
+                console.log(response);
+                var n = "";
                 for(var i=0; i<response.length; i++){
-                    if(response[i].toUserID == idUser){
+                    console.log(response[i].toUserId);
+                    console.log(response[i].fromUserId);
+                    if(response[i].toUserId == idUser){
                         n += '<div class="incoming_msg"><div class="received_msg"><div class="received_withd_msg"><p>' + response[i].messageText + '</p></div></div></div>';
                     }
-                    if(response[i].fromUserID == idUser){
+                    if(response[i].fromUserId == idUser){
                         n += '<div class="outgoing_msg"><div class="sent_msg"><p>' + response[i].messageText + '</p></div></div>';
                     }
                 }
@@ -40,8 +43,9 @@ function loadMessages(toId) {
 sendMessage = function(event) {
     var idUser = localStorage.getItem('userid');
     var idUserTo = localStorage.getItem('messageToId');
-    var msg = document.getElementById("textinput").value;
+    var msg = document.getElementById("writemsg").value;
     var jsondata = {"messageText":msg, "fromUserId": idUser, "toUserId": idUserTo};
+    console.log(jsondata);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/messages/sendmessage",
@@ -54,8 +58,10 @@ sendMessage = function(event) {
       
         success: function(response) {
             if(response) {
+                console.log(response);
                 var n = '<div class="outgoing_msg"><div class="sent_msg"><p>' + msg + '</p></div></div>'
                 document.getElementById("chat").innerHTML += n;
+                document.getElementById("writemsg").value = '';
 
             }
             else {
@@ -68,7 +74,7 @@ sendMessage = function(event) {
         },
         data: JSON.stringify(jsondata)
     });
-    event.preventDefault();
+    //event.preventDefault();
 };
 
 function loadPeopleinfo(idp, i) {
@@ -86,7 +92,7 @@ function loadPeopleinfo(idp, i) {
                     document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages(idp)"><div class="chat_ib"><h5>' + response.name  +  '</h5></div></div></div>';
                 }
                 else{
-                    document.getElementById("peoplechat").innerHTML += '<div class="chat_people" onclick = "loadMessages(idp)"> <div class="chat_ib"><h5>' + response.name + '</h5></div></div>';
+                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages('+idp+')"> <div class="chat_ib"><h5>' + response.name + '</h5></div></div>';
                 }
                 
             }
@@ -116,7 +122,7 @@ window.onload = function() {
         success: function(response) {
             if(response) {
                 
-                Document.getElementById("peoplechat").innerHTML = '<div class="chat_list">';
+                document.getElementById("peoplechat").innerHTML = '<div class="chat_list">';
                 for(var i=0; i<response.length; i++){
                     var idp = response[i].isFollowingId;
 	                loadPeopleinfo(idp, i);
@@ -124,7 +130,7 @@ window.onload = function() {
                         loadMessages(idp);
                     }
                 }
-                Document.getElementById("peoplechat").innerHTML += '</div>';
+                document.getElementById("peoplechat").innerHTML += '</div>';
                 
             }
             else {

@@ -1,36 +1,55 @@
-captureData = function (event) {
-  //FALTA VERIFICAR CAMPOS VAZIOS
-  var jsondata = JSON.stringify(getFormData($('form[name="register"]')));
-  $.ajax({
-    type: "POST",
-    url: "http://localhost:8080/register/account/",
-    contentType: "application/json",
-    data: jsondata,
-    success: function (response) {
-      alert("REGISTER OK");
-      window.location.href = "/login.html";
-    },
-    error: function (response) {
-      //FALTA VERIFICAR CONFLITOS (USER ALREADY EXIST) - AVISO NA PÁGINA(?)
-      if (response.status == 409) alert("USER ALREADY EXIST");
-      else alert("Error:" + response.status);
-    },
-  });
-  event.preventDefault();
-};
+captureData = function(event) {
 
-window.onload = function () {
-  var frms = $('form[name="register"]');
-  frms[0].onsubmit = captureData;
-};
 
-function getFormData($form) {
-  var unindexed_array = $form.serializeArray();
-  var indexed_array = {};
+    var data = getFormData($('form[name="register"]'));
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        //https://cors-anywhere.herokuapp.com/
+        url: "http://localhost:8080/register/account",
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function(response) {
+            if(response) {
+                alert("Got token with id: " + response.tokenID);
+                // Store token id for later use in localStorage
+                localStorage.setItem('tokenID', response.tokenID);
+                localStorage.setItem('username',response.username);
+                
+                window.location.href = "/login.html"
+        
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function(response) {
+            alert("Error:" + response.status);
+        }
+    });
 
-  $.map(unindexed_array, function (n, i) {
-    indexed_array[n["name"]] = n["value"];
-  });
-
-  return indexed_array;
+    event.preventDefault();
 }
+
+
+	
+
+window.onload = function() {
+    var frms = $('form[name="register"]');    
+    frms[0].onsubmit = captureData;
+}
+
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+    
