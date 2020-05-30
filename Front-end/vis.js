@@ -27,9 +27,45 @@ function loadPeopleinfo(id){
     event.preventDefault();
 };
 
+function loadUserinfo() {
+    var idUser = localStorage.getItem('userid');
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/accounts/getviewer/"+idUser,
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        //headers: "Access-Control-Allow-Origin: *",
+        dataType: "json",
+      
+        success: function(response) {
+            if(response) {
+                console.log(response);
+                var imgsrc = response.profileImage;
+                console.log(imgsrc);
+                var imgp = document.getElementById("uservisimg");
+                imgp.setAttribute("src","data:image/png;base64,"+imgsrc);
+                
+                
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function(response) {
+            console.log(response);
+            alert("Error: "+ response.status);
+        },
+    });
+    event.preventDefault();
+};
+
 
 window.onload = function() {
+    var NameUser = localStorage.getItem('name');
+    console.log(NameUser);
+    document.getElementById("nameuservis").innerHTML = NameUser;
     var idUser = localStorage.getItem('userid');
+    loadUserinfo();
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/accounts/viweres/"+idUser,
