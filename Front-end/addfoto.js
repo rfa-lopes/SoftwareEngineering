@@ -43,10 +43,11 @@ captureData = function(event) {
     console.log(img64);
     var split = img64.split("data:image/png;base64,");
     var imgb64 = split[1];
-    var jsondata = { "ownerId":  idUser , "image": imgb64};
+    var desc = document.getElementById("descid").value;
+    var jsondata = { "ownerId":  idUser , "description": desc, "image": imgb64};
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/stories/poststory",
+        url: "http://localhost:8080/publications/post",
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",

@@ -10,7 +10,11 @@ function loadPeopleinfo() {
       
         success: function(response) {
             if(response) {
-                document.getElementById("imguser").setAttribute("src",response.profileImage)
+                console.log(response);
+                var imgsrc = response.profileImage;
+                console.log(imgsrc);
+                var imgp = document.getElementById("imguser");
+                imgp.setAttribute("src","data:image/png;base64,"+imgsrc);
                 
                 
             }
@@ -29,7 +33,7 @@ function loadPeopleinfo() {
 function loadPub() {
     var idUser = localStorage.getItem('userid');
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "http://localhost:8080/publications/allpublications/"+idUser,
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
@@ -39,12 +43,51 @@ function loadPub() {
       
         success: function(response) {
             if(response) {
-                var n ="";
-                
-                for(var i=0; i<response.length;i++){
-                    n += '<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item"><div id="'+response[i].id+'" class="product__item__pic set-bg" data-setbg="' + response[i].image + 'data-toggle="modal" data-target="#postModal" onclick="save('+response[i].id+')"></div><div class="product__item__text"><h6><a href="#">' + response[i].description + '</a></h6></div></div></div>';
+                var p ="";
+                console.log(response);
+                for(var k=0; k<response.length;k++){
+                    p += '<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item"><div id="'+response[k].id+'" class="product__item__pic set-bg" data-setbg=data:image/png;base64,"' + response[k].image + 'data-toggle="modal" data-target="#postModal" onclick="save('+response[k].id+')"></div><div class="product__item__text"><h6><a href="#">' + response[k].description + '</a></h6></div></div></div>';
                 }
-                document.getElementById().innerHTML = n;
+                document.getElementById("mypostsdiv").innerHTML = p;
+                for(var j=0; j<response.length;j++){
+                    document.getElementById(response[j].id).style.backgroundImage= "url('data:image/png;base64,"+ response[j].image+ "')";
+                }
+
+            }
+            else {
+                alert("No response");
+            }
+        },
+        error: function(response) {
+            console.log(response);
+            alert("Error: "+ response.status);
+        },
+    });
+    event.preventDefault();
+};
+
+function loadStories() {
+    var idUser = localStorage.getItem('userid');
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/stories/allstories/"+idUser,
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        //headers: "Access-Control-Allow-Origin: *",
+        dataType: "json",
+      
+      
+        success: function(response) {
+            if(response) {
+                var n ="";
+                console.log(response);
+                for(var i=0; i<response.length;i++){
+                    n += '<div class="col-lg-4"><div class="product__discount__item"><div id="'+response[i].id+'"class="product__discount__item__pic set-bg" data-setbg=data:image/png;base64,"' + response[i].image + '"></div></div></div>';
+                }
+                document.getElementById("mystories").innerHTML = n;
+                for(var t=0; t<response.length;t++){
+                    document.getElementById(response[t].id).style.backgroundImage= "url('data:image/png;base64,"+ response[t].image+ "')";
+                }
 
             }
             else {
@@ -66,7 +109,7 @@ function likePub(i) {
     
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/publications/postLike",
+        url: "http://localhost:8080/publications/postlike",
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",
@@ -79,34 +122,34 @@ function likePub(i) {
                 console.log(liked);
                 switch(i){
                         case 0: 
-                            var c1= parseInt(document.getElementById("likec").value,10);
+                            var c1= parseInt(document.getElementById("likec").innerHTML,10);
                             c1+=1;
-                            document.getElementById("likec").value = c1;
+                            document.getElementById("likec").innerHTML = c1;
                             break;
                         case 1: 
-                            var c2= parseInt(document.getElementById("lovec").value,10);
+                            var c2= parseInt(document.getElementById("lovec").innerHTML,10);
                             c2+=1;
-                            document.getElementById("lovec").value = c2;
+                            document.getElementById("lovec").innerHTML = c2;
                             break;
                         case 2: 
-                            var c3= parseInt(document.getElementById("laughc").value,10);
+                            var c3= parseInt(document.getElementById("laughc").innerHTML,10);
                             c3+=1;
-                            document.getElementById("laughc").value = c3;
+                            document.getElementById("laughc").innerHTML = c3;
                             break;
                         case 3: 
-                            var c4= parseInt(document.getElementById("wowc").value,10);
+                            var c4= parseInt(document.getElementById("wowc").innerHTML,10);
                             c4+=1;
-                            document.getElementById("wowc").value = c4;
+                            document.getElementById("wowc").innerHTML = c4;
                             break;
                         case 4: 
-                            var c5= parseInt(document.getElementById("angryc").value,10);
+                            var c5= parseInt(document.getElementById("angryc").innerHTML,10);
                             c5+=1;
-                            document.getElementById("angryc").value = c5;
+                            document.getElementById("angryc").innerHTML = c5;
                             break;
                         case 5:
-                            var c6= parseInt(document.getElementById("sadc").value,10);
+                            var c6= parseInt(document.getElementById("sadc").innerHTML,10);
                             c6+=1;
-                            document.getElementById("sadc").value = c6;
+                            document.getElementById("sadc").innerHTML = c6;
                             break;
                     }
             
@@ -139,34 +182,34 @@ function getLikesPub(i) {
                 for(var j=0;j<response.length;j++){
                     switch(response[j].type){
                         case 0: 
-                            var c1= parseInt(document.getElementById("likec").value,10);
+                            var c1= parseInt(document.getElementById("likec").innerHTML,10);
                             c1+=1;
-                            document.getElementById("likec").value = c1;
+                            document.getElementById("likec").innerHTML = c1;
                             break;
                         case 1: 
-                            var c2= parseInt(document.getElementById("lovec").value,10);
+                            var c2= parseInt(document.getElementById("lovec").innerHTML,10);
                             c2+=1;
-                            document.getElementById("lovec").value = c2;
+                            document.getElementById("lovec").innerHTML = c2;
                             break;
                         case 2: 
-                            var c3= parseInt(document.getElementById("laughc").value,10);
+                            var c3= parseInt(document.getElementById("laughc").innerHTML,10);
                             c3+=1;
-                            document.getElementById("laughc").value = c3;
+                            document.getElementById("laughc").innerHTML = c3;
                             break;
                         case 3: 
-                            var c4= parseInt(document.getElementById("wowc").value,10);
+                            var c4= parseInt(document.getElementById("wowc").innerHTML,10);
                             c4+=1;
-                            document.getElementById("wowc").value = c4;
+                            document.getElementById("wowc").innerHTML = c4;
                             break;
                         case 4: 
-                            var c5= parseInt(document.getElementById("angryc").value,10);
+                            var c5= parseInt(document.getElementById("angryc").innerHTML,10);
                             c5+=1;
-                            document.getElementById("angryc").value = c5;
+                            document.getElementById("angryc").innerHTML = c5;
                             break;
                         case 5:
-                            var c6= parseInt(document.getElementById("sadc").value,10);
+                            var c6= parseInt(document.getElementById("sadc").innerHTML,10);
                             c6+=1;
-                            document.getElementById("sadc").value = c6;
+                            document.getElementById("sadc").innerHTML = c6;
                             break;
                     }
                 }
@@ -234,7 +277,7 @@ function getCommentsPub(i) {
                 var n ="";
                 for(var j=0;j<response.length;i++){
                     n += '<div class="outgoing_msg"><div class="sent_comm"><p>'+response[j].comment+'</p></div></div></div>';
-                } document.getElementById("comments").innerHTML += n;
+                } document.getElementById("comments").innerHTML = n;
             }
             else {
                 alert("No response");
@@ -250,7 +293,8 @@ function getCommentsPub(i) {
 
 window.onload = function() {
     var NameUser = localStorage.getItem('name');
-    document.getElementById("nameuser").value = NameUser;
+    console.log(NameUser);
+    document.getElementById("nameuser").innerHTML = NameUser;
     $("#postModal").on('show.bs.modal', function (e) {
     
         var id = localStorage.getItem('idpub');
@@ -263,4 +307,5 @@ window.onload = function() {
     })
     loadPeopleinfo();
     loadPub();
+    //loadStories();
 };

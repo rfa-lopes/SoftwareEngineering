@@ -1,4 +1,5 @@
-captureData = function(event) {
+function logout() {
+    console.log("logout");
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/auth/logout",
@@ -9,7 +10,6 @@ captureData = function(event) {
       
         success: function(response) {
             if(response) {
-                
                 console.log(response);
                 localStorage.clear();
                 window.location.href = "/login.html"
@@ -24,9 +24,4 @@ captureData = function(event) {
         },
     });
     event.preventDefault();
-};
-
-window.onload = function() {
-    var btn = document.getElementById("logout_btn_feed");     
-    btn.onclick=captureData;
 };
