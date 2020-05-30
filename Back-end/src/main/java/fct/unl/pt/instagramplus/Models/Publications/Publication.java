@@ -26,7 +26,7 @@ public class Publication {
 
     String expireDate;
 
-    @NotNull
+
     String description;
 
     @NotNull
