@@ -237,6 +237,7 @@ RESPONSE
         "publicationDate": "2020-05-31 07:42:43",
         "expireDate": null,
         "description": "Publication: 2; ownerId: 2",
+        "image": "/9j/4AAQS691737r3...Xvfue9+691//9k="
     },
     {
         "id": 31,
