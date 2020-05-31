@@ -62,7 +62,7 @@ python -m http.server 8000
 
 ![Data base init](Back-end/doc/DataBase/DataBaseInit.png)
 
-**Diagrama de tabelas**
+### Diagrama de tabelas
 
 ![Data base init](Back-end/doc/DataBase/DataBaseDiagram.png)
 
