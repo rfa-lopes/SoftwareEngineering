@@ -49,6 +49,10 @@ python -m http.server 8000
 
 ![Data base init](Back-end/doc/images/DataBaseInit.png)
 
+**Diagrama de tabelas**
+
+![Data base init](Back-end/doc/images/DataBase/DataBaseDiagram.png)
+
 ---
 
 ## Utils
