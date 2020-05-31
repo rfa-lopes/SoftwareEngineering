@@ -1,0 +1,89 @@
+
+Table Accounts as U {
+  id int [pk, increment] // auto-increment
+  username varchar
+  password varchar
+  profileImage varchar
+  name varchar
+  email varchar
+  isPublic boolean
+}
+
+Table Followers as U {
+  id int [pk, increment] // auto-increment
+  accountId long
+  isFollowingId long
+  followDate varchar
+}
+
+Table Viewers as U {
+  id int [pk, increment] // auto-increment
+  viewerId long
+  profileId long
+  viewDate varchar
+}
+
+Table Publications as U {
+  id int [pk, increment] // auto-increment
+  ownerId long
+  publicationDate varchar
+  expireDate varchar
+  description varchar
+  image varchar
+}
+
+Table Comments as U {
+  id int [pk, increment] // auto-increment
+  userId long
+  publicationId long
+  comment varchar
+}
+
+Table Messages as U {
+  id int [pk, increment] // auto-increment
+  fromUserId long
+  toUserId long
+  messageText varchar
+  sendedDate varchar
+  receivedDate varchar
+}
+
+Table Reactions as U {
+  id int [pk, increment] // auto-increment
+  userId long
+  publicationId long
+  reactionDate varchar
+  type ReactionType
+}
+
+Table Stories as U {
+  id int [pk, increment] // auto-increment
+  ownerId long
+  publicationDate varchar
+  expireDate varchar
+  image varchar
+}
+
+Ref: "Accounts"."id" < "Followers"."accountId"
+
+Ref: "Accounts"."id" < "Followers"."isFollowingId"
+
+Ref: "Accounts"."id" < "Viewers"."viewerId"
+
+Ref: "Accounts"."id" < "Viewers"."profileId"
+
+Ref: "Accounts"."id" < "Messages"."fromUserId"
+
+Ref: "Accounts"."id" < "Messages"."toUserId"
+
+Ref: "Accounts"."id" < "Comments"."userId"
+
+Ref: "Publications"."id" < "Comments"."publicationId"
+
+Ref: "Publications"."id" < "Reactions"."publicationId"
+
+Ref: "Accounts"."id" < "Reactions"."userId"
+
+Ref: "Accounts"."id" < "Stories"."ownerId"
+
+Ref: "Accounts"."id" < "Publications"."ownerId"
