@@ -29,16 +29,20 @@
 
 ### Correr back-end localmente
 
-Correr com [Maven](https://maven.apache.org/)
+* Correr com [Maven](https://maven.apache.org/)
 
 ```cmd
 cd Back-end
 mvn spring-boot:run
 ```
+* Inicializar com dados random (Opcional)
+```cmd
+curl --location --request GET 'http://localhost:8080/tests/test1/12/7'
+```
 
 ### Correr front-end localmente
 
-Correr com [Python](https://docs.python.org/3/library/http.server.html) (opcional)
+* Correr com [Python](https://docs.python.org/3/library/http.server.html) (opcional)
 
 ```cmd
 python -m http.server 8000
