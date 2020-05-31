@@ -19,7 +19,7 @@ public class DefaultImage {
     //Default Image
     public String get() {
         try {
-            URL url = this.getClass().getClassLoader().getResource("Images/0.jpg");
+            URL url = this.getClass().getClassLoader().getResource("Images/(0).jpg");
             File imgPath = new File(url.getFile());
             byte[] fileContent = Files.readAllBytes(imgPath.toPath());
             return B64Util.encode(fileContent);
@@ -40,7 +40,7 @@ public class DefaultImage {
 
             //nome de imagem random
             int result = r.nextInt(high - low) + low; //[1, 31[
-            URL url = this.getClass().getClassLoader().getResource("Images/" + result + ".jpg");
+            URL url = this.getClass().getClassLoader().getResource("Images/(" + result + ").jpg");
             File imgPath = new File(url.getFile());
             byte[] fileContent = Files.readAllBytes(imgPath.toPath());
             return B64Util.encode(fileContent);
