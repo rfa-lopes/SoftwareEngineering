@@ -37,9 +37,11 @@ mvn spring-boot:run
 ```
 * Inicializar com dados random (opcional)
 
-X - Número de contas a serem criadas automáticamente
+X - Número de contas a serem criadas automáticamente (máx: 20)
 
-Y - Número de publicações por cada conta criada
+Y - Número de publicações por cada conta criada (máx: 10)
+
+**NOTA:** Stories, Mensagens, Reações e Comentários serão também criados automáticamente.
 ```cmd
 curl --location --request GET 'http://localhost:8080/tests/test1/X/Y'
 ```
