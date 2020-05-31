@@ -29,3 +29,8 @@
 - [Stories Documentacion](doc/API/Stories.md)
 
 ---
+---
+
+## Arquitectura
+
+ [Stories Documentacion](doc/API/Architecture/BEArchitecture.png)
