@@ -191,8 +191,10 @@ public class AccountServiceClass implements AccountServiceInterface {
             Long followingId = following.getIsFollowingId();
             List<Stories> followingStories = storiesRepository.getAllByOwnerId(followingId);
             for (Stories s : followingStories)
-                if (s.isExpired())
+                if (s.isExpired()) {
                     storiesRepository.delete(s);
+                    followingStories.remove(s);
+                }
             followingStories.sort(new Comparator<Stories>() {
                 DateFormat f = new SimpleDateFormat(DateUtil.DATE_PATTERN);
 

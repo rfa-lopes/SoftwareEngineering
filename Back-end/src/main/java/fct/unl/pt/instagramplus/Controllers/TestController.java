@@ -209,7 +209,7 @@ public class TestController {
             long rightLimit = System.currentTimeMillis();
             long r = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
             s.setPublicationDate(DateUtil.getDate(r));
-            s.setExpireDate(DateUtil.getDate(r-86400000));
+            s.setExpireDate(DateUtil.getDate(r+86400000));
             storiesRepository.save(s);
         }
     }

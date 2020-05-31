@@ -62,8 +62,10 @@ public class StoriesService implements StoriesServiceInterface {
             return error(NOT_FOUND);
         List<Stories> pubs = storiesRepository.getAllByOwnerId(id);
         for (Stories s : pubs)
-            if (s.isExpired())
+            if (s.isExpired()) {
                 storiesRepository.delete(s);
+                pubs.remove(s);
+            }
         return ok(pubs);
 
     }
