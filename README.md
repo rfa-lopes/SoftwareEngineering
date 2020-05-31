@@ -25,30 +25,31 @@
 
 ### Instalação de dependências
 
-* Instalar Maven [aqui](https://www.baeldung.com/install-maven-on-windows-linux-mac)
+#### Instalar Maven [aqui](https://www.baeldung.com/install-maven-on-windows-linux-mac)
 
 ### Correr back-end localmente
 
-* Correr com [Maven](https://maven.apache.org/)
+#### Correr com [Maven](https://maven.apache.org/)
 
 ```cmd
 cd Back-end
 mvn spring-boot:run
 ```
-* Inicializar com dados random (opcional)
+#### Inicializar com dados random (opcional)
 
 X - Número de contas a serem criadas automáticamente (máx: 20)
 
 Y - Número de publicações por cada conta criada (máx: 10)
 
 **NOTA:** Stories, Mensagens, Reações, Comentários, Viewers e Seguidores serão também criados automáticamente.
+
 ```cmd
 curl --location --request GET 'http://localhost:8080/tests/test1/X/Y'
 ```
 
 ### Correr front-end localmente
 
-* Correr com [Python](https://docs.python.org/3/library/http.server.html) (opcional)
+#### Correr com [Python](https://docs.python.org/3/library/http.server.html) (opcional)
 
 ```cmd
 python -m http.server 8000
