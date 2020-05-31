@@ -33,12 +33,13 @@ public class StoriesControllerClass implements StoriesControllerInterface {
 
     @Override
     public ResponseEntity<List<Stories>> getAllStories(Long accountRequestId, Long id) {
-        Logger.info("Request: DELETE PUBLICATION");
+        Logger.info("Request: GET ALL STORIES");
         return Response.resultOrErrorCode(storiesService.getAllStories(id));
     }
 
     @Override
     public ResponseEntity<Stories> getStory(Long accountRequestId, Long id) {
+        Logger.info("Request: GET STORIES");
         return Response.resultOrErrorCode(storiesService.getStory(id));
     }
 }

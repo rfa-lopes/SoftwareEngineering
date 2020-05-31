@@ -158,6 +158,13 @@ public interface AccountsControllerInterface {
     ResponseEntity<List<Publication>> getAccountFeed(
             @RequestAttribute("id") Long accountRequestId,
             @PathVariable( "id" ) Long id);
+
+    /**
+     * Story feed
+     * @param accountRequestId
+     * @param id
+     * @return
+     */
     @GetMapping(
             value = STORYFEED,
             produces = APPLICATION_JSON_VALUE)

@@ -17,7 +17,7 @@ import static fct.unl.pt.instagramplus.Services.Result.error;
 import static fct.unl.pt.instagramplus.Services.Result.ok;
 
 @Service
-public class StoriesService implements StoriesServiceInterface{
+public class StoriesService implements StoriesServiceInterface {
     @Autowired
     StoriesRepository storiesRepository;
     @Autowired
@@ -27,14 +27,14 @@ public class StoriesService implements StoriesServiceInterface{
     public Result<Long> createStory(Stories publication) {
         publication.setPublicationDate(DateUtil.getAtualDate());
         publication.setExpireDate(DateUtil.addHoursToDate(DateUtil.getAtualDate()));
-        Stories pub =storiesRepository.save(publication);
+        Stories pub = storiesRepository.save(publication);
         return ok(pub.getId());
     }
 
     @Override
     public Result<Void> deleteStory(Long id) {
-        Stories pub=storiesRepository.getStoriesById(id);
-        if(pub == null)
+        Stories pub = storiesRepository.getStoriesById(id);
+        if (pub == null)
             return error(NOT_FOUND);
         storiesRepository.deleteById(id);
         return ok();
@@ -43,20 +43,28 @@ public class StoriesService implements StoriesServiceInterface{
     @Override
     public Result<Stories> getStory(Long id) {
 
-        Stories pub=storiesRepository.getStoriesById(id);
-        if(pub==null)
+        Stories pub = storiesRepository.getStoriesById(id);
+        if (pub == null)
             return error(NOT_FOUND);
-        return ok(pub);
 
+        if (pub.isExpired()) {
+            storiesRepository.delete(pub);
+            return error(NOT_FOUND);
+        }
+
+        return ok(pub);
     }
 
     @Override
     public Result<List<Stories>> getAllStories(Long id) {
-        Account account=accountsRepository.getAccountById(id);
-        if(account==null)
+        Account account = accountsRepository.getAccountById(id);
+        if (account == null)
             return error(NOT_FOUND);
-        List<Stories> pub=storiesRepository.getAllByOwnerId(id);
-        return ok(pub);
+        List<Stories> pubs = storiesRepository.getAllByOwnerId(id);
+        for (Stories s : pubs)
+            if (s.isExpired())
+                storiesRepository.delete(s);
+        return ok(pubs);
 
     }
 }

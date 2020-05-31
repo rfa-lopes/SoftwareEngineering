@@ -166,6 +166,7 @@ public class AccountServiceClass implements AccountServiceInterface {
 
         result.sort(new Comparator<Publication>() {
             DateFormat f = new SimpleDateFormat(DateUtil.DATE_PATTERN);
+
             @Override
             public int compare(Publication o1, Publication o2) {
                 try {
@@ -183,13 +184,28 @@ public class AccountServiceClass implements AccountServiceInterface {
     public Result<Map<Long, List<Stories>>> getStoryFeed(Long id) {
         if (!accountExists(id))
             return error(NOT_FOUND);
-        Map<Long,List<Stories>> result = new HashMap<>();
+        Map<Long, List<Stories>> result = new HashMap<>();
         List<Follower> list = followersRepository.getAllByAccountId(id);
 
         for (Follower following : list) {
             Long followingId = following.getIsFollowingId();
-            List<Stories> followingPublications = storiesRepository.getAllByOwnerId(followingId);
-            result.put(followingId,followingPublications);
+            List<Stories> followingStories = storiesRepository.getAllByOwnerId(followingId);
+            for (Stories s : followingStories)
+                if (s.isExpired())
+                    storiesRepository.delete(s);
+            followingStories.sort(new Comparator<Stories>() {
+                DateFormat f = new SimpleDateFormat(DateUtil.DATE_PATTERN);
+
+                @Override
+                public int compare(Stories o1, Stories o2) {
+                    try {
+                        return f.parse(o1.getPublicationDate()).compareTo(f.parse(o2.getPublicationDate()));
+                    } catch (ParseException e) {
+                        return 0;
+                    }
+                }
+            });
+            result.put(followingId, followingStories);
         }
         return ok(result);
     }

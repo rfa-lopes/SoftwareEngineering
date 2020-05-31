@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static javax.persistence.GenerationType.AUTO;
 @Entity
 @Data
@@ -82,6 +86,17 @@ public class Stories {
 
     public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
+    }
+
+    public boolean isExpired(){
+        SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.DATE_PATTERN);
+        try {
+            Date date1 = sdf.parse(expireDate);
+            Date date2 =  new Date();
+            return date1.compareTo(date2) <= 0;
+        } catch (ParseException e) {
+            return true;
+        }
     }
 }
 

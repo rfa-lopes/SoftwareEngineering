@@ -72,7 +72,7 @@ public class TestController {
         try {
 
             if (nrAcc > 20) nrAcc = 20;
-            if (maxPubs > 20) maxPubs = 20;
+            if (maxPubs > 10) maxPubs = 10;
 
             int nAccounts = nrAcc;
             int minPubsPerAccount = 0;
@@ -184,22 +184,33 @@ public class TestController {
         }
     }
 
-    private void addUsers(int nAccounts) throws InterruptedException {
+    private void addUsers(int nAccounts) {
         for (int i = 1; i <= nAccounts; i++) {
             String passwordHash = PasswordUtil.create("password" + i);
             accountsRepository.save(new Account("username" + i, passwordHash, "name" + i, "email" + i));
         }
     }
 
-    private void addPublications(int ownerId, int nPublications) throws InterruptedException {
+    private void addPublications(int ownerId, int nPublications) {
         for (int i = 1; i <= nPublications; i++) {
-            publicationRepository.save(new Publication(Long.valueOf(ownerId), "Publication: " + i + "; ownerId: " + ownerId));
+            Publication p = new Publication(Long.valueOf(ownerId), "Publication: " + i + "; ownerId: " + ownerId);
+            long leftLimit = 920073600000L; //1999/02/27
+            long rightLimit = System.currentTimeMillis();
+            long r = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+            p.setPublicationDate(DateUtil.getDate(r));
+            publicationRepository.save(p);
         }
     }
 
-    private void addStories(int ownerId, int nStories) throws InterruptedException {
+    private void addStories(int ownerId, int nStories) {
         for (int i = 1; i <= nStories; i++){
-            storiesRepository.save(new Stories(Long.valueOf(ownerId)));
+            Stories s = new Stories(Long.valueOf(ownerId));
+            long leftLimit = System.currentTimeMillis()-86400000; //-24h
+            long rightLimit = System.currentTimeMillis();
+            long r = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+            s.setPublicationDate(DateUtil.getDate(r));
+            s.setExpireDate(DateUtil.getDate(r-86400000));
+            storiesRepository.save(s);
         }
     }
 
