@@ -36,8 +36,12 @@ cd Back-end
 mvn spring-boot:run
 ```
 * Inicializar com dados random (opcional)
+
+X - Número de contas a serem criadas automáticamente
+
+Y - Número de publicações por cada conta criada
 ```cmd
-curl --location --request GET 'http://localhost:8080/tests/test1/12/7'
+curl --location --request GET 'http://localhost:8080/tests/test1/X/Y'
 ```
 
 ### Correr front-end localmente
