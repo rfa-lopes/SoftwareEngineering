@@ -14,6 +14,11 @@
 
 ### Front-end - [Readme.md](Front-end/README.md)
 
+- [Bootstrap 4.5](https://getbootstrap.com/)
+- [Javascript](https://www.javascript.com/)
+- [CSS]()
+- [HTML]()
+
 ---
 
 ## Começar
