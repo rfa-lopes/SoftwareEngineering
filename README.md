@@ -35,7 +35,7 @@
 cd Back-end
 mvn spring-boot:run
 ```
-* Inicializar com dados random (Opcional)
+* Inicializar com dados random (opcional)
 ```cmd
 curl --location --request GET 'http://localhost:8080/tests/test1/12/7'
 ```
