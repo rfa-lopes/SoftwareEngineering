@@ -4,7 +4,7 @@
 
 ## Tecnologias
 
-### Back-end - [Readme.md](Back-end/README.md)
+### Back-end - [Documentação](Back-end/README.md)
 
 - [Spring-boot 2.2.7](https://start.spring.io/)
 - [Maven](https://maven.apache.org/)
@@ -12,7 +12,7 @@
 - [H2 Data Base Engine](https://www.h2database.com/html/main.html)
 - [JSON Web Tokens(JWT)](https://jwt.io/) (API c/ autenticação)
 
-### Front-end - [Readme.md](Front-end/README.md)
+### Front-end - [Documentação](Front-end/README.md)
 
 - [Bootstrap 4.5](https://getbootstrap.com/)
 - [Javascript](https://www.javascript.com/)
