@@ -212,3 +212,43 @@ RESPONSE
 - 404 - NOT FOUND
 
 ---
+### Publications Feed
+
+REQUEST
+
+- GET /accounts/getfeed/{id}
+
+RESPONSE
+
+- 200 - OK
+```json
+[
+    {
+        "id": 29,
+        "ownerId": 2,
+        "publicationDate": "2020-05-31 07:42:43",
+        "expireDate": null,
+        "description": "Publication: 1; ownerId: 2",
+        "image": "/9j/4AAQSkZJRgABAQ...4H/8Awf8A/9k="
+    },
+    {
+        "id": 30,
+        "ownerId": 2,
+        "publicationDate": "2020-05-31 07:42:43",
+        "expireDate": null,
+        "description": "Publication: 2; ownerId: 2",
+    },
+    {
+        "id": 31,
+        "ownerId": 2,
+        "publicationDate": "2020-05-31 07:42:43",
+        "expireDate": null,
+        "description": "Publication: 3; ownerId: 2",
+        "image": "/9j/4AAQS691737r3...Xvfue9+691//9k="
+    }
+]
+```
+- 401 - UNAUTHORIZED
+- 404 - NOT FOUND
+
+---
