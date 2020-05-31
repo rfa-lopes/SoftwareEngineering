@@ -33,4 +33,4 @@
 
 ## Arquitectura
 
- [Stories Documentacion](doc/API/Architecture/BEArchitecture.png)
+ ![Arquitectura](doc/API/Architecture/BEArchitecture.png)
