@@ -88,13 +88,7 @@ function loadPeopleinfo(idp, i) {
       
         success: function(response) {
             if(response) {
-                if(i==0){
-                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages(idp)"><div class="chat_ib"><h5>' + response.name  +  '</h5></div></div></div>';
-                }
-                else{
-                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages('+idp+')"> <div class="chat_ib"><h5>' + response.name + '</h5></div></div>';
-                }
-                
+                    document.getElementById("peoplechat").innerHTML += '<div class="chat_list active_chat"><div class="chat_people" onclick = "loadMessages('+idp+')"><div class="chat_ib"><h5>' + response.name  +  '</h5></div></div></div>';
             }
             else {
                 alert("No response");

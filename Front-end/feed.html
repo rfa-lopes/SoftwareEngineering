@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.0/assets/owl.carousel.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -118,7 +120,39 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" href="./login.html">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="location.href='./login.html'">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <div id="unfollowmodal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">			
+                    <h4 class="modal-title">Unfollow Account</h4>	
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Are you sure you want to unfollow this account?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="unfollow()">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <div id="unfollowAmodal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">			
+                    <h4 class="modal-title">Unfollow Account</h4>	
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Account Unfollowed</p>
+                </div>
+                 <div class="modal-footer">
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" onclick="location.href='./feed.html'">OK</button>
                 </div>
             </div>
         </div>
@@ -167,7 +201,7 @@
                                 <img class="post" src="" >
                             </div>
                              <div class="col-lg-6 col-md-6">
-                                 <div class="row" style="margin-left: 150px"> 
+                                 <div class="row" style="margin-left: 00px"> 
                                      <button class="btn" id="like_btn_post" onclick="likePub(0)">&#128077</button>
                                      <button class="btn" id="love_btn_post" onclick="likePub(1)">&#128150</button>
                                      <button class="btn" id="laugh_btn_post" onclick="likePub(2)">&#128514</button>
@@ -175,7 +209,7 @@
                                      <button class="btn" id="sad_btn_post" onclick="likePub(5)">&#128546</button>
                                      <button class="btn" id="angry_btn_post" onclick="likePub(4)">&#128544</button> 
                                  </div>
-                                 <div class="row" style="margin-left: 150px"> 
+                                 <div class="row" style="margin-left: 00px"> 
                                      <p id="likec" style="margin-left: 35px">0</p>
                                      <p id="lovec" style="margin-left: 57px">0</p>
                                      <p id="laughc" style="margin-left: 57px">0</p>
@@ -219,9 +253,28 @@
                             <h2>Story Feed</h2>
                         </div>
                         <div class="row">
-                            <div id="storyfeed" class="product__discount__slider owl-carousel">
-                                
-                                
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" id="storyfeed">
+                                    
+                                    
+                                    
+                                </div>
+                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -235,6 +288,7 @@
                     </div>
                     <div class="row" id="postsdiv">
                         
+                        
                     </div>
                 </div>
             </div>
@@ -245,6 +299,15 @@
     <script>
 		function save(i){
             localStorage.setItem('idpub',i); 
+            console.log(i);
+        }
+        
+        
+</script>
+    
+    <script>
+		function saveU(i){
+            localStorage.setItem('userIdPub',i); 
             console.log(i);
         }
         
@@ -264,36 +327,14 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/maino.js"></script>
+    
     <script type="text/javascript" src="logout.js"></script>
     <script type="text/javascript" src="feed.js"></script>
     <script type="text/javascript" src="share.js"></script>
+    <script type="text/javascript" src="follow.js"></script>
     
     <script>
-        $(document).ready(function() {
-
-          $("#storyfeed").owlCarousel({
-
-              autoPlay: 3000, //Set AutoPlay to 3 seconds
-              itemsDesktop : [1199,3],
-              itemsDesktopSmall : [979,3],
-              loop:true,
-              margin:10,
-              nav:true,
-              responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    },
-                    1000:{
-                        items:5
-                    }
-              }
-
-            });
-
-        });
+        
     </script>
 
 

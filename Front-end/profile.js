@@ -66,11 +66,12 @@ function loadPub() {
     event.preventDefault();
 };
 
-function loadStories() {
+function loadStories(id,username) {
     var idUser = localStorage.getItem('userid');
+    console.log("STORIES");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/stories/allstories/"+idUser,
+        url: "http://localhost:8080/stories/allstories/"+id,
         contentType: "application/json; charset=utf-8",
         crossDomain: true,
         //headers: "Access-Control-Allow-Origin: *",
@@ -79,15 +80,19 @@ function loadStories() {
       
         success: function(response) {
             if(response) {
-                var n ="";
+                var m ="";
                 console.log(response);
-                for(var i=0; i<response.length;i++){
-                    n += '<div class="col-lg-4"><div class="product__discount__item"><div id="'+response[i].id+'"class="product__discount__item__pic set-bg" data-setbg=data:image/png;base64,"' + response[i].image + '"></div></div></div>';
+                for(var k=0; k<response.length;k++){
+                    if(k==0){
+                         m+='<div class="item active"><div class="product__discount__item"><div class="product__discount__item__pic set-bg" ><img id="'+response[k].id+'" data-img="'+response[k].image+'" class="story" src="data:image/png;base64,'+response[k].image+'"/></div><div class="product__discount__item__text"><h4><a>'+username+'</a></h4></div></div></div>';}
+                    else{
+                        m+='<div class="item"><div class="product__discount__item"><div class="product__discount__item__pic set-bg" ><img id="'+response[k].id+'" data-img="'+response[k].image+'" class="story" src="data:image/png;base64,'+response[k].image+'"/></div><div class="product__discount__item__text"><h4><a>'+username+'</a></h4></div></div></div>';
+                    }
                 }
-                document.getElementById("mystories").innerHTML = n;
-                for(var t=0; t<response.length;t++){
+                document.getElementById("mystories").innerHTML = m;
+                /*for(var t=0; t<response.length;t++){
                     document.getElementById(response[t].id).style.backgroundImage= "url('data:image/png;base64,"+ response[t].image+ "')";
-                }
+                }*/
 
             }
             else {
@@ -227,7 +232,7 @@ function getLikesPub(i) {
     event.preventDefault();
 };
     
-commentPub = function(event) {
+function commentPub() {
     var comm = document.getElementById("addcomm").value
     var idu = localStorage.getItem("userid");
     var idp = localStorage.getItem("idpub");
@@ -293,6 +298,7 @@ function getCommentsPub(i) {
 
 window.onload = function() {
     var NameUser = localStorage.getItem('name');
+    var idu = localStorage.getItem("userid");
     console.log(NameUser);
     document.getElementById("nameuser").innerHTML = NameUser;
     $("#postModal").on('show.bs.modal', function (e) {
@@ -307,5 +313,5 @@ window.onload = function() {
     })
     loadPeopleinfo();
     loadPub();
-    //loadStories();
+    loadStories(idu,NameUser);
 };
