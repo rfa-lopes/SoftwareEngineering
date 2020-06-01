@@ -3,6 +3,11 @@ captureData = function(event) {
     var filter = document.getElementById("filters").value;
     console.log(filter);
     var imageContaainer = document.getElementById("blah");
+    var foto = imageContaainer.getAttribute('src');
+    if(foto == '#'){
+        alert("Looks like you forgot to upload a photo!");
+        return;
+    }
     var canvas = document.createElement('canvas');
     canvas.id="canvasPhoto";
     canvas.width = imageContaainer.width;
