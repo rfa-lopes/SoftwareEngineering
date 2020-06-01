@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.BAD_REQUEST;
-import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.NOT_FOUND;
+import static fct.unl.pt.instagramplus.Services.Result.ErrorCode.*;
 import static fct.unl.pt.instagramplus.Services.Result.error;
 import static fct.unl.pt.instagramplus.Services.Result.ok;
 
@@ -95,6 +94,10 @@ public class PublicationsServices implements PublicationsServiceInterface {
         Publication pub= publicationRepository.getPublicationById(reaction.getPublicationId());
         if (pub==null)
             return error(NOT_FOUND);
+        Reaction re=reactionsRepository.getReactionByUserIdAndPublicationId(reaction.getUserId(),reaction.getPublicationId());
+        if(re !=null){
+            return error(CONFLICT);
+        }
         reaction.setReactionDate(DateUtil.getAtualDate());
         Reaction react=reactionsRepository.save(reaction);
         return ok(react.getId());
