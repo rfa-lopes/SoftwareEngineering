@@ -132,6 +132,7 @@ RESPONSE
 ```
 - 401 - UNAUTHORIZED
 - 404 - NOT FOUND
+- 409 - CONFLICT
 ---
 
 ### Get All Comments
