@@ -78,9 +78,14 @@ window.onload = function() {
         success: function(response) {
             if(response) {
                 console.log(response);
+                if(response.length ==0){
+                    document.getElementById("visdiv").innerHTML = "<br><h2> No one's been here... </h2>";
+                }
+                else{
                 for(var j = 0 ;j < response.length; j++) {
                     var id = response[j].viewerId;
                     loadPeopleinfo(id);
+                }
                 }
             }
             else {
