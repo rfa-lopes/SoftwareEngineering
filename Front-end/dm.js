@@ -44,6 +44,9 @@ sendMessage = function(event) {
     var idUser = localStorage.getItem('userid');
     var idUserTo = localStorage.getItem('messageToId');
     var msg = document.getElementById("writemsg").value;
+    if(msg.length ==0){
+        return;
+    }
     var jsondata = {"messageText":msg, "fromUserId": idUser, "toUserId": idUserTo};
     console.log(jsondata);
     $.ajax({
