@@ -208,7 +208,11 @@ function likePub(i) {
         },
         error: function(response) {
             console.log(response);
-            alert("Error: "+ response.status);
+            if(response.status == 409){
+                alert("You already liked this post!");
+                //document.getElementById("followAmodal").showModal();
+            }
+            else{alert("Error: "+ response.status);}
         },
         data: JSON.stringify(jsondata)
     });
@@ -293,6 +297,9 @@ function getLikesPub(i) {
     
 function commentPub() {
     var comm = document.getElementById("addcomm").value
+    if(comm.length ==0){
+        return;
+    }
     var idu = localStorage.getItem("userid");
     var idp = localStorage.getItem("idpub");
     var jsondata = {"userId":idu, "publicationId":idp, "comment": comm};
