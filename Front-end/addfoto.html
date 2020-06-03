@@ -11,8 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -41,14 +40,14 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li><a href="./feed.html">Home</a></li>
-                <li ><a href="./profile.html">Profile</a></li>
+                <li><a href="./profile.html">Profile</a></li>
                 <li class="active"><a href="./addfoto.html">Add Photo</a></li>
                 <li><a href="./addstory.html">Add Story</a></li>
                 <li><a href="./dm.html">DM's</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        
+
     </div>
     <!-- Humberger End -->
 
@@ -86,15 +85,15 @@
             </div>
         </div>
     </header>
-    
+
     <div id="myModal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="icon-box">
                         <i class="material-icons">&#xE5CD;</i>
-                    </div>				
-                    <h4 class="modal-title">Sorry!</h4>	
+                    </div>
+                    <h4 class="modal-title">Sorry!</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">This feature is still not available in this prototype</p>
@@ -104,33 +103,34 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div id="logoutmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Logout</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Logout</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Are you sure you want to log out of your account?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="location.href='./login.html'">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed"
+                        onclick="location.href='./login.html'">YES</button>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <!-- Header Section End -->
 
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumbs-bg.jpg">
-        
+
     </section>
     <!-- Breadcrumb Section End -->
-    
-    
+
+
 
     <!-- Product Section Begin -->
     <section class="product spad">
@@ -141,19 +141,19 @@
         </div>
         <div class="container">
             <form name="addstory">
-            <div class="row">  
-                <div class="col-lg-6 col-md-6">
-                      <h2>Select a photo</h2>
-                      <input type="file" id="img" name="img" accept="image/*">
-                       <label for="img" class="input-file">
-                           <i class="material-icons">
-                           add_photo_alternate</i> &nbsp;
-                           Select a photo
-                       </label>
-                       <br>
-                       <br>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h2>Select a photo</h2>
+                        <input type="file" id="img" name="img" accept="image/*">
+                        <label for="img" class="input-file">
+                            <i class="material-icons">
+                                add_photo_alternate</i> &nbsp;
+                            Select a photo
+                        </label>
+                        <br>
+                        <br>
                         <h2>Select a filter</h2>
-                          <select name="filters" id="filters" onchange="myFunction()">
+                        <select name="filters" id="filters" onchange="myFunction()">
                             <option value="none">None</option>
                             <option value="blur">Blur</option>
                             <option value="brightness">Brightness</option>
@@ -164,16 +164,17 @@
                             <option value="opacity">Opacity</option>
                             <option value="saturate">Saturate</option>
                             <option value="sepia">Sepia</option>
-                          </select>
+                        </select>
 
                         <br>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div>
                             <h2>Enter Description: (Optional)</h2>
-                            <textarea id="descid" name="description" placeholder="Description" rows="5" cols="75"></textarea>
+                            <textarea id="descid" name="description" placeholder="Description" rows="5"
+                                cols="75"></textarea>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <br>
                 <button class="second-btn" type="submit">Add new Photo</button>
@@ -189,63 +190,63 @@
     <!-- Product Section End -->
 
     <script>
-      const status = document.getElementById("status");
+        const status = document.getElementById("status");
         const output = document.getElementById("blah");
         if (window.FileList && window.File && window.FileReader) {
-        document.getElementById('img').addEventListener('change', event => {
-          output.src = '';
-          status.textContent = '';
-          const file = event.target.files[0];
-          if (!file.type) {
-            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-            return;
-          }
-          const reader = new FileReader();
-          reader.addEventListener('load', event => {
-            output.src = event.target.result;
-          });
-          reader.readAsDataURL(file);
-        }); 
-      }</script>
-    
-    <script>
-    function myFunction() {
-         var imgf = document.getElementById("blah");
-      var x = document.getElementById("filters").value;
-      switch(x){
-              case "blur" :
-                  imgf.setAttribute("class", "blur");
-                    break;
-              case "brightness" :
-                  imgf.setAttribute("class", "brightness");
-                    break;
-              case "contrast" :
-                  imgf.setAttribute("class", "contrast");
-                    break;
-              case "grayscale" :
-                  imgf.setAttribute("class", "grayscale");
-                    break;
-              case "huerotate" :
-                  imgf.setAttribute("class", "huerotate");
-                    break;
-              case "invert" :
-                  imgf.setAttribute("class", "invert");
-                  break;
-              case "opacity" :
-                  imgf.setAttribute("class", "opacity");
-                    break;
-           case "saturate" :
-                  imgf.setAttribute("class", "saturate");
-                    break;
-              case "sepia" :
-                  imgf.setAttribute("class", "sepia");
-                    break;
-          case "none" :
-              imgf.removeAttribute("class");
-                  break;
+            document.getElementById('img').addEventListener('change', event => {
+                output.src = '';
+                status.textContent = '';
+                const file = event.target.files[0];
+                if (!file.type) {
+                    status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.addEventListener('load', event => {
+                    output.src = event.target.result;
+                });
+                reader.readAsDataURL(file);
+            });
+        }</script>
 
-          }
-    }
+    <script>
+        function myFunction() {
+            var imgf = document.getElementById("blah");
+            var x = document.getElementById("filters").value;
+            switch (x) {
+                case "blur":
+                    imgf.setAttribute("class", "blur");
+                    break;
+                case "brightness":
+                    imgf.setAttribute("class", "brightness");
+                    break;
+                case "contrast":
+                    imgf.setAttribute("class", "contrast");
+                    break;
+                case "grayscale":
+                    imgf.setAttribute("class", "grayscale");
+                    break;
+                case "huerotate":
+                    imgf.setAttribute("class", "huerotate");
+                    break;
+                case "invert":
+                    imgf.setAttribute("class", "invert");
+                    break;
+                case "opacity":
+                    imgf.setAttribute("class", "opacity");
+                    break;
+                case "saturate":
+                    imgf.setAttribute("class", "saturate");
+                    break;
+                case "sepia":
+                    imgf.setAttribute("class", "sepia");
+                    break;
+                case "none":
+                    imgf.removeAttribute("class");
+                    break;
+
+            }
+        }
     </script>
 
     <!-- Js Plugins -->

@@ -11,8 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -48,7 +47,7 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        
+
     </div>
     <!-- Humberger End -->
 
@@ -67,7 +66,7 @@
                         <ul>
                             <li><a href="./feed.html">Home</a></li>
                             <li class="active"><a href="./profile.html">Profile</a></li>
-                           <li><a href="./addfoto.html">Add Photo</a></li>
+                            <li><a href="./addfoto.html">Add Photo</a></li>
                             <li><a href="./addstory.html">Add Story</a></li>
                             <li><a href="./dm.html">DM's</a></li>
                         </ul>
@@ -92,8 +91,8 @@
                 <div class="modal-header">
                     <div class="icon-box">
                         <i class="material-icons">&#xE5CD;</i>
-                    </div>				
-                    <h4 class="modal-title">Sorry!</h4>	
+                    </div>
+                    <h4 class="modal-title">Sorry!</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">This feature is still not available in this prototype</p>
@@ -103,45 +102,47 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <div id="logoutmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Logout</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Logout</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Are you sure you want to log out of your account?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="location.href='./login.html'">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed"
+                        onclick="location.href='./login.html'">YES</button>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div id="followmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Follow Account</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Follow Account</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Are you sure you want to follow this account?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="follow()">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed"
+                        onclick="follow()">YES</button>
                 </div>
             </div>
         </div>
-    </div> 
-    
+    </div>
+
     <div id="followAmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Follow Account</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Follow Account</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">You are already following this account!</p>
@@ -152,8 +153,8 @@
     <div id="followedmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Follow Account</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Follow Account</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Account followed!</p>
@@ -161,36 +162,36 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Header Section End -->
 
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumbs-bg.jpg">
-        
+
     </section>
     <!-- Breadcrumb Section End -->
-    
-    
+
+
 
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
-            <div class="row">   
+            <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
                             <h4>My Profile</h4>
-                        
+
                             <img id="userfolimg" src="img/blog/details/details-author.jpg" alt="John Doe">
-                            
+
                             <div id="nameuserfol" class="sidebar__item h2">
-                            John Doe
-    
+                                John Doe
+
                             </div>
-                            
+
                         </div>
-                        
+
                         <div class="sidebar__item">
                             <ul>
                                 <li><a href="./profile.html">My Posts</a></li>
@@ -203,7 +204,7 @@
                 <div class="col-lg-9 col-md-7">
                     <h2 style="font-weight:bold"> Followers </h2>
                     <div id="foldiv" class="container">
-                        
+
                     </div>
                 </div>
             </div>
@@ -211,7 +212,7 @@
     </section>
     <!-- Product Section End -->
 
-    
+
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

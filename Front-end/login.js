@@ -7,7 +7,6 @@ captureData = function (event) {
     data: jsondata,
     success: function (response) {
       if (response) {
-        alert("LOGIN OK");
         // Store token id for later use in localStorage
         localStorage.setItem("userid", response.data.id);
         localStorage.setItem("username", response.data.username);

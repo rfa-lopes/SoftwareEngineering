@@ -11,8 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -51,7 +50,7 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        
+
     </div>
     <!-- Humberger End -->
 
@@ -95,8 +94,8 @@
                 <div class="modal-header">
                     <div class="icon-box">
                         <i class="material-icons">&#xE5CD;</i>
-                    </div>				
-                    <h4 class="modal-title">Sorry!</h4>	
+                    </div>
+                    <h4 class="modal-title">Sorry!</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">This feature is still not available in this prototype</p>
@@ -106,102 +105,105 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <div id="logoutmodal" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <div class="modal-header">			
-                    <h4 class="modal-title">Logout</h4>	
+                <div class="modal-header">
+                    <h4 class="modal-title">Logout</h4>
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Are you sure you want to log out of your account?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">NO</button>
-                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed" onclick="location.href='./login.html'">YES</button>
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="logout_btn_feed"
+                        onclick="location.href='./login.html'">YES</button>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <div id="postModal" class="modal fade">
-         <div class="modal-dialog modal-lg modal-posts">
+        <div class="modal-dialog modal-lg modal-posts">
             <div class="modal-content">
                 <div class="modal-body">
-                        <div class="row">   
-                            <div id= "modalimg" class="col-lg-6 col-md-6">
-                                <img class="post" src="" >
+                    <div class="row">
+                        <div id="modalimg" class="col-lg-6 col-md-6">
+                            <img class="post" src="">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="row" style="margin-left: 150px">
+                                <button class="btn" id="like_btn_post" onclick="likePub(0)">&#128077</button>
+                                <button class="btn" id="love_btn_post" onclick="likePub(1)">&#128150</button>
+                                <button class="btn" id="laugh_btn_post" onclick="likePub(2)">&#128514</button>
+                                <button class="btn" id="wow_btn_post" onclick="likePub(3)">&#128561</button>
+                                <button class="btn" id="sad_btn_post" onclick="likePub(5)">&#128546</button>
+                                <button class="btn" id="angry_btn_post" onclick="likePub(4)">&#128544</button>
                             </div>
-                             <div class="col-lg-6 col-md-6">
-                                 <div class="row" style="margin-left: 150px"> 
-                                     <button class="btn" id="like_btn_post" onclick="likePub(0)">&#128077</button>
-                                     <button class="btn" id="love_btn_post" onclick="likePub(1)">&#128150</button>
-                                     <button class="btn" id="laugh_btn_post" onclick="likePub(2)">&#128514</button>
-                                     <button class="btn" id="wow_btn_post" onclick="likePub(3)">&#128561</button>
-                                     <button class="btn" id="sad_btn_post" onclick="likePub(5)">&#128546</button>
-                                     <button class="btn" id="angry_btn_post" onclick="likePub(4)">&#128544</button>
-                                 </div>
-                                 <div class="row" style="margin-left: 150px"> 
-                                     <p id="likec" style="margin-left: 35px">0</p>
-                                     <p id="lovec" style="margin-left: 57px">0</p>
-                                     <p id="laughc" style="margin-left: 57px">0</p>
-                                     <p id="wowc" style="margin-left: 57px">0</p>
-                                     <p id="sadc" style="margin-left: 57px">0</p>
-                                     <p id="angryc" style="margin-left: 55px">0</p>
-                                 </div>
-                                  <div class="comms">
-                                    <div id = "comments" class="msg_history">
-                                        <div class="outgoing_msg">
-                                            <div class="sent_comm">
-                                                <p>Tamojai tranquilo</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="type_msg">
-                                        <div class="input_msg_write">
-                                            <input id="addcomm" type="text" class="write_msg" placeholder="Type a message" />
-                                            <button class="msg_send_btn" type="button" onclick="commentPub"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>        
+                            <div class="row" style="margin-left: 150px">
+                                <p id="likec" style="margin-left: 35px">0</p>
+                                <p id="lovec" style="margin-left: 57px">0</p>
+                                <p id="laughc" style="margin-left: 57px">0</p>
+                                <p id="wowc" style="margin-left: 57px">0</p>
+                                <p id="sadc" style="margin-left: 57px">0</p>
+                                <p id="angryc" style="margin-left: 55px">0</p>
+                            </div>
+                            <div class="comms">
+                                <div id="comments" class="msg_history">
+                                    <div class="outgoing_msg">
+                                        <div class="sent_comm">
+                                            <p>Tamojai tranquilo</p>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="type_msg">
+                                    <div class="input_msg_write">
+                                        <input id="addcomm" type="text" class="write_msg"
+                                            placeholder="Type a message" />
+                                        <button class="msg_send_btn" type="button" onclick="commentPub"><i
+                                                class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
                             </div>
-                       </div>
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>
-        </div>  
+        </div>
+    </div>
     <!-- Header Section End -->
 
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumbs-bg.jpg">
-        
+
     </section>
     <!-- Breadcrumb Section End -->
-    
-    
+
+
 
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
-            <div class="row">   
+            <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
 
                         <div class="sidebar__item">
                             <h4>My Profile</h4>
-                        
+
                             <img id="imguser" src="img/blog/details/details-author.jpg" alt="John Doe">
-                            
+
                             <div id="nameuser" class="sidebar__item h2">
-                            John Doe
-    
+                                John Doe
+
                             </div>
-                            
+
                         </div>
                         <div class="sidebar__item">
                             <ul>
                                 <li class="active"><a href="./profile.html">My Posts</a></li>
-                                <li><a href="./visualization.html">Check Profile Visitors</a></li> 
+                                <li><a href="./visualization.html">Check Profile Visitors</a></li>
                                 <li><a href="./followers.html">My Followers</a></li>
                             </ul>
                         </div>
@@ -216,36 +218,36 @@
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
-                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
                                 </ol>
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" id="mystories">
-                                    
+
                                 </div>
                                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                  <span class="glyphicon glyphicon-chevron-left"></span>
-                                  <span class="sr-only">Previous</span>
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
                                 </a>
                                 <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                  <span class="glyphicon glyphicon-chevron-right"></span>
-                                  <span class="sr-only">Next</span>
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="filter__item">
                         <div class="row">
-                             <div class="section-title product__discount__title2">
-                            <h2>My Posts</h2>
+                            <div class="section-title product__discount__title2">
+                                <h2>My Posts</h2>
                             </div>
                         </div>
-                       
+
                     </div>
                     <div class="row" id="mypostsdiv">
-                        
+
                     </div>
                 </div>
             </div>
@@ -254,8 +256,8 @@
     <!-- Product Section End -->
 
     <script>
-        function save(i){
-            localStorage.setItem('idpub',i); 
+        function save(i) {
+            localStorage.setItem('idpub', i);
             console.log(i);
         }
     </script>
