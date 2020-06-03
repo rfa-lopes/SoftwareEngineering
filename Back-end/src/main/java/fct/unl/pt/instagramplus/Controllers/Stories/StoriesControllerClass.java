@@ -7,6 +7,7 @@ import fct.unl.pt.instagramplus.Repositories.StoriesRepository;
 import fct.unl.pt.instagramplus.Services.Stories.StoriesService;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,10 @@ public class StoriesControllerClass implements StoriesControllerInterface {
     StoriesService storiesService;
     @Autowired
     StoriesRepository storiesRepository;
+
+    @Value("${userAuth}")
+    private boolean useAuth;
+
     @Override
     public ResponseEntity<Long> createStory(Long accountRequestId, Stories publication) {
         Logger.info("Request: CREATE STORY");

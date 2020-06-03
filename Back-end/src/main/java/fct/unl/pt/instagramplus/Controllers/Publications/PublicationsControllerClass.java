@@ -14,6 +14,7 @@ import fct.unl.pt.instagramplus.Repositories.ReactionsRepository;
 import fct.unl.pt.instagramplus.Services.PublicationsServices.PublicationsServices;
 import fct.unl.pt.instagramplus.Utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,11 +43,14 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     @Autowired
     FollowersRepository followersRepository;
 
+    @Value("${userAuth}")
+    private boolean useAuth;
+
     @Override
     public ResponseEntity<Long> createPublication(Long accountRequestId, Publication publication) {
         Logger.info("Request: CREATE PUBLICATION");
-        //if(!accountRequestId.equals(publication.getOwnerId()))
-        //   return ResponseEntity.status(UNAUTHORIZED).build();
+        if (useAuth && !accountRequestId.equals(publication.getOwnerId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.createpublication(publication));
     }
 
@@ -54,8 +58,8 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     public ResponseEntity<Void> deletePublication(Long accountRequestId, Long id) {
         Logger.info("Request: DELETE PUBLICATION");
         Publication pub = publicationRepository.getPublicationById(id);
-        //if (!accountRequestId.equals(pub.getOwnerId()))
-        //   return ResponseEntity.status(UNAUTHORIZED).build();
+        if (useAuth && !accountRequestId.equals(pub.getOwnerId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.deletePublication(id));
     }
 
@@ -63,53 +67,53 @@ public class PublicationsControllerClass implements PublicationsControllerInterf
     public ResponseEntity<Publication> editPublication(Long accountRequestId, String description, Long id) {
         Logger.info("Request: EDIT PUBLICATION");
         Publication pub = publicationRepository.getPublicationById(id);
-        //if (!accountRequestId.equals(pub.getOwnerId()))
-        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        if (useAuth && !accountRequestId.equals(pub.getOwnerId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.editPublication(description, id));
     }
 
     @Override
     public ResponseEntity<List<Publication>> getAllPublications(Long accountRequestId, Long id) {
         Logger.info("Request: ALL PUBLICATIONS");
-        /*if (!accountRequestId.equals(id)) {
+        if (useAuth && !accountRequestId.equals(id)) {
             Follower fll = followersRepository.getByAccountIdAndIsFollowingId(accountRequestId, id);
             if (fll == null)
                 return ResponseEntity.status(UNAUTHORIZED).build();
-        }*/
+        }
         return Response.resultOrErrorCode(publicationsServices.getAllPublications(id));
     }
 
     @Override
     public ResponseEntity<Long> AddComment(Long accountRequestId, Comment comment) {
         Logger.info("Request: ADD COMMENTS");
-        //if (!accountRequestId.equals(comment.getUserId()))
-        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        if (!accountRequestId.equals(comment.getUserId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.addCommnet(comment));
     }
 
     @Override
     public ResponseEntity<Long> AddLike(Long accountRequestId, Reaction like) {
         Logger.info("Request: ADD LIKE");
-        //if (!accountRequestId.equals(like.getUserId()))
-        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        if (useAuth && !accountRequestId.equals(like.getUserId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.addLike(like));
     }
 
     @Override
     public ResponseEntity<Void> deleteComment(Long accountRequestId, Long idComment) {
         Logger.info("Request: DETELE COMMENT");
-        //Comment com = commentRepository.getCommentById(idComment);
-        //if (!accountRequestId.equals(com.getUserId()))
-        //  return ResponseEntity.status(UNAUTHORIZED).build();
+        Comment com = commentRepository.getCommentById(idComment);
+        if (useAuth && !accountRequestId.equals(com.getUserId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.deleteComment(idComment));
     }
 
     @Override
     public ResponseEntity<Void> deleteLike(Long accountRequestId, Long idLike) {
         Logger.info("Request: DELETE LIKE");
-        //Reaction react = reactionsRepository.getReactionById(idLike);
-        //if (!accountRequestId.equals(react.getUserId()))
-         //   return ResponseEntity.status(UNAUTHORIZED).build();
+        Reaction react = reactionsRepository.getReactionById(idLike);
+        if (useAuth && !accountRequestId.equals(react.getUserId()))
+            return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(publicationsServices.deleteLike(idLike));
     }
 
