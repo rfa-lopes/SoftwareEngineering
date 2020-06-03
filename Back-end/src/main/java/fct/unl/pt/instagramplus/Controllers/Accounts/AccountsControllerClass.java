@@ -32,7 +32,7 @@ public class AccountsControllerClass implements AccountsControllerInterface {
     public ResponseEntity<Void> deleteAccount(Long accountRequestId, Long id) {
         Logger.info("Request: DELETE ACCOUNT BY: " + accountRequestId);
         //if(!accountRequestId.equals(id))
-        //   return ResponseEntity.status(UNAUTHORIZED).build();
+        // return ResponseEntity.status(UNAUTHORIZED).build();
         return Response.resultOrErrorCode(accountService.deleteAccount(id));
     }
 
